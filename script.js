@@ -1,4 +1,4 @@
-/* Prompt & Pipeline — interactions
+/* AI with Pelumi — interactions
    1. Glass cursor (fluid.glass-style lerp trail)
    2. Scroll reveals + pipeline spine
    3. FAQ accordion
@@ -55,6 +55,100 @@
         (y - cursor.offsetHeight / 2) + "px,0)";
       requestAnimationFrame(loop);
     })();
+  }
+
+  /* ---------- 1b. Hero ASCII globe (shopify.vc reference, our palette) ---------- */
+
+  var globe = document.querySelector(".hero-globe");
+
+  if (globe && globe.getContext) {
+    var gctx = globe.getContext("2d");
+    var CHARS = [":", "+", ">", "x", "%", "S", "#", "X"];
+    var CELL = 9;
+    var gsize = 0;
+
+    var hash = function (a, b, c) {
+      var n = Math.sin(a * 127.1 + b * 311.7 + c * 74.7) * 43758.5453;
+      return n - Math.floor(n);
+    };
+    var smooth = function (t) { return t * t * (3 - 2 * t); };
+    var lerp = function (a, b, t) { return a + (b - a) * t; };
+
+    // 3D value noise — makes the land-mass splotches on the sphere
+    var noise3 = function (x, y, z) {
+      var xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+      var u = smooth(x - xi), v = smooth(y - yi), w = smooth(z - zi);
+      return lerp(
+        lerp(
+          lerp(hash(xi, yi, zi), hash(xi + 1, yi, zi), u),
+          lerp(hash(xi, yi + 1, zi), hash(xi + 1, yi + 1, zi), u), v),
+        lerp(
+          lerp(hash(xi, yi, zi + 1), hash(xi + 1, yi, zi + 1), u),
+          lerp(hash(xi, yi + 1, zi + 1), hash(xi + 1, yi + 1, zi + 1), u), v),
+        w);
+    };
+
+    var resizeGlobe = function () {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      gsize = globe.getBoundingClientRect().width;
+      globe.width = gsize * dpr;
+      globe.height = gsize * dpr;
+      gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      gctx.textAlign = "center";
+      gctx.textBaseline = "middle";
+      gctx.font = "9px 'JetBrains Mono', monospace";
+    };
+
+    var drawGlobe = function (t) {
+      gctx.clearRect(0, 0, gsize, gsize);
+      var R = gsize / 2 - CELL;
+      var rot = t * 0.00005; // one slow revolution ≈ 2 min
+      for (var gy = CELL / 2; gy < gsize; gy += CELL) {
+        for (var gx = CELL / 2; gx < gsize; gx += CELL) {
+          var dx = (gx - gsize / 2) / R;
+          var dy = (gy - gsize / 2) / R;
+          var d2 = dx * dx + dy * dy;
+          if (d2 > 1) continue;
+          var dz = Math.sqrt(1 - d2);
+          var sx = dx * Math.cos(rot) + dz * Math.sin(rot);
+          var sz = dz * Math.cos(rot) - dx * Math.sin(rot);
+          var n = noise3(sx * 2.3 + 5, dy * 2.3 + 5, sz * 2.3 + 5) * 0.65 +
+                  noise3(sx * 5.1, dy * 5.1, sz * 5.1) * 0.35;
+          var shade = 0.35 + 0.65 * dz; // limb darkening toward the edge
+          if (n <= 0.52) {
+            // ocean: sparse faint specks so the sphere still reads as a ball
+            if (hash(gx, gy, 7) > 0.07) continue;
+            gctx.fillStyle = "rgba(153, 161, 165, 0.16)";
+            gctx.fillText(":", gx, gy);
+            continue;
+          }
+          var v = Math.min(0.999, ((n - 0.52) / 0.3) * shade);
+          var alpha = 0.14 + 0.36 * shade;
+          gctx.fillStyle = hash(gy, gx, 3) < 0.05
+            ? "rgba(229, 136, 72, " + (alpha + 0.12) + ")"
+            : "rgba(153, 161, 165, " + alpha + ")";
+          gctx.fillText(CHARS[Math.floor(v * CHARS.length)], gx, gy);
+        }
+      }
+    };
+
+    resizeGlobe();
+
+    if (reducedMotion) {
+      drawGlobe(0);
+      window.addEventListener("resize", function () { resizeGlobe(); drawGlobe(0); });
+    } else {
+      var lastFrame = 0;
+      var spin = function (t) {
+        if (t - lastFrame > 40) { // ~25fps is plenty for this
+          lastFrame = t;
+          drawGlobe(t);
+        }
+        requestAnimationFrame(spin);
+      };
+      window.addEventListener("resize", resizeGlobe);
+      requestAnimationFrame(spin);
+    }
   }
 
   /* ---------- 2. Scroll reveals + spine ---------- */

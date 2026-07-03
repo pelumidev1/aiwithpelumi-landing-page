@@ -1,0 +1,11 @@
+# AI with Pelumi
+Practical AI education for working professionals, taught by Pelumi Fatoye, a product marketer who builds the AI systems he teaches.
+
+## Topics
+- Content Engine: how to repurpose one idea into emails, blogs, and newsletters with AI
+- Build It, Don't Learn It: how to build websites, AI agents, and automations with no code
+- Your AI Workforce: how to build AI assistants for outreach, meetings, social, research, and operations
+- Prompt to Production: how to turn prompts into videos, UGC ads, presentations, and flyers
+
+## Newsletter
+Weekly newsletter at https://aiwithpelumi.com/

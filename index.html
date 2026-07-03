@@ -3,32 +3,100 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prompt &amp; Pipeline — Build AI systems with your own hands</title>
-  <meta name="description" content="Weekly AI workflows, playbooks, and copy-paste prompts for marketers and operators who'd rather build the system than outsource it. By AI with Pelumi.">
+  <title>AI with Pelumi — Learn to build with AI, from someone who does</title>
+  <meta name="description" content="Every week I show you the practical AI stack: build a content engine, ship websites and agents with no code, run an AI workforce, and go from prompt to production. The wiring, not the hype.">
+  <link rel="canonical" href="https://aiwithpelumi.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aiwithpelumi.com/">
+  <meta property="og:title" content="AI with Pelumi — Learn to build with AI, from someone who does">
+  <meta property="og:description" content="The practical AI stack, shown not sold: content engines, no-code websites and agents, an AI workforce, prompt to production. Weekly newsletter.">
+  <!-- TODO: create the branded 1200x630 og-image.png card -->
+  <meta property="og:image" content="https://aiwithpelumi.com/og-image.png">
+  <meta property="og:site_name" content="AI with Pelumi">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI with Pelumi — Learn to build with AI, from someone who does">
+  <meta name="twitter:description" content="The practical AI stack, shown not sold: content engines, no-code websites and agents, an AI workforce, prompt to production. Weekly newsletter.">
+  <meta name="twitter:image" content="https://aiwithpelumi.com/og-image.png">
+
+  <!-- TODO: add favicon.ico and apple-touch-icon.png assets -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Silkscreen&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pelumi Fatoye",
+    "url": "https://aiwithpelumi.com/",
+    "image": "https://aiwithpelumi.com/image/pelumi-headshot.jpg",
+    "jobTitle": "Product Marketer",
+    "description": "Product marketer who builds the AI systems behind the marketing. Teaches professionals the practical AI stack.",
+    "knowsAbout": ["Artificial Intelligence","Claude","Prompt Engineering","No-Code Development","AI Agents","Content Marketing","AI Video Generation","Marketing Automation","Product Marketing"],
+    "sameAs": [
+      "https://www.facebook.com/REPLACE",
+      "https://www.instagram.com/pelumif_/",
+      "https://x.com/pelumif_",
+      "https://www.linkedin.com/in/pelumifatoye",
+      "https://www.youtube.com/@pelumif",
+      "https://substack.com/@pelumidev"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AI with Pelumi",
+    "url": "https://aiwithpelumi.com/",
+    "publisher": { "@type": "Person", "name": "Pelumi Fatoye" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AI with Pelumi",
+    "url": "https://aiwithpelumi.com/",
+    "logo": "https://aiwithpelumi.com/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/REPLACE",
+      "https://www.instagram.com/pelumif_/",
+      "https://x.com/pelumif_",
+      "https://www.linkedin.com/in/pelumifatoye",
+      "https://www.youtube.com/@pelumif",
+      "https://substack.com/@pelumidev"
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <div class="cursor" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a href="#top" class="wordmark">PROMPT <span class="amp">&amp;</span> PIPELINE</a>
-    <span class="byline">by AI with Pelumi</span>
+    <a href="#top" class="wordmark">AI <span class="amp">with</span> PELUMI</a>
   </header>
 
   <main id="top">
 
     <!-- ============ S1 · HERO ============ -->
-    <section class="hero grid" aria-label="Subscribe to Prompt and Pipeline">
+    <section class="hero grid" aria-label="Subscribe to AI with Pelumi">
+      <canvas class="hero-globe" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <p class="eyebrow-pill" data-reveal>AI WITH PELUMI &middot; WEEKLY</p>
-        <h1 data-reveal>You know marketing.<br>Now build the systems that&nbsp;run&nbsp;it.</h1>
-        <p class="hero-sub" data-reveal>Weekly AI workflows, playbooks, and copy-paste prompts for marketers and operators who&rsquo;d rather build the system than outsource&nbsp;it.</p>
+        <h1 data-reveal>You&rsquo;re not using AI wrong.<br>Nobody showed you the&nbsp;stack.</h1>
+        <p class="hero-sub" data-reveal>Every week I show you the practical AI stack &mdash; turn one idea into a content engine, build websites and agents with no code, put an AI workforce to work, and go from prompt to production. The wiring, not the&nbsp;hype.</p>
 
         <form class="signup-form" data-signup data-reveal>
           <!-- TODO: wire to ESP (likely Substack) — set data-endpoint on the form and update script.js -->
@@ -37,71 +105,87 @@
           <button type="submit">Join free</button>
         </form>
 
-        <!-- TODO: replace 1,200+ with the real subscriber count -->
-        <p class="micro-trust" data-reveal><span class="pulse-dot"></span>JOIN 1,200+ SOLOPRENEURS &amp; BUILDERS &middot; FREE FOREVER</p>
+        <!-- TODO: 11,000+ is Pelumi's combined social following (~11,020 across FB/IG/X/LinkedIn/YouTube/Substack), not verified subscribers -->
+        <p class="micro-trust" data-reveal><span class="pulse-dot"></span>JOIN 11,000+ PROFESSIONALS LEARNING THE STACK</p>
       </div>
     </section>
 
     <div class="spine" aria-hidden="true"><span class="spine-node"></span></div>
 
-    <!-- ============ S2 · THE PIPELINE (visual workflow highlight) ============ -->
-    <section class="pillars grid" aria-label="What lands in your inbox">
+    <!-- ============ S2 · THE STACK (four pillars) ============ -->
+    <section class="pillars grid" aria-label="What you'll learn">
       <header class="section-head" data-reveal>
-        <p class="eyebrow">WHAT LANDS IN YOUR INBOX</p>
-        <h2>One email. Three moves. Zero&nbsp;noise.</h2>
+        <p class="eyebrow">WHAT YOU&rsquo;LL LEARN</p>
+        <h2>The whole stack.<br>One piece at a&nbsp;time.</h2>
       </header>
 
-      <!-- 01 · SIGNAL -->
+      <!-- 01 · CONTENT -->
       <article class="pillar" data-reveal>
         <div class="pillar-text">
-          <p class="stage">01 / SIGNAL</p>
-          <h3>News that matters</h3>
-          <p>AI ships something new every day. You don&rsquo;t need all of it &mdash; you need the two or three things that change how you work this week, explained in plain terms, with the hype stripped out.</p>
+          <p class="stage">01 / CONTENT</p>
+          <h3>Content Engine</h3>
+          <p>Turn one idea into emails, blog posts, and newsletters that keep working for you. I show you how to repurpose a single piece of content into a week of output with&nbsp;AI.</p>
         </div>
         <div class="pillar-visual">
           <div class="mock-newsletter">
             <div class="mock-chrome"><i></i><i></i><i></i></div>
             <div class="mock-body">
-              <p class="mock-subject">Prompt &amp; Pipeline &middot; Issue 014</p>
-              <span class="mock-line w80"></span>
-              <span class="mock-line w95"></span>
-              <span class="mock-line hl">The one release that actually changes your stack</span>
-              <span class="mock-line w70"></span>
-              <span class="mock-line w90"></span>
-              <span class="mock-line w60"></span>
+              <p class="mock-subject">AI with Pelumi &middot; Issue 014</p>
+              <div class="format-row"><span class="format-tag">EMAIL</span><span class="mock-line w70"></span></div>
+              <div class="format-row"><span class="format-tag">BLOG</span><span class="mock-line w90"></span></div>
+              <span class="mock-line hl">One idea in. A week of output out.</span>
+              <div class="format-row"><span class="format-tag">NEWSLETTER</span><span class="mock-line w60"></span></div>
+              <div class="format-row"><span class="format-tag">THREAD</span><span class="mock-line w80"></span></div>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 02 · STACK -->
-      <article class="pillar pillar--flip" data-reveal>
+      <!-- 02 · BUILD -->
+      <article class="pillar" data-reveal>
         <div class="pillar-text">
-          <p class="stage">02 / STACK</p>
-          <h3>Tools worth trying</h3>
-          <p>Every tool wants a subscription and still won&rsquo;t do the one specific thing you need. I test them so you stay lean &mdash; a straight verdict on what to keep, what to try, and what to skip.</p>
+          <p class="stage">02 / BUILD</p>
+          <h3>Build It, Don&rsquo;t Learn It</h3>
+          <p>Create websites, AI agents, and automations without writing code. You describe what you want; I show you how to have AI build it &mdash; a no-code website, a no-code AI agent, wired and&nbsp;live.</p>
         </div>
         <div class="pillar-visual">
-          <div class="mock-tools">
-            <div class="tool-tile"><span class="tool-glyph g1"></span><span class="tool-verdict keep">KEEP</span></div>
-            <div class="tool-tile"><span class="tool-glyph g2"></span><span class="tool-verdict try">TRY</span></div>
-            <div class="tool-tile"><span class="tool-glyph g3"></span><span class="tool-verdict try">TRY</span></div>
-            <div class="tool-tile is-skip"><span class="tool-glyph g4"></span><span class="tool-verdict skip">SKIP</span></div>
+          <div class="mock-prompt">
+            <div class="mock-prompt-head"><span>BUILD &middot; 02.1</span><span class="copy-chip">COPY</span></div>
+            <p class="mock-prompt-body">BUILD ME A ONE-PAGE SITE FOR MY NEWSLETTER. DARK THEME, EMAIL FORM WIRED TO MY LIST, MOBILE FIRST. ASK ME FIVE QUESTIONS, THEN SHIP IT.<span class="caret"></span></p>
           </div>
         </div>
       </article>
 
-      <!-- 03 · LEVERAGE -->
+      <!-- 03 · WORKFORCE -->
       <article class="pillar" data-reveal>
         <div class="pillar-text">
-          <p class="stage">03 / LEVERAGE</p>
-          <h3>Copy-paste prompts</h3>
-          <p>Prompts and full workflows you can run the same day &mdash; positioning docs, content engines, research pipelines. Copy it, paste it, ship it. The wiring is shown, not sold.</p>
+          <p class="stage">03 / WORKFORCE</p>
+          <h3>Your AI Workforce</h3>
+          <p>Build AI assistants that handle your outreach, meetings, social, research, and daily operations. Hire the work out to agents that run while you&nbsp;focus.</p>
         </div>
         <div class="pillar-visual">
-          <div class="mock-prompt">
-            <div class="mock-prompt-head"><span>PROMPT &middot; 03.2</span><span class="copy-chip">COPY</span></div>
-            <p class="mock-prompt-body">ACT AS MY POSITIONING STRATEGIST. AUDIT THE LANDING PAGE BELOW AGAINST THE ICP DOC, FLAG EVERY LINE A COMPETITOR COULD ALSO CLAIM, AND REWRITE THE THREE WEAKEST.<span class="caret"></span></p>
+          <div class="mock-tools">
+            <div class="tool-tile"><span class="tool-glyph g1"></span><span class="tool-verdict keep">OUTREACH</span></div>
+            <div class="tool-tile"><span class="tool-glyph g2"></span><span class="tool-verdict try">MEETINGS</span></div>
+            <div class="tool-tile"><span class="tool-glyph g3"></span><span class="tool-verdict try">RESEARCH</span></div>
+            <div class="tool-tile"><span class="tool-glyph g4"></span><span class="tool-verdict try">OPS</span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 · PRODUCTION -->
+      <article class="pillar" data-reveal>
+        <div class="pillar-text">
+          <p class="stage">04 / PRODUCTION</p>
+          <h3>Prompt to Production</h3>
+          <p>Turn simple prompts into videos, UGC ads, presentations, and flyers. I show you the prompt-to-production pipeline for real marketing&nbsp;assets.</p>
+        </div>
+        <div class="pillar-visual">
+          <div class="mock-tools">
+            <div class="tool-tile"><span class="tool-glyph g2"></span><span class="tool-verdict keep">VIDEO</span></div>
+            <div class="tool-tile"><span class="tool-glyph g1"></span><span class="tool-verdict try">UGC AD</span></div>
+            <div class="tool-tile"><span class="tool-glyph g4"></span><span class="tool-verdict try">DECK</span></div>
+            <div class="tool-tile"><span class="tool-glyph g3"></span><span class="tool-verdict try">FLYER</span></div>
           </div>
         </div>
       </article>
@@ -110,53 +194,53 @@
     <div class="spine" aria-hidden="true"><span class="spine-node"></span></div>
 
     <!-- ============ S3 · PROBLEM + US VS THEM ============ -->
-    <section class="problem grid" aria-label="Why most AI newsletters fail you">
+    <section class="problem grid" aria-label="Why most AI content fails you">
       <header class="section-head" data-reveal>
         <p class="eyebrow">THE PROBLEM</p>
-        <h2>Your inbox is already full.<br>Most of it says&nbsp;nothing.</h2>
+        <h2>Your feed is full of AI takes.<br>None of them show the&nbsp;build.</h2>
       </header>
 
       <div class="problem-grid">
         <article class="problem-card" data-reveal>
           <div class="blur-mock"><span></span><span></span><span></span><span></span><span></span></div>
-          <span class="problem-tag">TOO BROAD</span>
-          <p class="problem-note">40 links deep. Nothing about your work.</p>
+          <span class="problem-tag">HYPE</span>
+          <p class="problem-note">Big claims, zero walkthrough.</p>
         </article>
         <article class="problem-card" data-reveal>
           <div class="blur-mock"><span></span><span></span><span></span><span></span><span></span></div>
-          <span class="problem-tag">IRRELEVANT</span>
-          <p class="problem-note">Funding rounds and doom takes. Nothing you can use.</p>
+          <span class="problem-tag">NO STEPS</span>
+          <p class="problem-note">Screenshots with the good part cropped out.</p>
         </article>
         <article class="problem-card" data-reveal>
           <div class="blur-mock"><span></span><span></span><span></span><span></span><span></span></div>
           <span class="problem-tag">AI SLOP</span>
-          <p class="problem-note">Written by the tools it recommends. You can tell.</p>
+          <p class="problem-note">Written by the tools it&rsquo;s hyping. You can tell.</p>
         </article>
       </div>
 
       <div class="compare" data-reveal>
         <div class="compare-col compare-them">
-          <h3>Typical AI newsletters</h3>
+          <h3>Typical AI content</h3>
           <ul>
-            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>40 links with zero context</li>
-            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Hype, hot takes, trend recaps</li>
-            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Written to farm clicks</li>
-            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Daily blasts you stop opening</li>
+            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Hot takes and predictions</li>
+            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Hype and vibes</li>
+            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Cropped screenshots</li>
+            <li><svg class="icon-x" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Daily blasts you mute</li>
           </ul>
         </div>
         <div class="compare-col compare-us">
-          <h3>Prompt &amp; Pipeline</h3>
+          <h3>AI with Pelumi</h3>
           <ul>
-            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Three things that matter, explained</li>
-            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Workflows you can run the same day</li>
-            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Written by someone who builds</li>
-            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Lands when there&rsquo;s something real to say</li>
+            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Step-by-step walkthroughs</li>
+            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Honest &mdash; including what broke</li>
+            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>The full wiring, shown</li>
+            <li><svg class="icon-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Lands only when there&rsquo;s something real</li>
           </ul>
         </div>
       </div>
 
       <div class="midcta" data-reveal>
-        <p class="icp-line">For marketers and operators who are done outsourcing the technical side of&nbsp;growth.</p>
+        <p class="icp-line">For professionals done using AI like a search box, from someone who builds with it for a&nbsp;living.</p>
         <form class="signup-form" data-signup>
           <label class="sr-only" for="email-mid">Email address</label>
           <input id="email-mid" type="email" name="email" autocomplete="email" required placeholder="Enter your email">
@@ -170,9 +254,9 @@
     <!-- ============ S4 · SOCIAL PROOF + FAQ ============ -->
     <section class="proof grid" aria-label="Readers and questions">
       <header class="section-head" data-reveal>
-        <!-- TODO: replace with real subscriber count -->
+        <!-- TODO: 11,000+ is Pelumi's combined social following (~11,020), not verified subscribers -->
         <p class="eyebrow">WHO&rsquo;S READING</p>
-        <h2 class="count">1,200+ readers build with&nbsp;us.</h2>
+        <h2 class="count">11,000+ professionals learning with&nbsp;us.</h2>
       </header>
 
       <!-- TODO: PLACEHOLDER testimonials — replace with real quotes before launch -->
@@ -195,7 +279,7 @@
         <p class="eyebrow">QUESTIONS</p>
         <div class="faq-item">
           <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">How much does it cost?<span class="faq-icon" aria-hidden="true"></span></button></h3>
-          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div class="faq-a-inner"><p>Nothing. Prompt &amp; Pipeline is free, forever. If a paid tier ever exists, the free letter stays complete on its own.</p></div></div>
+          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div class="faq-a-inner"><p>It&rsquo;s free to join right now. If a paid tier launches later, I&rsquo;ll say so up front &mdash; and the free issues will still stand on their own.</p></div></div>
         </div>
         <div class="faq-item">
           <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">How often will you email me?<span class="faq-icon" aria-hidden="true"></span></button></h3>
@@ -206,8 +290,8 @@
           <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div class="faq-a-inner"><p>No &mdash; that&rsquo;s the point. Every workflow starts from wherever you are today and shows the wiring step by step. If you can follow a recipe, you can build these.</p></div></div>
         </div>
         <div class="faq-item">
-          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">What if I want out?<span class="faq-icon" aria-hidden="true"></span></button></h3>
-          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div class="faq-a-inner"><p>One click, bottom of every email, no guilt trip. If an issue wastes your time, that&rsquo;s the deal broken &mdash; leave.</p></div></div>
+          <h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">Is this only for marketers?<span class="faq-icon" aria-hidden="true"></span></button></h3>
+          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div class="faq-a-inner"><p>No. It starts wherever you are. If you use AI at work and want to actually build with it, you&rsquo;re the reader &mdash; marketer or not.</p></div></div>
         </div>
       </div>
     </section>
@@ -218,50 +302,46 @@
     <section class="founder" aria-label="A note from the founder">
       <div class="founder-inner grid">
         <div class="founder-note" data-reveal>
-          <p class="founder-line-grey">Have a workflow you want torn down?</p>
-          <p class="founder-line-white">Let&rsquo;s talk about what you&rsquo;re building.</p>
-          <p class="founder-body">I write every issue myself &mdash; the workflows are ones I actually run. No ghostwriters, no AI slop, no affiliate quotas. If an issue ever wastes your time, unsubscribe. That&rsquo;s the deal.</p>
+          <p class="founder-line-grey">Have a project in mind?</p>
+          <p class="founder-line-white">Let&rsquo;s talk about your AI journey.</p>
         </div>
         <div class="founder-card" data-reveal>
           <div class="founder-card-text">
-            <p class="founder-name">Pelumi Fatoye</p>
-            <p class="founder-role">Founder, AI with Pelumi</p>
+            <p class="founder-name">Pelumi</p>
+            <p class="founder-role">Product Marketer</p>
             <div class="founder-actions">
-              <a class="btn-touch" href="mailto:pelumifatoye@gmail.com">GET IN TOUCH</a>
-              <span class="founder-email">PELUMIFATOYE@GMAIL.COM</span>
+              <a class="btn-touch" href="mailto:hi@aiwithpelumi.com">GET IN TOUCH</a>
+              <span class="founder-email">HI@AIWITHPELUMI.COM</span>
             </div>
           </div>
-          <!-- TODO: replace with real headshot <img src="headshot.jpg" alt="Pelumi Fatoye"> -->
-          <div class="founder-photo" role="img" aria-label="Headshot placeholder"><span>PF</span></div>
+          <img class="founder-photo" src="image/pelumi-headshot.jpg" alt="Pelumi Fatoye">
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-grid grid">
-      <div class="footer-col">
-        <p class="footer-title">PROMPT &amp; PIPELINE</p>
-        <p class="footer-text">The weekly letter of AI with Pelumi.<br>Built in the open, shipped from anywhere.</p>
-        <a class="footer-link" href="mailto:pelumifatoye@gmail.com">pelumifatoye@gmail.com</a>
+    <div class="footer-inner grid">
+      <div class="footer-brand">
+        <p class="footer-mark">AI WITH PELUMI</p>
+        <p class="footer-meta">&copy; 2026 AI WITH PELUMI. ALL RIGHTS RESERVED.</p>
+        <p class="footer-meta">VIBE CODED BY YOURS TRULY WITH <a class="footer-credit" href="https://claude.com/claude-code" target="_blank" rel="noopener">CLAUDE CODE</a></p>
       </div>
-      <div class="footer-col">
-        <p class="footer-title">FOLLOW</p>
+      <div class="footer-side">
         <ul class="socials">
-          <!-- TODO: add real profile URLs -->
-          <li><a class="footer-link" href="#" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg>Instagram</a></li>
-          <li><a class="footer-link" href="#" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.1 9.3L4.4 20h2.4l5.4-5.3L16.8 20H20l-7.4-9.7L18.9 4h-2.4l-4.9 4.8L7.2 4H4z" fill="currentColor"/></svg>Twitter</a></li>
-          <li><a class="footer-link" href="#" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v2.4H5zM5 9.8h14v2.4H5zM5 14.6h14V21l-7-3.2L5 21z" fill="currentColor"/></svg>Substack</a></li>
-          <li><a class="footer-link" href="#" rel="me noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="6.5" y="10" width="2.6" height="7" fill="currentColor"/><circle cx="7.8" cy="7.2" r="1.4" fill="currentColor"/><path d="M12 17v-4.2c0-1.5 1-2.6 2.5-2.6s2.7 1.1 2.7 2.9V17h-2.5v-3.5c0-.6-.3-1-.9-1s-1 .4-1 1V17H12z" fill="currentColor"/></svg>LinkedIn</a></li>
+          <li><a class="social-tile" href="https://www.instagram.com/pelumif_/" target="_blank" rel="me noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></a></li>
+          <li><a class="social-tile" href="https://x.com/pelumif_" target="_blank" rel="me noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.1 9.3L4.4 20h2.4l5.4-5.3L16.8 20H20l-7.4-9.7L18.9 4h-2.4l-4.9 4.8L7.2 4H4z" fill="currentColor"/></svg></a></li>
+          <li><a class="social-tile" href="https://www.linkedin.com/in/pelumifatoye" target="_blank" rel="me noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="6.5" y="10" width="2.6" height="7" fill="currentColor"/><circle cx="7.8" cy="7.2" r="1.4" fill="currentColor"/><path d="M12 17v-4.2c0-1.5 1-2.6 2.5-2.6s2.7 1.1 2.7 2.9V17h-2.5v-3.5c0-.6-.3-1-.9-1s-1 .4-1 1V17H12z" fill="currentColor"/></svg></a></li>
+          <li><a class="social-tile" href="https://www.youtube.com/@pelumif" target="_blank" rel="me noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10.2 9.4l5 2.6-5 2.6V9.4z" fill="currentColor"/></svg></a></li>
+        </ul>
+        <ul class="footer-nav">
+          <!-- TODO: MANIFESTO needs a real target page -->
+          <li><a href="https://substack.com/@pelumidev" target="_blank" rel="noopener">POST ARCHIVE</a></li>
+          <li><a href="#">MANIFESTO</a></li>
+          <li><a href="mailto:hi@aiwithpelumi.com">CONTACT</a></li>
         </ul>
       </div>
-      <div class="footer-col footer-col--legal">
-        <p class="footer-title">LEGAL</p>
-        <!-- TODO: link real privacy policy page -->
-        <a class="footer-link" href="#">Privacy Policy</a>
-      </div>
     </div>
-    <p class="footer-copyright">&copy; 2026 AI with Pelumi. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

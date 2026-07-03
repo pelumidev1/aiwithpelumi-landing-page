@@ -1,132 +1,146 @@
-# Prompt & Pipeline — Landing Page Design Plan
+# AI with Pelumi — Landing Page Design Plan
 
-**Working from:** PRD.md v2.0 + ideal-customer.md + Website Design Reference folder
-**Deliverable:** Single static page (`index.html` + `styles.css` + `script.js`), no build step, ready to wire to an ESP.
-
----
-
-## 1. What each reference actually gives us
-
-| Reference | What we take | What we leave |
-|---|---|---|
-| **fluid.glass** (HTML source) | The glass cursor recipe verbatim: `backdrop-filter: blur(2rem)`, `linear-gradient(180deg,#ffffff26,#fff3)`, lerp trailing, fade in/out, killed on touch/<600px. Also the type system idea: one grotesk for everything + one mono for uppercase micro-labels (they use Aeonik Pro + Aeonik Mono). | Their cream/grey palette, their WebGL scene. |
-| **behold.cam** | Centre-aligned vertical layout skeleton only (their HTML is a JS shell — nothing else to mine). | All visual design, per the brief. |
-| **shopify.vc** (screenshot + HTML) | Header aesthetic: quiet wordmark top-left, generous whitespace, one huge confident headline, a single small floating info card. | Pink/lilac palette, ASCII globe. |
-| **semaloop.com** (screenshot + HTML) | Section 2 grammar: full-bleed rounded panel, mono uppercase prompt card with a thin connector line and node dots, numbered step label (`01a`) + short heading + two-line body. This is the model for our "pipeline" visuals. | Green palette. |
-| **aiwithremy.com** (screenshot) | Hero conversion pattern: eyebrow pill → 2-line headline → 2-line sub → inline email + button → mono micro-trust line with a status dot → newsletter mockup peeking from below. | Light theme, pixel display face. |
-| **dayy.com** (`inspo.jpg`) | Section 5: near-black panel, two-line sign-off (grey line, then white line), floating white founder card with headshot, pill "GET IN TOUCH" button, mono email address. | Nothing — we replicate the structure in our palette. |
+**Working from:** PRD.md v3.0 + ideal-customer.md (repositioned) + the existing built page
+**Deliverable:** Single static page (`index.html` + `styles.css` + `script.js`), no build step, wired to an ESP, plus root `robots.txt`, `sitemap.xml`, `llms.txt`.
+**Status:** The page is already built as "Prompt & Pipeline." This plan covers the reskin of copy, structure, and SEO to "AI with Pelumi." The visual system stays; the positioning changes.
 
 ---
 
-## 2. Design tokens
+## 1. What stays and what changes
 
-### Color (PRD-mandated, named for use)
+| Layer | Verdict |
+|---|---|
+| **Color, cursor, grid, spine, motion** | Keep as-is. The dark, quiet, high-craft look is the strongest signal that this person builds. Don't touch it. |
+| **Type system** (General Sans + JetBrains Mono) | Keep. |
+| **Section order** | Unchanged. No new sections — same five-section flow as the built page. |
+| **Brand name** | Change everywhere. "Prompt & Pipeline" is dead. "AI with Pelumi" is the brand and the newsletter. |
+| **Hero copy** | Rewrite. Lead with the universal "using AI wrong" frustration, not the marketer-only line. |
+| **Section 2** | Rework from three "moves" to four named pillars that double as keyword surfaces. |
+| **Metadata / schema / social cards** | Build from near-zero. This is the biggest lift and the biggest payoff. |
+
+Build note (2026-07-03): per Pelumi's live direction, the pillar blocks use the vertical, centre-aligned layout (same rhythm as the hero), not the alternating two-column layout. The founder card carries the real B&W headshot at `image/pelumi-headshot.jpg`, and the footer ends with a large Silkscreen pixel wordmark "AI WITH PELUMI" (aiwithremy.com-style).
+
+---
+
+## 2. Design tokens (unchanged from the built page)
+
+### Color
 
 | Token | Value | Use |
 |---|---|---|
 | `--black` | `#000000` | Page background |
-| `--carbon` | `#0b1012` | Cards, panels, problem grid |
+| `--carbon` | `#0b1012` | Cards, panels |
 | `--line` | `#212325` | Borders, dividers, spine |
 | `--white` | `#ffffff` | Headings + body |
 | `--grey` | `#99a1a5` | Muted/secondary text |
-| `--orange` | `#e58848` | The only accent: buttons, checkmarks, active FAQ, highlights, spine pulse |
+| `--orange` | `#e58848` | The only accent |
 | `--orange-tint` | `rgba(229,136,72,.12)` | Glows, tag backgrounds |
-| `--red-muted` | `#c0564a` | "Them" column X icons only (PRD asks for red X's) |
+| `--red-muted` | `#c0564a` | "Them" column X icons only |
 | Glass | `blur(2rem)` + `linear-gradient(180deg,#ffffff26,#fff3)` | Cursor, eyebrow pill |
 
-Discipline rule: orange appears in at most **one** element per viewport-height of scroll. Everything else is white/grey on black.
+Discipline rule holds: orange in at most one element per viewport-height.
 
 ### Typography
 
-- **Display + body: General Sans** (Fontshare, free) — geometric grotesk, the closest free cousin of fluid.glass's Aeonik Pro. Weights 400/500/600. Headline tracking −0.03em.
-- **Utility mono: JetBrains Mono** — every eyebrow, tag, stage number, micro-trust line, footer meta, and the prompt-card graphics. Uppercase, `letter-spacing:.08em`, ~12–13px. This is the voice of the "pipeline" — the page's technical register lives entirely in this face.
-- Scale via `clamp()` (PRD mobile checklist): `h1 clamp(2.4rem, 1rem + 5.5vw, 4.6rem)`, `h2 clamp(1.8rem, 1rem + 3vw, 3rem)`, body 1.0625rem/1.6.
+* **Display + body:** General Sans (Fontshare, free), weights 400/500/600, headline tracking −0.03em.
+* **Utility mono:** JetBrains Mono for eyebrows, stage labels, credential chips, micro-trust, footer meta, prompt-card graphics. Uppercase, `letter-spacing:.08em`, ~12–13px.
+* **Pixel accent:** Silkscreen (Google Fonts) for the big footer wordmark only.
+* Scale via `clamp()`: `h1 clamp(2.4rem, 1rem + 5.5vw, 4.6rem)`, `h2 clamp(1.8rem, 1rem + 3vw, 3rem)`, body 1.0625rem/1.6.
 
-Deliberately **not** Inter-for-everything: the mono/grotesk split is the brief-specific choice; Inter alone is the default anyone would ship.
+### Grid
 
-### Grid (strict, per PRD 1.3)
+* `<600px`: 6 col, 1.5rem gap, 2rem margins
+* `601–1024px`: 12 col, 1.5rem gap, 2rem margins
+* `>1024px`: 24 col, 2rem gap, 4rem margins, max-width 1440px
 
-- `<600px`: 6 columns, 1.5rem gap, 2rem outer margins
-- `601–1024px`: 12 columns, 1.5rem gap, 2rem margins
-- `>1024px`: 24 columns, 2rem gap, 4rem margins, content max-width 1440px centred
+### The spine
 
-One `.grid` utility; every section places children by column span.
+The 1px center line with diamond nodes that light orange on scroll stays. It still reads as "systems and sequence," which fits the new positioning as well as the old one. It's the one place motion is spent generously; everything else stays quiet.
 
-### Signature element — the pipeline spine
+### The hero globe
 
-A 1px vertical line runs down the page centre **between** sections, with a small diamond node at each junction (directly echoing semaloop's connector line + scroll nodes). As each junction scrolls into view, an orange fill runs down the segment and lights the node. It literalises the brand name — content flows down the pipeline from hero to footer — and it's the one place motion is spent generously. Everything else stays quiet.
-
-This is the aesthetic risk: a persistent structural motif instead of scattered per-section decoration. Justified because the product *is* a pipeline (signal in → stack → leverage out), so the numbering and plumbing imagery encode real sequence, not decoration.
+The ASCII globe behind the hero headline stays: canvas-rendered rotating sphere of ASCII characters (grey with sparse orange flecks), drawn by `script.js`, static under reduced motion. Recreated from the shopify.vc reference in the site palette.
 
 ---
 
-## 3. Section-by-section build spec
+## 3. Section-by-section spec
 
-### Header (fixed, minimal — shopify.vc quietness)
-`PROMPT & PIPELINE` wordmark top-left in mono caps; `by AI with Pelumi` in grey. No nav links (PRD: don't distract from CTA).
+### Header
+`AI WITH PELUMI` wordmark ("with" in orange), mono caps, top-left. No byline. No nav.
 
-### S1 — Hero (behold vertical centre + aiwithremy conversion stack)
-Centre-aligned column: glass eyebrow pill (`AI WITH PELUMI · WEEKLY`) → H1 → sub → inline pill form → mono micro-trust with pulsing orange dot.
+### S1 — Hero
+Centered column over the ASCII globe: glass eyebrow (`AI WITH PELUMI · WEEKLY`) — H1 — sub — inline pill form — mono micro-trust with pulsing orange dot.
 
-- **H1:** "You know marketing. Now build the systems that run it." — taken verbatim from the ICP doc's Segment-1 landing line.
-- **Sub:** "Weekly AI workflows, playbooks, and copy-paste prompts for marketers and operators who'd rather build the system than outsource it."
-- **Form:** one rounded-rect container — input left, orange `Join free` button right (desktop); stacked input-top/full-width-button (mobile), per PRD.
-- **Micro-trust:** `● JOIN 1,200+ SOLOPRENEURS & BUILDERS · FREE FOREVER` (count is a placeholder to update).
+* **H1:** "You're not using AI wrong. Nobody showed you the stack." (A/B alt in PRD.)
+* **Sub:** "Every week I show you the practical AI stack — turn one idea into a content engine, build websites and agents with no code, put an AI workforce to work, and go from prompt to production. The wiring, not the hype."
+* **Form:** unchanged mechanics. `Join free` button. Chrome-autofill dark-background fix in place.
+* **Micro-trust:** `● JOIN 11,000+ PROFESSIONALS LEARNING THE STACK` (no "free forever" — the newsletter won't always be free; the 11,000+ is Pelumi's combined social following, ~11,020, not verified subscribers).
 
-### S2 — Visual workflow highlight (semaloop grammar, our palette)
-Section head, then 3 alternating text/visual blocks. Stage labels in mono are a real sequence — the pipeline:
+### S2 — The Stack (four pillars)
+Section head (`WHAT YOU'LL LEARN` — "The whole stack. One piece at a time."), then four vertical, centre-aligned blocks (text above visual, hero rhythm). The `<h3>` is the branded pillar name; the search phrase lives in the body copy (see the PRD keyword table).
 
-1. **`01 / SIGNAL` — News that matters.** Copy about cutting the noise. Visual: dark newsletter-UI mockup (browser-chrome card, subject line, text rows, one orange-highlighted line).
-2. **`02 / STACK` — Tools worth trying.** Copy about staying lean. Visual: tool tiles with mono verdict chips (`KEEP` / `TRY` / `SKIP` — skip greyed).
-3. **`03 / LEVERAGE` — Copy-paste prompts.** Copy about business leverage. Visual: terminal/prompt card in mono with blinking orange caret and a `COPY` chip — the semaloop prompt card, re-skinned carbon + orange.
+1. `01 / CONTENT` — **Content Engine.** Newsletter-UI card with content-format rows (EMAIL / BLOG / NEWSLETTER / THREAD), one orange-highlighted.
+2. `02 / BUILD` — **Build It, Don't Learn It.** Terminal/prompt card relabelled `BUILD · 02.1` with a build-it prompt.
+3. `03 / WORKFORCE` — **Your AI Workforce.** Tool-tile mock with role chips (OUTREACH / MEETINGS / RESEARCH / OPS).
+4. `04 / PRODUCTION` — **Prompt to Production.** Output-tile mock (VIDEO / UGC AD / DECK / FLYER), reusing tool-tile styling.
 
-All visuals are pure CSS/SVG (no image assets exist yet), so they ship crisp at every density and are easy to swap later.
+All visuals stay pure CSS/SVG.
 
 ### S3 — Problem & Us-vs-Them
-- H2: "Your inbox is already full. Most of it says nothing."
-- **Problem grid:** 3 `#0b1012` cards, each a *mocked* blurred newsletter (blurred text bars — no real competitor screenshots needed) with an orange-bordered mono tag: `TOO BROAD` / `IRRELEVANT` / `AI SLOP`, plus one annotation line.
-- **Comparison table:** side-by-side desktop, stacked mobile. Left "Typical AI newsletters": grey text, muted-red X. Right "Prompt & Pipeline": white text, orange checkmarks, carbon card with orange border glow. Four rows (links-vs-context, hype-vs-workflows, click-farming-vs-builder, daily-blast-vs-when-it-matters — the last one comes straight from the ICP "who it's NOT for" list).
-- **Mid-page CTA:** the ICP one-liner sits directly above the second email form, as the ICP doc instructs: *"For marketers and operators who are done outsourcing the technical side of growth."*
+* **H2:** "Your feed is full of AI takes. None of them show the build."
+* **Problem grid:** 3 carbon cards, blurred-post mocks, mono tags `HYPE` / `NO STEPS` / `AI SLOP`, one annotation line each.
+* **Comparison:** "Typical AI content" (grey, muted-red X) vs. **"AI with Pelumi"** (white, orange checks). Four rows: takes vs. walkthroughs, hype vs. honest, cropped screenshots vs. full wiring, daily blast vs. when it matters.
+* **Mid-CTA:** ICP one-liner above the second form: "For professionals done using AI like a search box, from someone who builds with it for a living."
 
-### S4 — Social proof & FAQ
-- Count in display size: "1,200+ readers build with us." (placeholder).
-- 3 testimonial cards — grid desktop, scroll-snap slider mobile. **Placeholder quotes, clearly marked in comments — must be replaced with real ones before launch.**
-- FAQ: 4 items (cost / frequency / "do I need to code?" / unsubscribe) as an accessible button-accordion; open question text turns `#e58848` per PRD.
+### S4 — (removed)
+No dedicated authority/bio section. Pelumi opted against it to keep the page tight. The section order matches the built page. The authority signal rides on the Person JSON-LD in the head and the founder card at the bottom — the founder card stays the page's one bright, high-contrast finale.
 
-### S5 — Founder note, final CTA, footer (dayy.com structure)
-- Full-width carbon panel. Two-line sign-off: grey "Have a workflow you want torn down?" → white "Let's talk about what you're building."
-- Floating white card (the one light element on the page — high contrast finale): headshot placeholder, "Pelumi Fatoye — Founder, AI with Pelumi", black pill **GET IN TOUCH** (`mailto:`) + mono email.
-- Footer: three raw-text columns — contact, socials (Instagram, Twitter, Substack, LinkedIn — SVG icons), legal (© 2026 + Privacy Policy).
+### S5 — Social Proof & FAQ
+* Count in display size ("11,000+ professionals learning with us." — combined social following, placeholder until real subscriber data), 3 testimonial cards (placeholders, marked in comments), FAQ accordion with the open question in orange.
+* FAQ fourth question: "Is this only for marketers?" — "No. It starts wherever you are." Directly answers the broadened audience. Q1 answer drops the "free forever" promise.
+
+### S6 — Founder note, final CTA, footer
+* Carbon panel, exact dayy.com layout (per Pelumi 2026-07-03): ~85vh tall on desktop, two-line sign-off top-left only (no body paragraph), wide white card bottom-right. Sign-off: grey "Have a project in mind?" — white "Let's talk about your AI journey."
+* Founder card: name "Pelumi", role "Product Marketer", photo filling the card's right edge, `GET IN TOUCH` pill + `HI@AIWITHPELUMI.COM` on one row at the card bottom (contact email is hi@aiwithpelumi.com). On mobile the card stacks with the photo on top. Photo slot: image/pelumi-headshot.jpg (new studio portrait pending — swap the file, no markup change).
+* Footer: exact aiwithremy.com arrangement — left-center: Silkscreen "AI WITH PELUMI" wordmark (small, ~2rem) with "© 2026 AI with Pelumi. All rights reserved." and "Vibe coded by yours truly with Claude Code" centered beneath; right: icon-only social tiles (Instagram, X, LinkedIn, YouTube — no Facebook, no Substack tile) above right-aligned POST ARCHIVE (→ Substack) / MANIFESTO (TODO) / CONTACT (mailto) links. No brand blurb, no visible email, no privacy-policy link (removed per Pelumi).
 
 ---
 
-## 4. Interactions & motion budget
+## 4. SEO / GEO build (shipped 2026-07-03)
+
+1. **Metadata:** new title, meta description, canonical, OG + Twitter card, favicon/apple-touch-icon links (icon assets still TODO). (PRD 6.1.)
+2. **JSON-LD:** Person (Pelumi, the citation entity), WebSite, Organization — all three in `<head>`, validated. No FAQPage schema — Google retired FAQ rich results May 2026.
+3. **Keyword-shaped copy** in the four S2 pillar bodies. (PRD 6.3 table.)
+4. **Root files:** `robots.txt` (allows GPTBot, ClaudeBot, PerplexityBot), `sitemap.xml`, `llms.txt` naming brand, person, four topics, newsletter URL.
+5. **`og:image`:** branded 1200×630 card with headshot + "AI with Pelumi" — asset still TODO (referenced as /og-image.png).
+
+Verify with Google Rich Results Test (valid Person + WebSite) and Lighthouse SEO 100 once hosted.
+
+---
+
+## 5. Interactions & motion budget (unchanged)
 
 | Interaction | Implementation |
 |---|---|
-| Glass cursor | Fixed div, PRD's exact glass recipe; rAF lerp (factor ≈ .14); scales up over links/inputs/buttons; fades in on first mousemove, out on `mouseleave` of the document; `display:none` under 600px and on `(hover:none)` touch devices |
-| Pipeline spine | IntersectionObserver adds `.in-view` → orange fill scaleY animation + node lights |
-| Scroll reveals | Single `[data-reveal]` pattern, opacity + 20px rise, staggered by CSS delay |
-| FAQ accordion | Button + `grid-template-rows: 0fr→1fr` height animation, `aria-expanded` |
-| Prompt caret | CSS blink, part of the S3 terminal card |
-| Reduced motion | `prefers-reduced-motion: reduce` kills lerp trailing, reveals, spine animation — everything renders in final state |
+| Glass cursor | Keep exactly as built; `display:none` under 600px and `(hover:none)`. |
+| Hero ASCII globe | Canvas, ~25fps slow spin; static frame under reduced motion. |
+| Pipeline spine | IntersectionObserver — orange fill + node light. |
+| Scroll reveals | `[data-reveal]` opacity + 20px rise, staggered. |
+| FAQ accordion | Button + `grid-template-rows:0fr→1fr`, `aria-expanded`. |
+| Reduced motion | `prefers-reduced-motion` renders everything in final state. |
 
-No parallax, no marquees, no per-letter animation. The spine is the one orchestrated moment.
+The fourth pillar introduced no new motion — it reuses `[data-reveal]`.
 
-## 5. Quality floor
+---
 
-Semantic landmarks; labelled inputs (`sr-only` labels); `:focus-visible` orange outlines; keyboard-operable accordion; `clamp()` type so the H1 never breaks awkwardly on narrow phones (PRD checklist); comparison table linearises on mobile; testimonial slider uses native scroll.
+## 6. Quality floor
 
-## 6. Open items (flagged, not blocking)
+Semantic landmarks; labeled inputs; `:focus-visible` orange outlines; keyboard accordion; `clamp()` type; comparison table linearizes; native-scroll testimonial slider; founder card button/email row stays tidy on mobile. Lighthouse: Performance 90+, Accessibility 100, SEO 100.
 
-1. **ESP undecided** (PRD 3.1). Both forms submit through one JS handler with a `data-endpoint` placeholder and a success state. The ICP doc mentions Substack analytics, so Substack is the likely target — wiring is a one-line change once confirmed.
-2. **Real assets pending:** headshot, real subscriber count, real testimonials, social URLs, privacy policy page. All marked with `<!-- TODO -->` in the HTML.
-3. Two reference PNGs in the folder are 0-byte empty files (aiwithremy / fluid-glass full-page captures) — the JPGs cover the same ground, so nothing blocked.
+---
 
-## 7. Build order
+## 7. Open items (flagged, not blocking)
 
-1. Tokens, fonts, grid utility, base styles
-2. Cursor + spine + reveal JS scaffolding
-3. Hero → S2 pillars → S3 problem/compare/mid-CTA → S4 proof/FAQ → S5 founder/footer
-4. Responsive pass at 375 / 768 / 1280 / 1600
-5. Accessibility + reduced-motion pass
+1. **ESP undecided.** Both forms post through one handler with an `ENDPOINT` placeholder in script.js; Substack likely. One-line change on confirm.
+2. **Real assets:** real subscriber count (11,000+ is combined social following), real testimonials, Facebook URL, favicon.ico + apple-touch-icon.png, og-image.png card, logo.png, privacy policy page.
+3. **Content roadmap:** one indexable post per pillar is the next build so the target phrases have somewhere to rank. Out of scope for this pass; the footer links should anticipate it.
