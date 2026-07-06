@@ -96,7 +96,7 @@
       gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       gctx.textAlign = "center";
       gctx.textBaseline = "middle";
-      gctx.font = "9px 'JetBrains Mono', monospace";
+      gctx.font = "9px 'Geist Mono', monospace";
     };
 
     var drawGlobe = function (t) {
@@ -118,7 +118,7 @@
           if (n <= 0.52) {
             // ocean: sparse faint specks so the sphere still reads as a ball
             if (hash(gx, gy, 7) > 0.07) continue;
-            gctx.fillStyle = "rgba(153, 161, 165, 0.16)";
+            gctx.fillStyle = "rgba(58, 80, 107, 0.2)";
             gctx.fillText(":", gx, gy);
             continue;
           }
@@ -126,7 +126,7 @@
           var alpha = 0.14 + 0.36 * shade;
           gctx.fillStyle = hash(gy, gx, 3) < 0.05
             ? "rgba(229, 136, 72, " + (alpha + 0.12) + ")"
-            : "rgba(153, 161, 165, " + alpha + ")";
+            : "rgba(23, 37, 63, " + alpha + ")";
           gctx.fillText(CHARS[Math.floor(v * CHARS.length)], gx, gy);
         }
       }
@@ -193,11 +193,11 @@
   });
 
   /* ---------- 4. Signup forms ---------- */
-  /* TODO: wire to the chosen ESP.
-     - Substack: POST { email } to https://YOURPUB.substack.com/api/v1/free
-     - Beehiiv / ConvertKit: swap in their embed endpoint.
-     Set the endpoint below (or a data-endpoint attribute per form). */
-  var ENDPOINT = "";
+  /* Substack's signup API sits behind bot protection (403s on direct
+     POSTs), so a hidden fetch would silently drop emails. Instead we hand
+     the visitor to Substack's own subscribe page with the email
+     pre-filled — their flow captures it reliably every time. */
+  var SUBSTACK = "https://aiwithpelumi.substack.com";
 
   document.querySelectorAll("[data-signup]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
@@ -206,22 +206,12 @@
       var email = input.value.trim();
       if (!email) return;
 
-      var finish = function () {
-        form.innerHTML =
-          '<p class="form-success" role="status">YOU’RE IN — CHECK YOUR INBOX TO CONFIRM.</p>';
-        form.classList.add("is-done");
-      };
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = "One sec…"; }
 
-      if (ENDPOINT) {
-        fetch(ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email })
-        }).then(finish).catch(finish);
-      } else {
-        // No ESP configured yet — optimistic UI only.
-        finish();
-      }
+      window.location.href =
+        SUBSTACK + "/subscribe?email=" + encodeURIComponent(email) +
+        "&utm_source=aiwithpelumi.com";
     });
   });
 })();
