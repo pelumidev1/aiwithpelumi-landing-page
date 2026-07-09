@@ -352,6 +352,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   margin-top: 1.25rem;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
+  font-weight: 600; /* heaviest Geist Mono weight we load */
   letter-spacing: 0.08em;
   color: var(--grey);
 }
@@ -1203,4 +1204,95 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   .pulse-dot, .caret { animation: none; }
   .cursor { display: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Timed signup popup ---------- */
+
+.signup-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 80; /* over the static grain (60), under the glass cursor (99) */
+  display: flex;
+  overflow-y: auto; /* short landscape phones can still reach the button */
+  padding: max(1.25rem, env(safe-area-inset-top))
+           max(1.25rem, env(safe-area-inset-right))
+           max(1.25rem, env(safe-area-inset-bottom))
+           max(1.25rem, env(safe-area-inset-left));
+}
+.signup-popup[hidden] { display: none; }
+
+body.popup-open { overflow: hidden; }
+
+.signup-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.45);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.signup-popup-card {
+  position: relative;
+  margin: auto; /* centers; keeps the card reachable if taller than the screen */
+  width: 100%;
+  max-width: 27rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--metal-face), var(--carbon);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  box-shadow: var(--metal-edge), 0 24px 64px rgba(0, 0, 0, 0.22);
+  padding: 2.75rem 2rem 2rem;
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  outline: none;
+}
+.signup-popup.is-open .signup-popup-backdrop { opacity: 1; }
+.signup-popup.is-open .signup-popup-card { opacity: 1; transform: none; }
+
+.signup-popup-card .eyebrow-pill { margin-bottom: 1.25rem; }
+
+.signup-popup-card h2 {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.signup-popup-sub {
+  color: var(--grey);
+  font-size: 0.875rem;
+  max-width: 20rem;
+  margin-top: 0.75rem;
+}
+
+.signup-popup-card .signup-form { margin-top: 1.5rem; }
+
+.signup-popup-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--carbon);
+  color: var(--grey);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.signup-popup-close:hover { color: var(--white); border-color: var(--white); }
+.signup-popup-close:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+@media (max-width: 600px) {
+  .signup-popup-card { padding: 2.5rem 1.25rem 1.5rem; border-radius: 1.25rem; }
+  .signup-popup-card h2 { font-size: 1.35rem; }
 }

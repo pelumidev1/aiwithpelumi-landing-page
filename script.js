@@ -274,4 +274,47 @@
     if (e.key !== "Enter" && e.key !== " ") return;
     if (e.target.closest && e.target.closest(PRESSABLE)) releaseSound();
   });
+
+  /* ---------- 6. Timed signup popup ---------- */
+  /* Opens once per page load, 5 seconds in. No storage on purpose —
+     every reload gets exactly one invite. The × button, the backdrop,
+     or Esc closes it. */
+
+  var popup = document.getElementById("signup-popup");
+
+  if (popup) {
+    var popupShown = false;
+
+    var openPopup = function () {
+      if (popupShown) return;
+      // never interrupt someone already typing into a signup form
+      var active = document.activeElement;
+      if (active && active.closest && active.closest(".signup-form")) {
+        setTimeout(openPopup, 4000);
+        return;
+      }
+      popupShown = true;
+      popup.hidden = false;
+      document.body.classList.add("popup-open");
+      requestAnimationFrame(function () { popup.classList.add("is-open"); });
+      var card = popup.querySelector(".signup-popup-card");
+      if (card) card.focus({ preventScroll: true });
+    };
+
+    var closePopup = function () {
+      popup.classList.remove("is-open");
+      document.body.classList.remove("popup-open");
+      setTimeout(function () { popup.hidden = true; }, 250);
+    };
+
+    setTimeout(openPopup, 5000);
+
+    popup.querySelectorAll("[data-popup-close]").forEach(function (el) {
+      el.addEventListener("click", closePopup);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !popup.hidden) closePopup();
+    });
+  }
 })();

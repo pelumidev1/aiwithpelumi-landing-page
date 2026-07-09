@@ -414,7 +414,7 @@
           <div class="letter-stamp" aria-hidden="true">SENT WITH<br>LOVE<b>PF</b>WEEKLY</div>
           <dl class="letter-meta">
             <div><dt>TO</dt><dd>You</dd></div>
-            <div><dt>FROM</dt><dd>Pelumi &lt;hi@aiwithpelumi.com&gt;</dd></div>
+            <div><dt>FROM</dt><dd>Pelumi &lt;pelumidev1@gmail.com&gt;</dd></div>
             <div><dt>RE</dt><dd>Why I started this newsletter</dd></div>
           </dl>
           <p>To everyone who joins AI with Pelumi,</p>
@@ -476,8 +476,8 @@
             <p class="founder-name">Pelumi</p>
             <p class="founder-role">Product Marketer</p>
             <div class="founder-actions">
-              <a class="btn-touch" href="mailto:hi@aiwithpelumi.com">GET IN TOUCH</a>
-              <span class="founder-email">HI@AIWITHPELUMI.COM</span>
+              <a class="btn-touch" href="mailto:pelumidev1@gmail.com">GET IN TOUCH</a>
+              <span class="founder-email">PELUMIDEV1@GMAIL.COM</span>
             </div>
           </div>
           <img class="founder-photo" src="image/pelumi-headshot.jpg" alt="Pelumi Fatoye">
@@ -504,11 +504,28 @@
           <!-- TODO: MANIFESTO needs a real target page -->
           <li><a href="https://substack.com/@pelumidev" target="_blank" rel="noopener">POST ARCHIVE</a></li>
           <li><a href="#">MANIFESTO</a></li>
-          <li><a href="mailto:hi@aiwithpelumi.com">CONTACT</a></li>
+          <li><a href="mailto:pelumidev1@gmail.com">CONTACT</a></li>
         </ul>
       </div>
     </div>
   </footer>
+
+  <!-- Signup popup — opens once per page load, 5s in. The × button,
+       the backdrop, or Esc dismisses it (see script.js §6). -->
+  <div class="signup-popup" id="signup-popup" hidden>
+    <div class="signup-popup-backdrop" data-popup-close></div>
+    <div class="signup-popup-card" role="dialog" aria-modal="true" aria-labelledby="signup-popup-title" tabindex="-1">
+      <button class="signup-popup-close" type="button" data-popup-close aria-label="Close">&times;</button>
+      <p class="eyebrow-pill">AI WITH PELUMI &middot; WEEKLY</p>
+      <h2 id="signup-popup-title">Like what you see?</h2>
+      <p class="signup-popup-sub">It&rsquo;s better in your inbox. One practical AI workflow a week, free.</p>
+      <form class="signup-form" data-signup>
+        <label class="sr-only" for="email-popup">Email address</label>
+        <input id="email-popup" type="email" name="email" autocomplete="email" required placeholder="Enter your email">
+        <button type="submit">Join free</button>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -12,7 +12,7 @@ First person. Short lines that hit. Uneven pacing. Opinionated. Lead with the re
 ## Facts that override older docs
 - ESP: Substack (pelumidev.substack.com) via prefilled `/subscribe?email=…` redirect — deliberate, do not convert to a background POST (Substack's API 403s and would silently lose emails). The old aiwithpelumi.substack.com is deleted; never reference it.
 - Social count is 12,000+ (combined following, not verified subscribers).
-- Contact: hi@aiwithpelumi.com.
+- Contact: pelumidev1@gmail.com (replaced hi@aiwithpelumi.com on 2026-07-09).
 - Four pillars: Content Engine / Build It, Don't Learn It / Your AI Workforce / Prompt to Production.
 - The proof section in index.html is parked (hidden) — do not delete it.
 - content/ holds newsletter drafts plus unrelated CoinCircuit files — CoinCircuit is a separate project; never conflate it with this site.
