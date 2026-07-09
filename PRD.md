@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD): AI with Pelumi
 
-**Version:** 3.0 (Repositioned as authority hub + newsletter; SEO and GEO baked in)
+**Version:** 3.1 (updated 2026-07-09 to describe the page as actually built and live; v3.0 was the repositioning spec)
 **Prepared for:** UI/UX Designer & Front-End Web Developer
 **Site:** aiwithpelumi.com
 **Primary audience:** Any working professional who uses AI and suspects they're using it wrong. Secondary: marketers, operators, and solo founders leveling up.
@@ -21,23 +21,30 @@ Three shifts drive every change below:
 
 Do not use the words "Prompt & Pipeline" anywhere. Anywhere.
 
+### 0.1 What changed in v3.1 (built-page reality patch)
+
+The page shipped and evolved past the v3.0 spec. Where this document and the code disagree, **the code wins** — this revision updates the spec to match. The big ones: the theme flipped from dark to pure white (2026-07-05/08), the glass cursor was removed entirely, the count is 12,000+, contact is hi@aiwithpelumi.com, the ESP decision is made (Substack), fonts changed, and the proof section is parked until real testimonials exist. Details are inline below.
+
 ---
 
 ## 1. Global UI/UX & Design System
 
-The dark, quiet, high-craft aesthetic stays. It signals "someone who builds," which is the whole positioning. Keep it.
+The quiet, high-craft aesthetic stays — it signals "someone who builds," which is the whole positioning. Since 2026-07-05 it's executed on a **pure white ground**, not the original dark one.
 
-### 1.1 Color Palette
+### 1.1 Color Palette (live)
 
-* **Background:** Deep Black (`#000000`) to Muted Black (`#0b1012`).
-* **Primary Accent:** Light Orange (`#e58848`).
-* **Typography:** Pure White (`#ffffff`) for headings and body.
-* **Secondary/Muted Text:** Muted Grey (`#99a1a5`); borders/dividers `#212325`.
+* **Ground:** Pure White (`#FFFFFF`). Cards are also white and read through 1px `#e0e0e0` borders.
+* **Text ink:** Pure Black (`#000000`); headline chrome is a black metal gradient.
+* **Primary Accent:** Light Orange (`#e58848`), with `rgba(229,136,72,0.12)` tint for washes.
+* **Secondary/Muted Text:** Grey `#6a6a6a`; muted red `#c0564a` for comparison-table X marks.
+* **The one dark anchor:** the founder section re-declares the dark token set locally (pure black panel) so the sign-off block stays the page's single dark moment.
+* **Selection:** dusty pink `#e6d2d8` with black text.
 * **Discipline rule:** orange appears in at most one element per viewport-height of scroll.
+* **Implementation note (do not "fix"):** `styles.css` keeps the original dark-build token names inverted — `--black` is the white ground, `--white` is the black ink. Components follow the flip automatically; renaming them would touch every rule for zero gain.
 
-### 1.2 Interactions & Custom Cursor
+### 1.2 Interactions & Cursor
 
-Keep the fluid glass cursor exactly as built: `backdrop-filter: blur(2rem)`, `linear-gradient(180deg,#ffffff26,#fff3)`, lerp trailing, fade in on load, fade out on mouse-leave. Disabled on touch and under 600px (`display:none` on `.is-touch`). No change.
+The custom fluid-glass cursor from the dark build is **removed** (2026-07-05). Native cursor everywhere; `script.js` cursor code is null-guarded and inert. Scroll reveals (`data-reveal` + IntersectionObserver) and the pipeline spine remain. Retro press/release click sounds on buttons and social tiles (2026-07-09). Respect `prefers-reduced-motion` throughout.
 
 ### 1.3 Responsive Grid & Breakpoints
 
@@ -49,25 +56,25 @@ Keep the fluid glass cursor exactly as built: `backdrop-filter: blur(2rem)`, `li
 
 ## 2. Page Architecture & Section Specifications
 
-Top to bottom. The pipeline spine (1px center line with diamond nodes that light orange on scroll) stays between sections — it still reads as "systems," which fits. The section order is unchanged from the built page (no new sections added); what changes is copy, the fourth pillar, the SEO head, and the founder-card fields.
+Top to bottom. The pipeline spine (1px center line with diamond nodes that light orange on scroll) stays between sections — it still reads as "systems," which fits. Live section order: Hero → Stack (four pillars) → Proof (currently parked/hidden) → Problem & Us-vs-Them → FAQ → Founder → Footer.
 
 ### Header (fixed, minimal)
 
-* Wordmark: **`AI WITH PELUMI`** in mono caps, top-left. No "by" byline — the brand and the person are the same thing now.
+* Wordmark: the real **AI with Pelumi logo lockup** (`logo.png`, angular A-mark, shipped 2026-07-08) top-left, replacing the earlier mono-caps text wordmark. No "by" byline — the brand and the person are the same thing now.
 * No nav links. Nothing competes with the CTA.
 
 ### Section 1 — Hero
 
 **Purpose:** Hook the widest reader in one line, then convert.
 
-* **Background:** Solid black.
+* **Layout:** vertical, center-aligned, with a code-drawn **ASCII globe** rendered on a `.hero-globe` canvas behind the headline (recolored for the white theme in `script.js`).
 * **Eyebrow pill (glass):** `AI WITH PELUMI · WEEKLY`.
 * **Headline (H1):** Lead with the universal frustration, not the marketer-specific one.
   Primary: **"You're not using AI wrong. Nobody showed you the stack."**
   (Alt to A/B: "Learn to actually build with AI. From someone who does it for a living.")
 * **Sub:** "Every week I show you the practical AI stack — turn one idea into a content engine, build websites and agents with no code, put an AI workforce to work, and go from prompt to production. The wiring, not the hype."
 * **Inline email form:** input left, orange `Join free` button right (desktop); stacked on mobile. One rounded container.
-* **Micro-trust:** `● JOIN 11,000+ PROFESSIONALS LEARNING THE STACK` — no "free forever" (the newsletter won't always be free). The 11,000+ figure is Pelumi's combined following across Facebook, Instagram, X, LinkedIn, YouTube, and Substack (~11,020), not verified subscribers; mark it as such in a code comment.
+* **Micro-trust:** `● JOIN 12,000+ PROFESSIONALS LEARNING THE STACK` — no "free forever" (the newsletter won't always be free). The 12,000+ figure is Pelumi's combined following across Facebook, Instagram, X, LinkedIn, YouTube, and Substack, not verified subscribers; marked as such in a code comment.
 
 ### Section 2 — The Stack (the four pillars)
 
@@ -83,35 +90,33 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that light
 
 * The `<h3>` is the branded pillar name (it's memorable and shareable — that's the point). The matching search phrase lives in the body copy and the keyword table in Section 6, so the section is both the pitch and the SEO surface.
 
-### Section 3 — The Problem & Us vs. Them
+### Section 3 — Proof (PARKED)
+
+* **Count** in display size: "12,000+ professionals learning with us." (combined social following, not verified subscribers), followed by the **wall-of-love testimonial marquee** (two counter-scrolling CSS marquee rows, hover pauses, reduced-motion falls back to horizontal scroll).
+* **Status: hidden since 2026-07-08** (`hidden` attr + inline `display:none`, both marked PARKED in index.html) until real case studies/testimonials replace the placeholders. **Do not delete the markup.** The hero micro-trust line still shows 12,000+.
+
+### Section 4 — The Problem & Us vs. Them
 
 **Purpose:** Agitate the "AI like a search box" pain and separate this from the noise.
 
-* **H2:** "Your feed is full of AI takes. None of them show the build."
-* **Problem grid:** 3 dark cards, mocked blurred posts, mono tags `HYPE` / `NO STEPS` / `AI SLOP`, one annotation each.
-* **Comparison table:** "Typical AI content" (grey text, muted-red X) vs. **"AI with Pelumi"** (white text, orange checks). Four rows: takes-vs-walkthroughs, hype-vs-honest, cropped-screenshots-vs-full-wiring, daily-blast-vs-when-it-matters.
+* **H2 (live copy):** "Most newsletters are generic."
+* **Problem grid:** 3 cards, mocked blurred posts, mono tags `HYPE` / `NO STEPS` / `AI SLOP`, one annotation each.
+* **Comparison table:** "Typical AI content" (grey text, muted-red X) vs. **"AI with Pelumi"** (black text, orange checks). Four rows: takes-vs-walkthroughs, hype-vs-honest, cropped-screenshots-vs-full-wiring, daily-blast-vs-when-it-matters.
 * **Mid-page CTA:** ICP one-liner above a second email form: "For professionals done using AI like a search box, from someone who builds with it for a living."
 
-### Section 4 — (removed)
+### Section 5 — FAQ
 
-No visible authority/bio section. Pelumi decided against a "who's teaching this" block — the page keeps its original five-section flow. The authority and E-E-A-T signal is carried by the Person JSON-LD in the head (Section 6.2) and the founder card at the bottom of the page, not by a dedicated bio section. Keep the layout as built.
-
-### Section 5 — Social Proof & FAQ
-
-* **Count** in display size: "11,000+ professionals learning the stack." (Pelumi's combined social following ~11,020; not verified subscribers.)
-* **3 testimonials**, grid on desktop / slider on mobile. Clearly marked placeholders in comments — replace before launch.
 * **FAQ accordion**, 4 items, open question turns orange:
   1. How much does it cost? (Free to join right now; say plainly if a paid tier comes later. No "free forever" promise.)
   2. How often will you email me? (Weekly, when there's something real.)
   3. Do I need to know how to code? (No — that's the point.)
-  4. Is this only for marketers? (No. It starts wherever you are.) — new question, answers the broadened audience directly.
+  4. Is this only for marketers? (No. It starts wherever you are.) — answers the broadened audience directly.
 
 ### Section 6 (page section) — Founder Note, Final CTA & Footer
 
-* Full-width carbon panel, dayy.com layout: two-line sign-off top-left, floating white card bottom-right. Sign-off: grey "Have a project in mind?" — white "Let's talk about your AI journey."
-* Note in first person: "I write every issue myself and run every workflow I teach. No ghostwriters, no slop, no affiliate quotas. If an issue wastes your time, unsubscribe — that's the deal."
-* Floating light card (the one bright element): name "Pelumi", role "Product Marketer", then `GET IN TOUCH` mailto pill with the email `pelumi@aiwithpelumi.com` on the same row beside the button. Keep the card's image slot (PF monogram or a real headshot).
-* **Footer:** three columns — brand blurb, socials (all six: Facebook, Instagram, X, LinkedIn, YouTube, Substack, with real URLs), legal (© 2026 AI with Pelumi + Privacy Policy). Replace all "Prompt & Pipeline" strings.
+* Full-width **black panel** (the page's one dark anchor; brushed-metal treatment), dayy.com layout: two-line sign-off top-left, floating white card bottom-right. Sign-off: grey "Have a project in mind?" — white "Let's talk about your AI journey."
+* Floating light card (the one bright element): name "Pelumi", role "Product Marketer", real headshot (`image/pelumi-headshot.jpg`), `GET IN TOUCH` mailto pill with **hi@aiwithpelumi.com** on the same row beside the button (wraps below on mobile).
+* **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten orange + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **MANIFESTO** (target TBD — launch blocker) / **CONTACT** (mailto). No privacy-policy link, per Pelumi.
 
 ---
 
@@ -121,15 +126,15 @@ No visible authority/bio section. Pelumi decided against a "who's teaching this"
 
 | Requirement | Detail |
 | --- | --- |
-| **ESP** | Confirm Substack vs. Beehiiv vs. ConvertKit; both forms post through one JS handler with a `data-endpoint`. One-line change once confirmed. |
-| **Icons** | SVG only. Checkmarks, X marks, social logos (X, Instagram, LinkedIn, Substack). |
-| **Fonts** | General Sans (display/body) + JetBrains Mono (labels). No change. |
-| **Headshot** | Optional — the founder card can keep the `PF` monogram. If a real photo is used, IMG_9807.jpg in ABOUT ME may be the source; optimize to WebP. |
+| **ESP (decided)** | **Substack — publication `https://pelumidev.substack.com`.** Both forms redirect to `/subscribe?email=…&utm_source=aiwithpelumi.com` prefilled. This is deliberate: Substack's signup API 403s (bot protection), so background POSTs would silently lose emails. **Do not convert to a background POST.** Never point anything at the deleted aiwithpelumi.substack.com. |
+| **Icons** | SVG only. Checkmarks, X marks, social logos (X, Instagram, LinkedIn, YouTube). |
+| **Fonts (live)** | **Inter** (headlines) + **Geist Mono** (body/labels) + **Silkscreen** (footer wordmark), all via Google Fonts. |
+| **Logo/favicon** | `logo.png` lockup in header; `favicon.ico` (A-mark) + `apple-touch-icon.png` shipped 2026-07-08. |
+| **Headshot** | Shipped: `image/pelumi-headshot.jpg` (studio portrait, watermark excluded). |
 
 ### 3.2 Mobile Optimization Checklist
 
-* Glass cursor disabled under 600px and on touch.
-* Hero form stacks (input top, full-width button).
+* Hero form stacks (input top, full-width button); globe placement fixed for mobile (2026-07-09).
 * Comparison table linearizes to a vertical list.
 * Founder card and its button/email row stay tidy on narrow screens (email can wrap below the button on mobile).
 * All type scales via `clamp()` so no headline breaks awkwardly.
@@ -150,30 +155,30 @@ Every string on the page follows Pelumi's anti-AI style. Enforce these:
 
 ## 5. Quality Floor
 
-Semantic landmarks; labeled inputs; `:focus-visible` orange outlines; keyboard-operable accordion; `clamp()` type; comparison table linearizes on mobile; native-scroll testimonial slider. Lighthouse targets: Performance 90+, Accessibility 100, SEO 100.
+Semantic landmarks; labeled inputs; `:focus-visible` orange outlines; keyboard-operable accordion; `clamp()` type; comparison table linearizes on mobile; native-scroll testimonial marquee with reduced-motion fallback. Lighthouse targets: Performance 90+, Accessibility 100, SEO 100.
 
 ---
 
-## 6. SEO & GEO Specification (NEW — the reason this rewrite exists)
+## 6. SEO & GEO Specification
 
-The old page had almost no SEO surface: a branded title, a meta description, no structured data, no social cards. For an authority play that's a wasted asset. The goal is to get "AI with Pelumi" and Pelumi Fatoye cited when someone searches — or asks ChatGPT, Perplexity, or Google's AI Overview — how to do the four things the newsletter teaches. Below is what the build must include. The exact strings for Claude Code are in the companion prompt.
+The goal is to get "AI with Pelumi" and Pelumi Fatoye cited when someone searches — or asks ChatGPT, Perplexity, or Google's AI Overview — how to do the four things the newsletter teaches.
 
 ### 6.1 On-page metadata
 
 * **Title tag:** `AI with Pelumi — Learn to build with AI, from someone who does` (~60 chars, brand + benefit, no "Prompt & Pipeline").
 * **Meta description:** Benefit + the four pillars + free newsletter CTA, ~155 chars.
 * **Canonical:** `https://aiwithpelumi.com/`.
-* **Open Graph + Twitter card:** title, description, `og:image` (a branded 1200×630 card with the headshot and "AI with Pelumi"), `og:type=website`, `twitter:card=summary_large_image`.
-* **Favicon + apple-touch-icon.**
-* **Lang, charset, viewport:** already present, keep.
+* **Open Graph + Twitter card:** title, description, `og:image` (a branded 1200×630 card — **still TODO as of 2026-07-09**; referenced in meta but the file doesn't exist yet), `og:type=website`, `twitter:card=summary_large_image`.
+* **Favicon + apple-touch-icon:** shipped.
+* **Lang, charset, viewport:** present.
 
-### 6.2 Structured data (JSON-LD) — the biggest single win
+### 6.2 Structured data (JSON-LD) — shipped, one placeholder open
 
 Three blocks in `<head>`:
 
-1. **Person** — Pelumi Fatoye: `name`, `jobTitle` (Product Marketer), `url`, `image`, `sameAs` (Facebook, Instagram, X, LinkedIn, YouTube, Substack — all six), `knowsAbout` (Artificial Intelligence, Claude, Prompt Engineering, No-Code Development, AI Agents, Content Marketing, AI Video Generation, Marketing Automation). This is the entity that earns citations, so list every profile — it's how answer engines connect the accounts to one person.
+1. **Person** — Pelumi Fatoye: `name`, `jobTitle` (Product Marketer), `url`, `image`, `sameAs` (Instagram, X, LinkedIn, YouTube, Substack profile substack.com/@pelumidev; **the Facebook URL is still a REPLACE placeholder — fix or drop before launch**), `knowsAbout` (Artificial Intelligence, Claude, Prompt Engineering, No-Code Development, AI Agents, Content Marketing, AI Video Generation, Marketing Automation).
 2. **WebSite** — name "AI with Pelumi", `url`, and `publisher` pointing to the Person.
-3. **Organization / Brand** — "AI with Pelumi", logo, `sameAs`. Optional but cheap.
+3. **Organization / Brand** — "AI with Pelumi", logo, `sameAs`.
 
 Note: do **not** add FAQPage schema for SERP benefit — Google retired FAQ rich results in May 2026. Keep the visible FAQ for users; skip the markup.
 
@@ -194,22 +199,20 @@ Umbrella phrase the brand should own across the page and every post: **"how a no
 
 * **Answer-shaped copy:** each pillar block should state the outcome plainly enough that an AI can quote it as a one-line answer. Write the first sentence of each pillar as if it were the snippet.
 * **Entity clarity:** the Person schema + a consistent "Pelumi Fatoye, product marketer who builds with AI" description across site, bio, and socials teaches answer engines who to attribute.
-* **`llms.txt`:** add a root `llms.txt` naming the brand, the person, the four pillars (Content Engine, Build It Don't Learn It, Your AI Workforce, Prompt to Production), and the newsletter URL. Cheap, and increasingly read by AI crawlers.
+* **`llms.txt`:** shipped — names the brand, the person, the four pillars, and the newsletter URL.
 * **Do not block AI crawlers** in robots.txt. Allow GPTBot, ClaudeBot, PerplexityBot — the point is to be cited.
-* **Sitemap + robots.txt:** ship both, even for one page. Room to grow as posts get their own URLs.
+* **Sitemap + robots.txt:** shipped.
 
 ### 6.5 Content roadmap the page should anticipate
 
-The site is one page today. The authority play needs indexable posts, one per pillar, each targeting its phrase from the table above. The footer should link to the newsletter archive so those post URLs get discovered. Flag this as the next build, not this one.
+The site is one page today. The authority play needs indexable posts, one per pillar, each targeting its phrase from the table above (drafts in progress at `content/pillar-posts/` as of 2026-07-09). The footer links POST ARCHIVE to the Substack so post URLs get discovered.
 
 ---
 
-## 7. Build order
+## 7. Remaining work (everything else in the original build order is shipped)
 
-1. Rebrand pass: strip every "Prompt & Pipeline" string — "AI with Pelumi".
-2. Metadata + JSON-LD + OG/Twitter + favicon + llms.txt + robots + sitemap.
-3. Hero and Stack copy (new headline, four pillars with keyword-shaped H3s).
-4. Founder section: new sign-off ("Have a project in mind? / Let's talk about your AI journey."), card fields (name "Pelumi", role "Product Marketer", email beside the button).
-5. Problem/compare/mid-CTA copy swap; FAQ fourth question; footer/socials.
-6. Responsive + accessibility + reduced-motion pass.
-7. Lighthouse + Rich Results test; confirm SEO 100 and valid Person/WebSite schema.
+1. `og-image.png` (1200×630) — referenced in meta, file missing.
+2. MANIFESTO footer link — `href="#"`, needs a real target.
+3. Facebook `sameAs` placeholder in JSON-LD — replace or remove.
+4. Un-park the proof section once real testimonials exist.
+5. Lighthouse + Rich Results verification pass on the final page; confirm SEO 100 and valid Person/WebSite schema.
