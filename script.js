@@ -118,7 +118,7 @@
           if (n <= 0.52) {
             // ocean: sparse faint specks so the sphere still reads as a ball
             if (hash(gx, gy, 7) > 0.07) continue;
-            gctx.fillStyle = "rgba(58, 80, 107, 0.2)";
+            gctx.fillStyle = "rgba(80, 80, 80, 0.2)";
             gctx.fillText(":", gx, gy);
             continue;
           }
@@ -126,7 +126,7 @@
           var alpha = 0.14 + 0.36 * shade;
           gctx.fillStyle = hash(gy, gx, 3) < 0.05
             ? "rgba(229, 136, 72, " + (alpha + 0.12) + ")"
-            : "rgba(23, 37, 63, " + alpha + ")";
+            : "rgba(15, 15, 15, " + alpha + ")";
           gctx.fillText(CHARS[Math.floor(v * CHARS.length)], gx, gy);
         }
       }
@@ -197,7 +197,7 @@
      POSTs), so a hidden fetch would silently drop emails. Instead we hand
      the visitor to Substack's own subscribe page with the email
      pre-filled — their flow captures it reliably every time. */
-  var SUBSTACK = "https://aiwithpelumi.substack.com";
+  var SUBSTACK = "https://pelumidev.substack.com";
 
   document.querySelectorAll("[data-signup]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
