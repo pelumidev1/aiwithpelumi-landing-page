@@ -214,4 +214,64 @@
         "&utm_source=aiwithpelumi.com";
     });
   });
+
+  /* ---------- 5. Button press/release sounds ---------- */
+  /* aiwithremy.com-style retro clicks, but synthesized with WebAudio
+     instead of MP3 assets: nothing to download, plays instantly, and the
+     context is created inside the first user gesture so autoplay policies
+     never block it. Press is a bright tick, release a softer one. */
+  var soundCtx = null;
+
+  function clickTick(freq, peak, dur) {
+    try {
+      soundCtx = soundCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if (soundCtx.state === "suspended") soundCtx.resume();
+      var t = soundCtx.currentTime;
+      var osc = soundCtx.createOscillator();
+      var gain = soundCtx.createGain();
+      osc.type = "square";
+      osc.frequency.setValueAtTime(freq, t);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.45, t + dur);
+      gain.gain.setValueAtTime(peak, t);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      osc.connect(gain);
+      gain.connect(soundCtx.destination);
+      osc.start(t);
+      osc.stop(t + dur);
+    } catch (err) { /* no sound support — stay silent */ }
+  }
+
+  function pressSound()   { clickTick(900, 0.10, 0.05); }
+  function releaseSound() { clickTick(620, 0.07, 0.045); }
+
+  var PRESSABLE = "button, .btn-touch, .social-tile";
+  var touchActive = false; // skip the synthetic mouse events after touch
+
+  document.addEventListener("touchstart", function (e) {
+    if (e.target.closest(PRESSABLE)) { touchActive = true; pressSound(); }
+  }, { passive: true });
+
+  document.addEventListener("touchend", function (e) {
+    if (e.target.closest(PRESSABLE)) releaseSound();
+  }, { passive: true });
+
+  document.addEventListener("mousedown", function (e) {
+    if (touchActive) return;
+    if (e.target.closest(PRESSABLE)) pressSound();
+  });
+
+  document.addEventListener("mouseup", function (e) {
+    if (touchActive) { touchActive = false; return; }
+    if (e.target.closest(PRESSABLE)) releaseSound();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.repeat || (e.key !== "Enter" && e.key !== " ")) return;
+    if (e.target.closest && e.target.closest(PRESSABLE)) pressSound();
+  });
+
+  document.addEventListener("keyup", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    if (e.target.closest && e.target.closest(PRESSABLE)) releaseSound();
+  });
 })();
