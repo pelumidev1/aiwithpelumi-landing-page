@@ -87,11 +87,15 @@
 
     <!-- ============ S1 · HERO ============ -->
     <section class="hero grid" aria-label="Subscribe to AI with Pelumi">
-      <canvas class="hero-globe" aria-hidden="true"></canvas>
       <div class="hero-inner">
-        <p class="eyebrow-pill" data-reveal>AI WITH PELUMI &middot; WEEKLY</p>
-        <h1 data-reveal>The practical newsletter for marketers, creators, and&nbsp;founders</h1>
-        <p class="hero-sub" data-reveal>Build a content engine. Launch products without code. Put AI agents to work. Go from prompt to production with weekly workflows and&nbsp;playbooks.</p>
+        <!-- globe lives inside .hero-copy so it stays behind the words
+             and never reaches the signup form, whatever the device -->
+        <div class="hero-copy">
+          <canvas class="hero-globe" aria-hidden="true"></canvas>
+          <p class="eyebrow-pill" data-reveal>AI WITH PELUMI &middot; WEEKLY</p>
+          <h1 data-reveal>The practical newsletter for marketers, creators, and&nbsp;founders</h1>
+          <p class="hero-sub" data-reveal>Build a content engine. Launch products without code. Put AI agents to work. Go from prompt to production with weekly workflows and&nbsp;playbooks.</p>
+        </div>
 
         <form class="signup-form" data-signup data-reveal>
           <!-- TODO: wire to ESP (likely Substack) — set data-endpoint on the form and update script.js -->

@@ -31,7 +31,15 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+/* overflow-x on the root is what iOS Safari actually honours — body
+   alone still lets full-bleed layers rubber-band the page sideways.
+   `hidden` is the fallback for Safari < 16, `clip` avoids creating a
+   scroll container on everything newer. */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 
 body {
   background: var(--black);
@@ -194,6 +202,17 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   padding-bottom: 4rem;
 }
 
+/* The pill + headline + sub sit in their own positioned block so the
+   globe centres on the words alone — the signup form below can never
+   end up inside the circle, whatever the device size. */
+.hero-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 /* ASCII globe (shopify.vc hero reference, redrawn in our palette) */
 .hero-globe {
   position: absolute;
@@ -203,16 +222,15 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   height: min(92vw, 46rem);
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 0;
+  z-index: -1; /* behind the copy it is anchored to */
 }
 
-/* On phones the stacked hero content is taller than it is wide, so the
-   globe has to outgrow the viewport for the headline to sit inside it
-   (body overflow-x:hidden keeps the spill from scrolling). */
+/* never wider than the phone screen — an overspilling circle is what
+   caused the sideways scroll wobble on iOS */
 @media (max-width: 600px) {
   .hero-globe {
-    width: min(120vw, 46rem);
-    height: min(120vw, 46rem);
+    width: 100vw;
+    height: 100vw;
   }
 }
 
@@ -246,6 +264,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   max-width: 30rem; /* never wider than the 3-line headline above it */
   margin-top: 1.5rem;
   font-size: clamp(0.6875rem, 0.5875rem + 0.5vw, 0.875rem);
+  font-weight: 600; /* heaviest Geist Mono weight we load — keeps it legible over the globe */
 }
 
 /* ---------- Signup form (hero + mid-page) ---------- */
