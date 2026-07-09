@@ -110,7 +110,7 @@ h1, h2 {
   50%  { background-position: -30% 0; }
   100% { background-position: 130% 0; }
 }
-h1 { font-size: 55px; max-width: 17ch; margin-inline: auto; }
+h1 { font-size: clamp(2.125rem, 1rem + 4.5vw, 3.4375rem); max-width: 17ch; margin-inline: auto; }
 h2 { font-size: clamp(1.8rem, 1rem + 3vw, 3rem); }
 h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 
@@ -204,6 +204,16 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* On phones the stacked hero content is taller than it is wide, so the
+   globe has to outgrow the viewport for the headline to sit inside it
+   (body overflow-x:hidden keeps the spill from scrolling). */
+@media (max-width: 600px) {
+  .hero-globe {
+    width: min(120vw, 46rem);
+    height: min(120vw, 46rem);
+  }
 }
 
 .hero-inner {
@@ -1074,7 +1084,9 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 
 @media (max-width: 600px) {
   .founder-card { flex-direction: column; }
-  .founder-photo { order: -1; width: 100%; aspect-ratio: 16 / 10; }
+  /* source headshot is square (800×800) — matching the ratio shows the
+     full face instead of the 16/10 crop that chopped head and chin */
+  .founder-photo { order: -1; width: 100%; aspect-ratio: 1 / 1; }
   .founder-actions { padding-top: 1.75rem; }
   .btn-touch { white-space: nowrap; }
 }
