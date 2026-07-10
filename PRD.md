@@ -23,7 +23,7 @@ Do not use the words "Prompt & Pipeline" anywhere. Anywhere.
 
 ### 0.1 What changed in v3.1 (built-page reality patch)
 
-The page shipped and evolved past the v3.0 spec. Where this document and the code disagree, **the code wins** — this revision updates the spec to match. The big ones: the theme flipped from dark to pure white (2026-07-05/08), the glass cursor was removed entirely, the count is 12,000+, contact is hi@aiwithpelumi.com, the ESP decision is made (Substack), fonts changed, and the proof section is parked until real testimonials exist. Details are inline below.
+The page shipped and evolved past the v3.0 spec. Where this document and the code disagree, **the code wins** — this revision updates the spec to match. The big ones: the theme flipped from dark to pure white (2026-07-05/08), the glass cursor was removed entirely, the count is 12,000+, contact is pelumidev1@gmail.com, the ESP decision is made (Substack), fonts changed, and the proof section is parked until real testimonials exist. Details are inline below.
 
 ---
 
@@ -115,7 +115,7 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that light
 ### Section 6 (page section) — Founder Note, Final CTA & Footer
 
 * Full-width **black panel** (the page's one dark anchor; brushed-metal treatment), dayy.com layout: two-line sign-off top-left, floating white card bottom-right. Sign-off: grey "Have a project in mind?" — white "Let's talk about your AI journey."
-* Floating light card (the one bright element): name "Pelumi", role "Product Marketer", real headshot (`image/pelumi-headshot.jpg`), `GET IN TOUCH` mailto pill with **hi@aiwithpelumi.com** on the same row beside the button (wraps below on mobile).
+* Floating light card (the one bright element): name "Pelumi", role "Product Marketer", real headshot (`image/pelumi-headshot.jpg`), `GET IN TOUCH` mailto pill with **pelumidev1@gmail.com** on the same row beside the button (wraps below on mobile).
 * **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten orange + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **MANIFESTO** (target TBD — launch blocker) / **CONTACT** (mailto). No privacy-policy link, per Pelumi.
 
 ---
