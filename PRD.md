@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD): AI with Pelumi
 
-**Version:** 3.1 (updated 2026-07-09 to describe the page as actually built and live; v3.0 was the repositioning spec)
+**Version:** 3.2 (updated 2026-07-18: monochrome rebrand — the orange accent is retired, the brand color is the logo's black ink; v3.1 described the live build, v3.0 was the repositioning spec)
 **Prepared for:** UI/UX Designer & Front-End Web Developer
 **Site:** aiwithpelumi.com
 **Primary audience:** Any working professional who uses AI and suspects they're using it wrong. Secondary: marketers, operators, and solo founders leveling up.
@@ -35,11 +35,11 @@ The quiet, high-craft aesthetic stays — it signals "someone who builds," which
 
 * **Ground:** Pure White (`#FFFFFF`). Cards are also white and read through 1px `#e0e0e0` borders.
 * **Text ink:** Pure Black (`#000000`); headline chrome is a black metal gradient.
-* **Primary Accent:** Light Orange (`#e58848`), with `rgba(229,136,72,0.12)` tint for washes.
-* **Secondary/Muted Text:** Grey `#6a6a6a`; muted red `#c0564a` for comparison-table X marks.
+* **Primary Accent:** the logo's Black (`#000000`), with `rgba(0,0,0,0.07)` tint for washes (2026-07-18 rebrand to match the wordmark — the old orange `#e58848` must not come back). Token is `--accent` in `styles.css`.
+* **Secondary/Muted Text:** Grey `#6a6a6a`; muted red `#c0564a` for comparison-table X marks (semantic, not brand).
 * **The one dark anchor:** the founder section re-declares the dark token set locally (pure black panel) so the sign-off block stays the page's single dark moment.
-* **Selection:** dusty pink `#e6d2d8` with black text.
-* **Discipline rule:** orange appears in at most one element per viewport-height of scroll.
+* **Selection:** inverted — black ground, white text.
+* **Discipline rule:** the accent carries weight through contrast, not hue — emphasis comes from full-ink black against grey/hairline surroundings, so keep grey and hairlines doing most of the talking.
 * **Implementation note (do not "fix"):** `styles.css` keeps the original dark-build token names inverted — `--black` is the white ground, `--white` is the black ink. Components follow the flip automatically; renaming them would touch every rule for zero gain.
 
 ### 1.2 Interactions & Cursor
@@ -56,7 +56,7 @@ The custom fluid-glass cursor from the dark build is **removed** (2026-07-05). N
 
 ## 2. Page Architecture & Section Specifications
 
-Top to bottom. The pipeline spine (1px center line with diamond nodes that light orange on scroll) stays between sections — it still reads as "systems," which fits. Live section order: Hero → Stack (four pillars) → Proof (currently parked/hidden) → Problem & Us-vs-Them → FAQ → Founder → Footer.
+Top to bottom. The pipeline spine (1px center line with diamond nodes that fill to solid ink on scroll) stays between sections — it still reads as "systems," which fits. Live section order: Hero → Stack (four pillars) → Proof (currently parked/hidden) → Problem & Us-vs-Them → FAQ → Founder → Footer.
 
 ### Header (fixed, minimal)
 
@@ -73,7 +73,7 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that light
   Primary: **"You're not using AI wrong. Nobody showed you the stack."**
   (Alt to A/B: "Learn to actually build with AI. From someone who does it for a living.")
 * **Sub:** "Every week I show you the practical AI stack — turn one idea into a content engine, build websites and agents with no code, put an AI workforce to work, and go from prompt to production. The wiring, not the hype."
-* **Inline email form:** input left, orange `Join free` button right (desktop); stacked on mobile. One rounded container.
+* **Inline email form:** input left, black `Join free` pill (white text) right (desktop); stacked on mobile. One rounded container.
 * **Micro-trust:** `● JOIN 12,000+ PROFESSIONALS LEARNING THE STACK` — no "free forever" (the newsletter won't always be free). The 12,000+ figure is Pelumi's combined following across Facebook, Instagram, X, LinkedIn, YouTube, and Substack, not verified subscribers; marked as such in a code comment.
 
 ### Section 2 — The Stack (the four pillars)
@@ -101,12 +101,12 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that light
 
 * **H2 (live copy):** "Most newsletters are generic."
 * **Problem grid:** 3 cards, mocked blurred posts, mono tags `HYPE` / `NO STEPS` / `AI SLOP`, one annotation each.
-* **Comparison table:** "Typical AI content" (grey text, muted-red X) vs. **"AI with Pelumi"** (black text, orange checks). Four rows: takes-vs-walkthroughs, hype-vs-honest, cropped-screenshots-vs-full-wiring, daily-blast-vs-when-it-matters.
+* **Comparison table:** "Typical AI content" (grey text, muted-red X) vs. **"AI with Pelumi"** (black text, black checks). Four rows: takes-vs-walkthroughs, hype-vs-honest, cropped-screenshots-vs-full-wiring, daily-blast-vs-when-it-matters.
 * **Mid-page CTA:** ICP one-liner above a second email form: "For professionals done using AI like a search box, from someone who builds with it for a living."
 
 ### Section 5 — FAQ
 
-* **FAQ accordion**, 4 items, open question turns orange:
+* **FAQ accordion**, 4 items, open state signalled by the plus→minus icon (no colour flip since the monochrome rebrand):
   1. How much does it cost? (Free to join right now; say plainly if a paid tier comes later. No "free forever" promise.)
   2. How often will you email me? (Weekly, when there's something real.)
   3. Do I need to know how to code? (No — that's the point.)
@@ -116,7 +116,7 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that light
 
 * Full-width **black panel** (the page's one dark anchor; brushed-metal treatment), dayy.com layout: two-line sign-off top-left, floating white card bottom-right. Sign-off: grey "Have a project in mind?" — white "Let's talk about your AI journey."
 * Floating light card (the one bright element): name "Pelumi", role "Product Marketer", real headshot (`image/pelumi-headshot.jpg`), `GET IN TOUCH` mailto pill with **pelumidev1@gmail.com** on the same row beside the button (wraps below on mobile).
-* **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten orange + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **MANIFESTO** (target TBD — launch blocker) / **CONTACT** (mailto). No privacy-policy link, per Pelumi.
+* **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten ink (graphite-to-black gradient) + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **MANIFESTO** (target TBD — launch blocker) / **CONTACT** (mailto). No privacy-policy link, per Pelumi.
 
 ---
 
@@ -155,7 +155,7 @@ Every string on the page follows Pelumi's anti-AI style. Enforce these:
 
 ## 5. Quality Floor
 
-Semantic landmarks; labeled inputs; `:focus-visible` orange outlines; keyboard-operable accordion; `clamp()` type; comparison table linearizes on mobile; native-scroll testimonial marquee with reduced-motion fallback. Lighthouse targets: Performance 90+, Accessibility 100, SEO 100.
+Semantic landmarks; labeled inputs; `:focus-visible` black outlines; keyboard-operable accordion; `clamp()` type; comparison table linearizes on mobile; native-scroll testimonial marquee with reduced-motion fallback. Lighthouse targets: Performance 90+, Accessibility 100, SEO 100.
 
 ---
 

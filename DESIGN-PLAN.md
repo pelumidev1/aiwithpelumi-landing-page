@@ -2,7 +2,7 @@
 
 **Working from:** PRD.md v3.0 + ideal-customer.md (repositioned) + the existing built page
 **Deliverable:** Single static page (`index.html` + `styles.css` + `script.js`), no build step, wired to an ESP, plus root `robots.txt`, `sitemap.xml`, `llms.txt`.
-**Status:** The page is already built as "Prompt & Pipeline." This plan covers the reskin of copy, structure, and SEO to "AI with Pelumi." The visual system stays; the positioning changes.
+**Status:** HISTORICAL — superseded by PRD.md (v3.2+). Kept for archaeology only. Notably, the `--orange` accent described below was retired on 2026-07-18; the live brand color is the logo's black (`--accent` in styles.css). Do not build from this document.
 
 ---
 

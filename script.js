@@ -125,7 +125,7 @@
           var v = Math.min(0.999, ((n - 0.52) / 0.3) * shade);
           var alpha = 0.14 + 0.36 * shade;
           gctx.fillStyle = hash(gy, gx, 3) < 0.05
-            ? "rgba(229, 136, 72, " + (alpha + 0.12) + ")"
+            ? "rgba(0, 0, 0, " + (alpha + 0.2) + ")"
             : "rgba(15, 15, 15, " + alpha + ")";
           gctx.fillText(CHARS[Math.floor(v * CHARS.length)], gx, gy);
         }

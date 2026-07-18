@@ -1,6 +1,6 @@
 /* ==========================================================================
    AI with Pelumi — styles
-   Tokens per DESIGN-PLAN.md / PRD v2.0
+   Tokens per PRD.md v3.2 (monochrome: white ground, black ink, black accent)
    ========================================================================== */
 
 :root {
@@ -13,8 +13,8 @@
   --line: #e0e0e0;
   --white: #000000;  /* text ink */
   --grey: #6a6a6a;
-  --orange: #e58848;
-  --orange-tint: rgba(229, 136, 72, 0.12);
+  --accent: #000000; /* brand accent = the logo's ink; site is monochrome since the 2026-07 rebrand */
+  --accent-tint: rgba(0, 0, 0, 0.07);
   --red-muted: #c0564a;
   --glass-grad: linear-gradient(180deg, #ffffffd9, #ffffffa6);
   /* Metallic system — dark ink chrome on a white ground */
@@ -123,7 +123,7 @@ h2 { font-size: clamp(1.8rem, 1rem + 3vw, 3rem); }
 h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 
 :focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -133,7 +133,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   clip-path: inset(50%); overflow: hidden; white-space: nowrap;
 }
 
-::selection { background: #e6d2d8; color: #000000; }
+::selection { background: #000000; color: #ffffff; }
 
 /* ---------- Utility type ---------- */
 
@@ -143,7 +143,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--accent);
   margin-bottom: 1rem;
 }
 
@@ -189,7 +189,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   font-weight: 500;
   letter-spacing: 0.08em;
 }
-.wordmark .amp { color: var(--orange); }
+.wordmark .amp { color: var(--accent); }
 .wordmark img { height: 1.75rem; width: auto; display: block; }
 
 /* ---------- S1 · Hero ---------- */
@@ -249,7 +249,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--orange);
+  color: var(--accent);
   padding: 0.5rem 1.1rem;
   border-radius: 99px;
   border: 1px solid var(--line);
@@ -281,7 +281,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   box-shadow: var(--metal-edge);
   transition: border-color 0.3s;
 }
-.signup-form:focus-within { border-color: var(--orange); }
+.signup-form:focus-within { border-color: var(--accent); }
 
 .signup-form input {
   flex: 1;
@@ -311,30 +311,30 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 }
 
 .signup-form button {
-  background: linear-gradient(180deg, #f4ab70 0%, #e58848 52%, #c9702f 100%);
-  color: #000000; /* black ink on orange regardless of theme tokens */
+  background: linear-gradient(180deg, #2a2a2a 0%, #000000 60%);
+  color: #ffffff; /* white ink on the black pill regardless of theme tokens */
   border: 0;
   border-radius: 99px;
   padding: 0.75rem 1.75rem;
   font-weight: 600;
   white-space: nowrap;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(96, 47, 10, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.7);
   transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
 }
 .signup-form button:hover {
   transform: scale(1.03);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(96, 47, 10, 0.55),
-    0 0 24px rgba(229, 136, 72, 0.4);
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.7),
+    0 0 24px rgba(0, 0, 0, 0.3);
 }
 
-.signup-form.is-done { border-color: var(--orange); justify-content: center; }
+.signup-form.is-done { border-color: var(--accent); justify-content: center; }
 .signup-form .form-success {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   letter-spacing: 0.04em;
-  color: var(--orange);
+  color: var(--accent);
   padding: 0.85rem 1rem;
   text-align: center;
 }
@@ -360,12 +360,12 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 .pulse-dot {
   width: 0.45rem; height: 0.45rem;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--accent);
   animation: pulse 2.4s ease-in-out infinite;
 }
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(229, 136, 72, 0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(229, 136, 72, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(0, 0, 0, 0); }
 }
 
 /* ---------- Pipeline spine (signature) ---------- */
@@ -381,7 +381,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, var(--orange), rgba(229, 136, 72, 0.2));
+  background: linear-gradient(180deg, var(--accent), rgba(0, 0, 0, 0.2));
   transform: scaleY(0);
   transform-origin: top center;
   transition: transform 1.1s var(--ease-out);
@@ -397,8 +397,8 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 }
 .spine.in-view::after { transform: scaleY(1); }
 .spine.in-view .spine-node {
-  background: var(--orange);
-  box-shadow: 0 0 12px rgba(229, 136, 72, 0.6);
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
 }
 
 /* ---------- Scroll reveals ---------- */
@@ -440,7 +440,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--orange);
+  color: var(--accent);
   margin-bottom: 1rem;
 }
 .pillar-text h3 { margin-bottom: 1rem; }
@@ -487,8 +487,8 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 .mock-line.w95 { width: 95%; }
 .mock-line.hl {
   height: auto;
-  background: var(--orange-tint);
-  border-left: 2px solid var(--orange);
+  background: var(--accent-tint);
+  border-left: 2px solid var(--accent);
   border-radius: 0 0.4rem 0.4rem 0;
   color: var(--white);
   font-size: 0.9rem;
@@ -598,7 +598,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   width: 0.32rem;
   height: 0.32rem;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--accent);
   opacity: 0.85;
 }
 
@@ -644,11 +644,11 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   color: var(--grey);
 }
 .copy-chip {
-  color: var(--orange);
-  border: 1px solid var(--orange);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 99px;
   padding: 0.2rem 0.7rem;
-  background: var(--orange-tint);
+  background: var(--accent-tint);
 }
 .mock-prompt-body {
   padding: 1.5rem 1.25rem 1.75rem;
@@ -663,7 +663,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   width: 0.55em; height: 1.1em;
   margin-left: 0.3em;
   vertical-align: text-bottom;
-  background: var(--orange);
+  background: var(--accent);
   animation: blink 1.1s steps(1) infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
@@ -713,8 +713,8 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--orange);
-  border: 1px solid var(--orange);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   background: rgba(255, 255, 255, 0.9);
   border-radius: 99px;
   padding: 0.3rem 0.75rem;
@@ -763,10 +763,10 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 
 .compare-us {
   background: var(--metal-face), var(--carbon);
-  border: 1px solid rgba(229, 136, 72, 0.45);
-  box-shadow: var(--metal-edge), 0 0 48px rgba(229, 136, 72, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  box-shadow: var(--metal-edge), 0 0 48px rgba(0, 0, 0, 0.06);
 }
-.icon-check { color: var(--orange); }
+.icon-check { color: var(--accent); }
 
 /* ---------- S3 · Letter to the reader (aiwithremy.com style) ---------- */
 
@@ -803,7 +803,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 }
 .letter-meta dd { margin: 0; }
 .letter-paper mark {
-  background: rgba(229, 136, 72, 0.24);
+  background: rgba(0, 0, 0, 0.12);
   color: inherit;
   padding: 0.05em 0.15em;
   border-radius: 2px;
@@ -829,7 +829,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   display: block;
   font-size: 1.15rem;
   letter-spacing: 0.08em;
-  color: var(--orange);
+  color: var(--accent);
   margin: 0.2rem 0;
 }
 
@@ -923,7 +923,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   box-shadow: var(--metal-edge);
 }
 .testimonial blockquote { font-size: 0.875rem; line-height: 1.55; }
-.testimonial blockquote::before { content: "“"; color: var(--orange); }
+.testimonial blockquote::before { content: "“"; color: var(--accent); }
 .testimonial figcaption {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -959,7 +959,8 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   padding: 1.4rem 0.25rem;
   transition: color 0.3s;
 }
-.faq-q[aria-expanded="true"] { color: var(--orange); }
+/* Open state reads through the plus→minus icon; the question text is
+   already full ink, so no colour flip since the monochrome rebrand. */
 
 .faq-icon {
   position: relative;
@@ -1086,7 +1087,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transition: background 0.3s, transform 0.2s var(--ease-out);
 }
-.btn-touch:hover { background: var(--orange); color: #000000; transform: scale(1.03); }
+.btn-touch:hover { background: #ffffff; color: #000000; box-shadow: inset 0 0 0 1px #000000; transform: scale(1.03); }
 .founder-email {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -1143,8 +1144,8 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   font-size: clamp(1.3rem, 1rem + 1.6vw, 2.1rem);
   line-height: 1.1;
   letter-spacing: 0.04em;
-  /* molten-metal orange */
-  background-image: linear-gradient(180deg, #ffd9b3 0%, #e58848 55%, #b05e28 100%);
+  /* molten ink — same pour as the chrome headlines */
+  background-image: linear-gradient(180deg, #b3b3b3 0%, #3a3a3a 55%, #000000 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1158,7 +1159,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 }
 .footer-meta + .footer-meta { margin-top: 0.6rem; }
 .footer-credit { color: var(--white); transition: color 0.25s; }
-.footer-credit:hover { color: var(--orange); }
+.footer-credit:hover { color: var(--grey); }
 
 .socials { display: flex; gap: 0.8rem; }
 .social-tile {
@@ -1173,7 +1174,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   box-shadow: var(--metal-edge);
   transition: color 0.25s, border-color 0.25s, transform 0.2s var(--ease-out);
 }
-.social-tile:hover { color: var(--orange); border-color: var(--orange); transform: translateY(-2px); }
+.social-tile:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 .social-tile svg { width: 1.25rem; height: 1.25rem; }
 
 .footer-nav {
@@ -1290,7 +1291,7 @@ body.popup-open { overflow: hidden; }
   transition: color 0.2s, border-color 0.2s;
 }
 .signup-popup-close:hover { color: var(--white); border-color: var(--white); }
-.signup-popup-close:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.signup-popup-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 @media (max-width: 600px) {
   .signup-popup-card { padding: 2.5rem 1.25rem 1.5rem; border-radius: 1.25rem; }
