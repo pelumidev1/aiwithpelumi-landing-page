@@ -98,7 +98,7 @@
         </div>
 
         <form class="signup-form" data-signup data-reveal>
-          <!-- TODO: wire to ESP (likely Substack) — set data-endpoint on the form and update script.js -->
+          <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <label class="sr-only" for="email-hero">Email address</label>
           <input id="email-hero" type="email" name="email" autocomplete="email" required placeholder="Enter your email">
           <button type="submit">Join free</button>
@@ -432,6 +432,7 @@
         <form class="signup-form" data-signup>
           <label class="sr-only" for="email-mid">Email address</label>
           <input id="email-mid" type="email" name="email" autocomplete="email" required placeholder="Enter your email">
+          <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button type="submit">Join free</button>
         </form>
       </div>
@@ -522,6 +523,7 @@
       <form class="signup-form" data-signup>
         <label class="sr-only" for="email-popup">Email address</label>
         <input id="email-popup" type="email" name="email" autocomplete="email" required placeholder="Enter your email">
+        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit">Join free</button>
       </form>
     </div>

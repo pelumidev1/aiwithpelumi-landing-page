@@ -1297,3 +1297,6 @@ body.popup-open { overflow: hidden; }
   .signup-popup-card { padding: 2.5rem 1.25rem 1.5rem; border-radius: 1.25rem; }
   .signup-popup-card h2 { font-size: 1.35rem; }
 }
+
+/* Honeypot field for the signup forms — visually gone, present for bots. */
+.hp-field { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; pointer-events: none; }

@@ -193,11 +193,13 @@
   });
 
   /* ---------- 4. Signup forms ---------- */
-  /* Substack's signup API sits behind bot protection (403s on direct
-     POSTs), so a hidden fetch would silently drop emails. Instead we hand
-     the visitor to Substack's own subscribe page with the email
-     pre-filled — their flow captures it reliably every time. */
-  var SUBSTACK = "https://pelumidev.substack.com";
+  /* Signups POST straight to the Pelumi OS newsletter API — the OS owns
+     the subscriber list and sends the welcome email via Resend. The
+     hidden "website" input is a honeypot: humans never see it, bots fill
+     it, the API quietly drops those. */
+  var SIGNUP_ENDPOINT = "https://os.aiwithpelumi.com/api/newsletter/subscribe";
+  var CONSENT_TEXT =
+    "Join 12,000+ professionals learning the practical AI stack. Weekly email, unsubscribe anytime.";
 
   document.querySelectorAll("[data-signup]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
@@ -207,11 +209,29 @@
       if (!email) return;
 
       var btn = form.querySelector('button[type="submit"]');
+      var hp = form.querySelector('input[name="website"]');
       if (btn) { btn.disabled = true; btn.textContent = "One sec…"; }
 
-      window.location.href =
-        SUBSTACK + "/subscribe?email=" + encodeURIComponent(email) +
-        "&utm_source=aiwithpelumi.com";
+      fetch(SIGNUP_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          consent_text: CONSENT_TEXT,
+          website: hp ? hp.value : ""
+        })
+      })
+        .then(function (res) { return res.ok; })
+        .catch(function () { return false; })
+        .then(function (ok) {
+          if (ok) {
+            input.value = "";
+            input.disabled = true;
+            if (btn) { btn.textContent = "You're in ✓"; }
+          } else {
+            if (btn) { btn.disabled = false; btn.textContent = "Try again"; }
+          }
+        });
     });
   });
 
