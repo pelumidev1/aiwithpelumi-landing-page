@@ -201,7 +201,15 @@
   var CONSENT_TEXT =
     "Join 12,000+ professionals learning the practical AI stack. Weekly email, unsubscribe anytime.";
 
+  /* Set the moment anyone touches a signup field. The timed popup (§6)
+     reads this and stays away — nobody gets a modal thrown over the form
+     they're already filling in. */
+  var signupEngaged = false;
+
   document.querySelectorAll("[data-signup]").forEach(function (form) {
+    form.addEventListener("focusin", function () { signupEngaged = true; });
+    form.addEventListener("input", function () { signupEngaged = true; });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var input = form.querySelector('input[type="email"]');
@@ -298,7 +306,8 @@
   /* ---------- 6. Timed signup popup ---------- */
   /* Opens once per page load, 5 seconds in. No storage on purpose —
      every reload gets exactly one invite. The × button, the backdrop,
-     or Esc closes it. */
+     or Esc closes it. It never opens for someone who has already touched
+     a signup field — asking twice is worse than not asking. */
 
   var popup = document.getElementById("signup-popup");
 
@@ -307,12 +316,8 @@
 
     var openPopup = function () {
       if (popupShown) return;
-      // never interrupt someone already typing into a signup form
-      var active = document.activeElement;
-      if (active && active.closest && active.closest(".signup-form")) {
-        setTimeout(openPopup, 4000);
-        return;
-      }
+      // they're already in a form (or were) — don't interrupt, don't come back
+      if (signupEngaged) return;
       popupShown = true;
       popup.hidden = false;
       document.body.classList.add("popup-open");
