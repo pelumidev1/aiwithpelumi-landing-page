@@ -97,10 +97,33 @@ The math for 1,000 subscribers:
 | One weekly broadcast to 1,000 | 1,000 per issue |
 | Monthly total at 1,000 subs | ~4,300/month |
 
-Resend's free tier is 3,000 emails/month and 100/day. **Both limits break at
-this scale** — the daily cap would stop welcome emails after the first 100
-signups in a day, and the monthly cap can't carry a weekly send to 1,000.
-Confirm you're on a paid tier before the campaign, not during it.
+**Confirmed 2026-07-20: the account is on Resend's free tier** — 3,000
+emails/month, **100 emails/day**, 1,000 marketing contacts.
+
+The 3,000 is a *sending* allowance, not storage. Three separate ceilings bite,
+and the daily one bites first:
+
+| Limit | Value | What it caps |
+|---|---|---|
+| Emails/day | 100 | **~100 recipients per issue** |
+| Emails/month | 3,000 | ~700 subscribers on a weekly send (4.3 × 700 ≈ 3,000) |
+| Marketing contacts | 1,000 | a hard ceiling exactly at the 1,000 target |
+
+**The binding constraint is 100/day, and it arrives at ~100 subscribers, not
+1,000.** A broadcast to 150 people is 150 emails in one day and cannot
+complete on this plan. At 49 real subscribers today, that ceiling is close.
+
+The 1,000-contact cap also sits exactly on the stated goal, with no headroom
+to grow past it.
+
+Pro is $20/month: 50,000 emails and no daily limit. Confirm what contact
+allowance Pro carries — the pricing page describes 5,000 contacts against the
+$40 tier, so the marketing-contact ladder may differ from the sending ladder.
+
+One mitigation is already in place: since the signup route now stores before
+mirroring (section 8), hitting the daily cap costs the *welcome email*, not
+the subscriber. The list keeps growing through a throttle; those people just
+don't get greeted.
 
 ### P1 — The rate limit will block real subscribers on mobile networks
 
@@ -117,14 +140,21 @@ again", with no reason.
 while clearing NAT), or rate-limit on a hash of IP + email so repeat attempts
 by one person are caught without penalising their neighbours.
 
-### P1 — Social shares show a blank card
+### P1 — Social shares show a blank card — ✅ FIXED 2026-07-20
 
-`og-image.png` returns **404**. Every share of the link on X, LinkedIn,
-WhatsApp, or Slack renders with no preview image. `index.html` already carries
-the `og:image` tag and a TODO noting the asset was never made.
+`og-image.png` returned **404**, so every share on X, LinkedIn, WhatsApp or
+Slack rendered with no preview image — while `twitter:card` promised the
+large-image format.
 
-For a launch built on sharing, this is the cheapest high-impact fix on the
-list: one 1200×630 PNG at the site root.
+Shipped in `03c53f2`: a 1200×630 card built from the live design tokens
+(white ground, chrome-gradient headline, Inter + Geist Mono), 64KB, serving
+at `https://www.aiwithpelumi.com/og-image.png`. Both image URLs now point at
+`www` rather than the apex, because the apex 308s and some scrapers don't
+follow redirects when fetching previews. `og:image:width/height/alt` added.
+
+Platforms cache previews, so anything already posted needs a manual
+re-scrape (X card validator, LinkedIn Post Inspector, Facebook debugger —
+the last also refreshes WhatsApp).
 
 ---
 
@@ -135,11 +165,13 @@ or anything else. You will not be able to tell which channel produced
 signups, what the conversion rate is, or whether the campaign worked. Add
 something before spending on traffic, not after.
 
-**No privacy policy.** The site collects email addresses, IP addresses, and
-user agents, and has no privacy policy or legal link anywhere. `ai-os`'s own
-compliance checklist already flags this as the single unchecked box. Once
-you're marketing at scale — and if any EU traffic arrives — this stops being
-optional. One page covering what's collected, why, and how to leave.
+**~~No privacy policy~~ — ✅ published 2026-07-20** at `/privacy.html`,
+linked from the footer (`0a9f649`). Built from the draft in `pelumi-os`, with
+three corrections after checking live behaviour: Vercel was unnamed as a
+processor, Google Fonts sends every visitor's IP to Google on page load, and
+the site genuinely sets no cookies or local storage — which is worth stating,
+and means no cookie banner is needed. `PRD.md` updated to record the reversal
+of the earlier "no privacy-policy link" decision.
 
 **The front end throws away the API's error message.** `script.js` reduces
 the response to `res.ok`, so a rate-limited user (429), a server error (502),
@@ -215,7 +247,7 @@ inactivity. A live site with traffic won't idle, but check it before launch.
 ## 6. Suggested order
 
 1. ~~Reorder the subscribe route~~ — **done, needs deploying.**
-2. Confirm the Resend plan covers ~4,300 emails/month and >1,000/day.
+2. Upgrade Resend off the free tier — 100 emails/day caps you at ~100 recipients per issue.
 3. Create `og-image.png` (1200×630) at the site root.
 4. Raise the per-IP rate limit, or key it on IP + email.
 5. Add analytics.
