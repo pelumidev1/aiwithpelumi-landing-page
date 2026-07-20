@@ -116,7 +116,7 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that fill 
 
 * Full-width **black panel** (the page's one dark anchor; brushed-metal treatment), dayy.com layout: two-line sign-off top-left, floating white card bottom-right. Sign-off: grey "Have a project in mind?" — white "Let's talk about your AI journey."
 * Floating light card (the one bright element): name "Pelumi", role "Product Marketer", real headshot (`image/pelumi-headshot.jpg`), `GET IN TOUCH` mailto pill with **pelumidev1@gmail.com** on the same row beside the button (wraps below on mobile).
-* **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten ink (graphite-to-black gradient) + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **MANIFESTO** (target TBD — launch blocker) / **CONTACT** (mailto). No privacy-policy link, per Pelumi.
+* **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten ink (graphite-to-black gradient) + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **MANIFESTO** (target TBD — launch blocker) / **PRIVACY** (`/privacy.html`) / **CONTACT** (mailto). The earlier "no privacy-policy link, per Pelumi" call was reversed on 2026-07-20 ahead of the marketing launch — collecting emails, IPs and user agents at scale made one necessary.
 
 ---
 
