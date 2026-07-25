@@ -193,11 +193,10 @@
   });
 
   /* ---------- 4. Signup forms ---------- */
-  /* Signups POST straight to the Pelumi OS newsletter API — the OS owns
-     the subscriber list and sends the welcome email via Resend. The
-     hidden "website" input is a honeypot: humans never see it, bots fill
-     it, the API quietly drops those. */
-  var SIGNUP_ENDPOINT = "https://os.aiwithpelumi.com/api/newsletter/subscribe";
+  /* Signups POST to the newsletter API, which owns the subscriber list and
+     sends the welcome email. The hidden "website" input is a honeypot:
+     humans never see it, bots fill it, the API quietly drops those. */
+  var SIGNUP_ENDPOINT = "https://api.aiwithpelumi.com/api/newsletter/subscribe";
   var CONSENT_TEXT =
     "Join 12,000+ professionals learning the practical AI stack. Weekly email, unsubscribe anytime.";
 
