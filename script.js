@@ -200,6 +200,44 @@
   var CONSENT_TEXT =
     "Join 12,000+ professionals learning the practical AI stack. Weekly email, unsubscribe anytime.";
 
+  /* Once the address is saved, hand the reader straight to the group. */
+  var WHATSAPP_GROUP = "https://chat.whatsapp.com/Cco4Zk4HITVLobqeNZ71Lq";
+
+  /* location.href, not window.open — a same-tab navigation, which popup
+     blockers leave alone. window.open from inside a fetch callback is the
+     thing they kill.
+
+     The link is written into the page *before* the jump, not on a timer
+     after it. A timer dies with the page the moment navigation starts, so
+     it can't help in the case it was meant for. Rendering first costs
+     nothing — when the handoff works the page unloads and nobody sees it.
+
+     What this covers, tested: an in-app webview (Instagram, TikTok — where
+     the ad traffic comes from) that swallows the jump and stays put. The
+     reader gets a tappable link instead of a button reading "Opening
+     WhatsApp…" forever.
+
+     What it does not cover: a hard navigation error. That replaces the
+     document, and backing out reloads this page fresh, so the link is
+     gone. Re-submitting is the way back — the address is already stored,
+     that path still returns ok, and this runs again. Low stakes anyway:
+     the email is saved before any of this, so a failed handoff costs the
+     group, not the subscriber. */
+  function sendToGroup(form) {
+    if (!form.parentNode.querySelector(".signup-fallback")) {
+      var p = document.createElement("p");
+      p.className = "signup-fallback";
+      p.appendChild(document.createTextNode("You're in. "));
+      var a = document.createElement("a");
+      a.href = WHATSAPP_GROUP;
+      a.rel = "noopener";
+      a.textContent = "Tap here to join the WhatsApp group →";
+      p.appendChild(a);
+      form.parentNode.insertBefore(p, form.nextSibling);
+    }
+    window.location.href = WHATSAPP_GROUP;
+  }
+
   /* Set the moment anyone touches a signup field. The timed popup (§6)
      reads this and stays away — nobody gets a modal thrown over the form
      they're already filling in. */
@@ -234,7 +272,8 @@
           if (ok) {
             input.value = "";
             input.disabled = true;
-            if (btn) { btn.textContent = "You're in ✓"; }
+            if (btn) { btn.textContent = "Opening WhatsApp…"; }
+            sendToGroup(form);
           } else {
             if (btn) { btn.disabled = false; btn.textContent = "Try again"; }
           }

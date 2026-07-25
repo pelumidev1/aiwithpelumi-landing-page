@@ -329,6 +329,25 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
     0 0 24px rgba(0, 0, 0, 0.3);
 }
 
+/* Only ever rendered when the jump to WhatsApp didn't take (see
+   sendToGroup in script.js) — so it has to read as the way through, not
+   as an error. */
+.signup-fallback {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--grey);
+}
+.signup-fallback a {
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.signup-fallback a:hover { color: var(--accent); }
+
 .signup-form.is-done { border-color: var(--accent); justify-content: center; }
 .signup-form .form-success {
   font-family: var(--font-mono);
