@@ -23,7 +23,7 @@ Do not use the words "Prompt & Pipeline" anywhere. Anywhere.
 
 ### 0.1 What changed in v3.1 (built-page reality patch)
 
-The page shipped and evolved past the v3.0 spec. Where this document and the code disagree, **the code wins** — this revision updates the spec to match. The big ones: the theme flipped from dark to pure white (2026-07-05/08), the glass cursor was removed entirely, the count is 12,000+, contact is pelumidev1@gmail.com, the ESP decision is made (Substack), fonts changed, and the proof section is parked until real testimonials exist. Details are inline below.
+The page shipped and evolved past the v3.0 spec. Where this document and the code disagree, **the code wins** — this revision updates the spec to match. The big ones: the theme flipped from dark to pure white (2026-07-05/08), the glass cursor was removed entirely, the count is 12,000+, contact is pelumidev1@gmail.com, the ESP moved off Substack to a self-hosted API (2026-07-20), fonts changed, and the proof section is parked until real testimonials exist. Details are inline below.
 
 ---
 
@@ -126,7 +126,7 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that fill 
 
 | Requirement | Detail |
 | --- | --- |
-| **ESP (decided)** | **Substack — publication `https://pelumidev.substack.com`.** Both forms redirect to `/subscribe?email=…&utm_source=aiwithpelumi.com` prefilled. This is deliberate: Substack's signup API 403s (bot protection), so background POSTs would silently lose emails. **Do not convert to a background POST.** Never point anything at the deleted aiwithpelumi.substack.com. |
+| **ESP (self-hosted since 2026-07-20)** | **Own API — `POST https://api.aiwithpelumi.com/api/newsletter/subscribe`** (`6afacf0`, endpoint renamed off the private OS domain on 2026-07-25, `ec6a562`). Postgres is the source of truth for subscribers; Resend mirrors the audience and sends the welcome email. Forms POST in the background and render success inline — no redirect. **Substack is retired as the ESP**; do not restore the prefilled `/subscribe?email=…` redirect. `substack.com/@pelumidev` stays as the POST ARCHIVE link and in `sameAs` only. Never point anything at the deleted aiwithpelumi.substack.com, and never expose the private OS domain (see CLAUDE.md). |
 | **Icons** | SVG only. Checkmarks, X marks, social logos (X, Instagram, LinkedIn, YouTube). |
 | **Fonts (live)** | **Inter** (headlines) + **Geist Mono** (body/labels) + **Silkscreen** (footer wordmark), all via Google Fonts. |
 | **Logo/favicon** | `logo.png` lockup in header; `favicon.ico` (A-mark) + `apple-touch-icon.png` shipped 2026-07-08. |
