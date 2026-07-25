@@ -116,7 +116,7 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that fill 
 
 * Full-width **black panel** (the page's one dark anchor; brushed-metal treatment), dayy.com layout: two-line sign-off top-left, floating white card bottom-right. Sign-off: grey "Have a project in mind?" — white "Let's talk about your AI journey."
 * Floating light card (the one bright element): name "Pelumi", role "Product Marketer", real headshot (`image/pelumi-headshot.jpg`), `GET IN TOUCH` mailto pill with **pelumidev1@gmail.com** on the same row beside the button (wraps below on mobile).
-* **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten ink (graphite-to-black gradient) + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **MANIFESTO** (target TBD — launch blocker) / **PRIVACY** (`/privacy.html`) / **CONTACT** (mailto). The earlier "no privacy-policy link, per Pelumi" call was reversed on 2026-07-20 ahead of the marketing launch — collecting emails, IPs and user agents at scale made one necessary.
+* **Footer (light, aiwithremy-style):** small Silkscreen wordmark in molten ink (graphite-to-black gradient) + © 2026 AI with Pelumi + "Vibe coded by yours truly with Claude Code" left-center; icon-only social tiles **Instagram / X / LinkedIn / YouTube** (Facebook and Substack tiles deliberately dropped); right-aligned links **POST ARCHIVE** (→ Substack) / **PRIVACY** (`/privacy.html`) / **CONTACT** (mailto). MANIFESTO was removed on 2026-07-26 — never had a target. The earlier "no privacy-policy link, per Pelumi" call was reversed on 2026-07-20 ahead of the marketing launch — collecting emails, IPs and user agents at scale made one necessary.
 
 ---
 
@@ -176,7 +176,7 @@ The goal is to get "AI with Pelumi" and Pelumi Fatoye cited when someone searche
 
 Three blocks in `<head>`:
 
-1. **Person** — Pelumi Fatoye: `name`, `jobTitle` (Product Marketer), `url`, `image`, `sameAs` (Instagram, X, LinkedIn, YouTube, Substack profile substack.com/@pelumidev; **the Facebook URL is still a REPLACE placeholder — fix or drop before launch**), `knowsAbout` (Artificial Intelligence, Claude, Prompt Engineering, No-Code Development, AI Agents, Content Marketing, AI Video Generation, Marketing Automation).
+1. **Person** — Pelumi Fatoye: `name`, `jobTitle` (Product Marketer), `url`, `image`, `sameAs` (Instagram, X, LinkedIn, YouTube, Substack profile substack.com/@pelumidev — no Facebook, Pelumi has none), `knowsAbout` (Artificial Intelligence, Claude, Prompt Engineering, No-Code Development, AI Agents, Content Marketing, AI Video Generation, Marketing Automation).
 2. **WebSite** — name "AI with Pelumi", `url`, and `publisher` pointing to the Person.
 3. **Organization / Brand** — "AI with Pelumi", logo, `sameAs`.
 
@@ -211,8 +211,8 @@ The site is one page today. The authority play needs indexable posts, one per pi
 
 ## 7. Remaining work (everything else in the original build order is shipped)
 
-1. `og-image.png` (1200×630) — referenced in meta, file missing.
-2. MANIFESTO footer link — `href="#"`, needs a real target.
-3. Facebook `sameAs` placeholder in JSON-LD — replace or remove.
+1. ~~`og-image.png` (1200×630)~~ — shipped 2026-07-20 (`03c53f2`).
+2. ~~MANIFESTO footer link~~ — **removed 2026-07-26.** It came in with the aiwithremy-style footer arrangement (`72e2fbe`) and never had a target or an owner; Pelumi didn't recognise it, so the link is gone rather than pointed somewhere invented.
+3. ~~Facebook `sameAs` placeholder~~ — **removed 2026-07-26.** Pelumi has no Facebook profile to link, so both the Person and Organization `sameAs` entries were dropped. Don't re-add a Facebook slot.
 4. Un-park the proof section once real testimonials exist.
 5. Lighthouse + Rich Results verification pass on the final page; confirm SEO 100 and valid Person/WebSite schema.
