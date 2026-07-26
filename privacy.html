@@ -112,12 +112,13 @@
       <a class="legal-back" href="/">&larr; BACK TO AI WITH PELUMI</a>
 
       <h1>Privacy</h1>
-      <p class="legal-date">LAST UPDATED 20 JULY 2026</p>
+      <p class="legal-date">LAST UPDATED 26 JULY 2026</p>
 
       <p class="legal-lede">
         The short version: I collect your email so I can send you the newsletter.
-        I never sell it. There are no cookies and no tracking on this site. You
-        can leave with one click, from any email I send.
+        I never sell it. This site sets no cookies and nothing here follows you
+        between visits, though I do count page views. You can leave with one
+        click, from any email I send.
       </p>
 
       <p>
@@ -127,7 +128,7 @@
       </p>
 
       <h2>What I collect</h2>
-      <p>Only when you subscribe. Browsing the site collects nothing.</p>
+      <p>When you subscribe:</p>
       <ul>
         <li><strong>Your email address.</strong> The only thing required.</li>
         <li><strong>Your first name</strong>, if you choose to give it.</li>
@@ -142,11 +143,20 @@
         that origin.
       </p>
 
-      <h2>No cookies, no tracking</h2>
+      <h2>No cookies, and anonymous page counts</h2>
       <p>
-        This site sets no cookies, uses no local storage, and runs no analytics
-        or advertising trackers. Nothing follows you between visits, and there
-        is nothing here to opt out of.
+        This site sets no cookies and uses no local storage. Nothing is saved
+        on your device, and there is no advertising tracker anywhere on the
+        page.
+      </p>
+      <p>
+        I do count visits. Vercel Web Analytics records that a page was viewed,
+        roughly which country it was viewed from, what kind of device was used,
+        and which site or link sent you. It does that without a cookie and
+        without any identifier that survives between visits. So it can tell me
+        how many people arrived from a video, but not which one of them was
+        you, and not whether you ever came back. That is also why there is no
+        cookie banner here and nothing to opt out of.
       </p>
       <p>
         One thing worth naming: the page loads its typefaces from Google Fonts,
@@ -172,8 +182,8 @@
         <li><strong>Resend</strong> — delivers the emails and keeps a mirror of
           the mailing list. Resend processes data in the United States.</li>
         <li><strong>Vercel</strong> — hosts this website and the signup
-          endpoint. Standard server logs, including IP addresses, pass through
-          it.</li>
+          endpoint, and provides the anonymous page counts described above.
+          Standard server logs, including IP addresses, pass through it.</li>
       </ul>
 
       <h2>How long I keep it</h2>
@@ -209,5 +219,9 @@
     </div>
   </main>
 
+  <!-- Same cookieless analytics as the landing page. Counting this page
+       too, so the numbers aren't quietly missing the one page that
+       explains the counting. -->
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
