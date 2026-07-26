@@ -69,10 +69,10 @@ Top to bottom. The pipeline spine (1px center line with diamond nodes that fill 
 
 * **Layout:** vertical, center-aligned, with a code-drawn **ASCII globe** rendered on a `.hero-globe` canvas behind the headline (recolored for the white theme in `script.js`).
 * **Eyebrow pill (glass):** `AI WITH PELUMI · WEEKLY`.
-* **Headline (H1):** Lead with the universal frustration, not the marketer-specific one.
-  Primary: **"You're not using AI wrong. Nobody showed you the stack."**
-  (Alt to A/B: "Learn to actually build with AI. From someone who does it for a living.")
-* **Sub:** "Every week I show you the practical AI stack — turn one idea into a content engine, build websites and agents with no code, put an AI workforce to work, and go from prompt to production. The wiring, not the hype."
+* **Headline (H1), live:** **"The practical newsletter for business owners, marketers, creators, and founders"** — audience-named, not frustration-led. `business owners` was added on 2026-07-26 so the page answers the video campaign, which opens "if you are a serious business owner"; Pelumi chose to widen the existing list rather than repoint the hero at business owners alone, keeping the creator/marketer audience addressed. Set lowercase to match the rest of the list.
+  (Spec'd in v3.0 and never shipped: "You're not using AI wrong. Nobody showed you the stack." Kept here only as an A/B candidate.)
+* **Sub, live:** "Build a content engine. Launch products without code. Put AI agents to work. Go from prompt to production with weekly workflows and playbooks."
+* **Signup note (2026-07-26):** under every one of the three forms — "The masterclass comes with it. I share the link and the details in the WhatsApp group, so you'll land there right after you join." Required, not decorative: a successful signup navigates to the WhatsApp group (`sendToGroup` in `script.js`), and nobody should meet that redirect unwarned.
 * **Inline email form:** input left, black `Join free` pill (white text) right (desktop); stacked on mobile. One rounded container.
 * **Micro-trust:** `● JOIN 12,000+ PROFESSIONALS LEARNING THE STACK` — no "free forever" (the newsletter won't always be free). The 12,000+ figure is Pelumi's combined following across Facebook, Instagram, X, LinkedIn, YouTube, and Substack, not verified subscribers; marked as such in a code comment.
 
