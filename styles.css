@@ -365,6 +365,18 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
 }
 .signup-fallback a:hover { color: var(--accent); }
 
+/* Why the signup failed, in the reader's words. Same type as the fallback
+   note; the one muted red on an otherwise monochrome page, because this is
+   the only string that has to read as a problem. */
+.signup-error {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--red-muted);
+}
+
 .signup-form.is-done { border-color: var(--accent); justify-content: center; }
 .signup-form .form-success {
   font-family: var(--font-mono);

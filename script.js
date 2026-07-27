@@ -238,6 +238,32 @@
     window.location.href = WHATSAPP_GROUP;
   }
 
+  /* The API answers a failure with a reason in the JSON body — a 429 says
+     "Too many attempts. Try again in a few minutes." Reading only res.ok
+     threw that away, so a rate limit, a dead backend and a dropped
+     connection all looked identical: a button reading "Try again" and no
+     clue why. Ad traffic makes that expensive — the reader who doesn't
+     know to wait just leaves. Show the reason. */
+  var NETWORK_ERROR =
+    "Couldn't reach the server. Check your connection and try again.";
+
+  /* One node per form, reused. Empty message clears it. role=status +
+     aria-live announces the failure without stealing focus from the field
+     they're about to correct. */
+  function setSignupError(form, message) {
+    var p = form.parentNode.querySelector(".signup-error");
+    if (!p) {
+      if (!message) return;
+      p = document.createElement("p");
+      p.className = "signup-error";
+      p.setAttribute("role", "status");
+      p.setAttribute("aria-live", "polite");
+      form.parentNode.insertBefore(p, form.nextSibling);
+    }
+    p.textContent = message || "";
+    p.hidden = !message;
+  }
+
   /* Set the moment anyone touches a signup field. The timed popup (§6)
      reads this and stays away — nobody gets a modal thrown over the form
      they're already filling in. */
@@ -256,6 +282,7 @@
       var btn = form.querySelector('button[type="submit"]');
       var hp = form.querySelector('input[name="website"]');
       if (btn) { btn.disabled = true; btn.textContent = "One sec…"; }
+      setSignupError(form, "");
 
       fetch(SIGNUP_ENDPOINT, {
         method: "POST",
@@ -266,15 +293,26 @@
           website: hp ? hp.value : ""
         })
       })
-        .then(function (res) { return res.ok; })
-        .catch(function () { return false; })
-        .then(function (ok) {
-          if (ok) {
+        .then(function (res) {
+          /* Read the body on failures too — that's where the reason lives.
+             A non-JSON body (proxy error page, empty 502) must not throw,
+             or a real server failure would be reported as a network one. */
+          return res
+            .json()
+            .catch(function () { return {}; })
+            .then(function (data) {
+              return { ok: res.ok, error: data && data.error };
+            });
+        })
+        .catch(function () { return { ok: false, error: NETWORK_ERROR }; })
+        .then(function (result) {
+          if (result.ok) {
             input.value = "";
             input.disabled = true;
             if (btn) { btn.textContent = "Opening WhatsApp…"; }
             sendToGroup(form);
           } else {
+            setSignupError(form, result.error || NETWORK_ERROR);
             if (btn) { btn.disabled = false; btn.textContent = "Try again"; }
           }
         });
