@@ -310,7 +310,11 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   -webkit-text-fill-color: var(--white);
 }
 
-.signup-form button {
+/* The post-signup WhatsApp link wears the same chrome as the submit button —
+   it is the one thing to press once the form is done, so it should read as
+   the primary action, not as body copy with a link in it. */
+.signup-form button,
+.signup-form .wa-join {
   background: linear-gradient(180deg, #2a2a2a 0%, #000000 60%);
   color: #ffffff; /* white ink on the black pill regardless of theme tokens */
   border: 0;
@@ -321,7 +325,15 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.7);
   transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
 }
-.signup-form button:hover {
+.signup-form .wa-join {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+.signup-form button:hover,
+.signup-form .wa-join:hover {
   transform: scale(1.03);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.22),
@@ -346,26 +358,7 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   font-size: 0.6875rem;
 }
 
-/* Only ever rendered when the jump to WhatsApp didn't take (see
-   sendToGroup in script.js) — so it has to read as the way through, not
-   as an error. */
-.signup-fallback {
-  margin-top: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  color: var(--grey);
-}
-.signup-fallback a {
-  color: var(--white);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-.signup-fallback a:hover { color: var(--accent); }
-
-/* Why the signup failed, in the reader's words. Same type as the fallback
+/* Why the signup failed, in the reader's words. Same type as the success
    note; the one muted red on an otherwise monochrome page, because this is
    the only string that has to read as a problem. */
 .signup-error {
@@ -377,13 +370,23 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   color: var(--red-muted);
 }
 
-.signup-form.is-done { border-color: var(--accent); justify-content: center; }
+/* Signed-up state. The pill becomes a card: two stacked lines never sat
+   comfortably inside a 99px radius, and the softer corner reads as a
+   different, finished thing rather than a form still waiting on you. */
+.signup-form.is-done {
+  border-color: var(--accent);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  border-radius: 1.5rem;
+  padding: 1.4rem 1.25rem 1.25rem;
+}
 .signup-form .form-success {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
+  line-height: 1.5;
   letter-spacing: 0.04em;
   color: var(--accent);
-  padding: 0.85rem 1rem;
   text-align: center;
 }
 
@@ -391,6 +394,10 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   .signup-form { flex-direction: column; gap: 0.5rem; border-radius: 1.25rem; padding: 0.5rem; }
   .signup-form input { padding: 0.85rem 1rem; text-align: center; }
   .signup-form button { width: 100%; padding: 0.95rem; }
+  /* Full-width tap target, and the label wraps instead of overflowing the
+     card on a narrow phone. */
+  .signup-form .wa-join { width: 100%; padding: 0.95rem 1rem; text-align: center; white-space: normal; }
+  .signup-form.is-done { padding: 1.25rem 1rem 1rem; }
 }
 
 .micro-trust {

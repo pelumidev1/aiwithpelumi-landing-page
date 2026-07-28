@@ -200,42 +200,37 @@
   var CONSENT_TEXT =
     "Join 12,000+ professionals learning the practical AI stack. Weekly email, unsubscribe anytime.";
 
-  /* Once the address is saved, hand the reader straight to the group. */
   var WHATSAPP_GROUP = "https://chat.whatsapp.com/Cco4Zk4HITVLobqeNZ71Lq";
 
-  /* location.href, not window.open — a same-tab navigation, which popup
-     blockers leave alone. window.open from inside a fetch callback is the
-     thing they kill.
+  /* The address is saved by the time this runs, so the group is an offer,
+     not a next step. Joining is the reader's call to make: handing over an
+     email and being thrown into a chat app you didn't ask for reads as a
+     hijack, and it lands hardest on exactly the ad traffic this page is
+     built for.
 
-     The link is written into the page *before* the jump, not on a timer
-     after it. A timer dies with the page the moment navigation starts, so
-     it can't help in the case it was meant for. Rendering first costs
-     nothing — when the handoff works the page unloads and nobody sees it.
+     The form is replaced rather than disabled. A disabled field with a
+     button still sitting there invites a second press, and any label left
+     on that button is a claim about something that is no longer happening.
+     Nothing to press twice, nothing left saying the wrong thing. */
+  function showSuccess(form) {
+    var msg = document.createElement("p");
+    msg.className = "form-success";
+    /* Announced without pulling focus — they may still be reading the page. */
+    msg.setAttribute("role", "status");
+    msg.textContent = "You're in. Check your inbox for the welcome email.";
 
-     What this covers, tested: an in-app webview (Instagram, TikTok — where
-     the ad traffic comes from) that swallows the jump and stays put. The
-     reader gets a tappable link instead of a button reading "Opening
-     WhatsApp…" forever.
+    var link = document.createElement("a");
+    link.className = "wa-join";
+    link.href = WHATSAPP_GROUP;
+    /* New tab: leaving the page they were reading is their choice too. */
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "Join the WhatsApp group →";
 
-     What it does not cover: a hard navigation error. That replaces the
-     document, and backing out reloads this page fresh, so the link is
-     gone. Re-submitting is the way back — the address is already stored,
-     that path still returns ok, and this runs again. Low stakes anyway:
-     the email is saved before any of this, so a failed handoff costs the
-     group, not the subscriber. */
-  function sendToGroup(form) {
-    if (!form.parentNode.querySelector(".signup-fallback")) {
-      var p = document.createElement("p");
-      p.className = "signup-fallback";
-      p.appendChild(document.createTextNode("You're in. "));
-      var a = document.createElement("a");
-      a.href = WHATSAPP_GROUP;
-      a.rel = "noopener";
-      a.textContent = "Tap here to join the WhatsApp group →";
-      p.appendChild(a);
-      form.parentNode.insertBefore(p, form.nextSibling);
-    }
-    window.location.href = WHATSAPP_GROUP;
+    form.innerHTML = "";
+    form.classList.add("is-done");
+    form.appendChild(msg);
+    form.appendChild(link);
   }
 
   /* The API answers a failure with a reason in the JSON body — a 429 says
@@ -307,10 +302,7 @@
         .catch(function () { return { ok: false, error: NETWORK_ERROR }; })
         .then(function (result) {
           if (result.ok) {
-            input.value = "";
-            input.disabled = true;
-            if (btn) { btn.textContent = "Opening WhatsApp…"; }
-            sendToGroup(form);
+            showSuccess(form);
           } else {
             setSignupError(form, result.error || NETWORK_ERROR);
             if (btn) { btn.disabled = false; btn.textContent = "Try again"; }
