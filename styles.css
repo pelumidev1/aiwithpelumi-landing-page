@@ -677,6 +677,41 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   width: 100%;
   height: auto;
 }
+/* The looping animation that stands in for the still. It is a self-contained
+   document in an iframe, so it needs its own box: an iframe has no intrinsic
+   aspect ratio and would otherwise collapse to the 150px default height.
+   pointer-events: none keeps it decorative — no scroll trapping, no clicks
+   landing inside the frame.
+
+   The iframe is deliberately larger than the box it shows through, and the
+   overflow is clipped. The export centres its artwork inside a fixed 78x44px
+   margin — fixed in pixels, so it is 8% of the frame on desktop but a quarter
+   of it on a phone, and no percentage rule can undo it. Growing the iframe by
+   exactly that margin and pulling it back by half cancels it at every width,
+   and stays exact because 78/44 is itself 16:9: the artwork ends up filling
+   the box edge to edge with nothing cropped off the picture. Verified at
+   1440, 1024, 390 and 360. If a future export changes that margin these two
+   numbers are what to re-measure. */
+.hero-anim {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.hero-anim iframe {
+  position: absolute;
+  top: -22px;
+  left: -39px;
+  width: calc(100% + 78px);
+  height: calc(100% + 44px);
+  border: 0;
+  pointer-events: none;
+}
+/* One or the other, never both. The still is the fallback, so it is the one
+   that hides by default; see the reduced-motion block for the swap. */
+.hero-anim ~ img {
+  display: none;
+}
 
 /* --- Visual: prompt terminal --- */
 
@@ -1259,6 +1294,11 @@ h3 { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); letter-spacing: -0.02em; }
   .spine-node { transition: none; }
   .pulse-dot, .caret { animation: none; }
   .cursor { display: none; }
+  /* Swap the looping animation for the still it replaced. Hiding the iframe
+     also stops it being fetched at all, so nobody on reduced motion pays for
+     a 1.1MB document they will not see. */
+  .hero-anim { display: none; }
+  .hero-anim ~ img { display: block; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 

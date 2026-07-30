@@ -79,6 +79,17 @@
     ]
   }
   </script>
+
+  <!-- The looping animation is a JS bundle inside an iframe, so with scripting
+       off it renders an empty white box. The still it replaced does not need
+       JS, so fall back to it. <noscript> is parsed only when scripting is
+       disabled, which keeps this pure markup: no script runs to make the swap. -->
+  <noscript>
+    <style>
+      .hero-anim { display: none; }
+      .hero-anim ~ img { display: block; }
+    </style>
+  </noscript>
 </head>
 <body>
 
@@ -157,6 +168,14 @@
         </div>
         <div class="pillar-visual">
           <div class="mock-workforce">
+            <div class="hero-anim">
+              <iframe src="/assets/ai-partners-loop.html"
+                      title="AI and human working together"
+                      loading="eager" scrolling="no"></iframe>
+            </div>
+            <!-- Reduced-motion fallback. Kept in the DOM rather than swapped in
+                 by JS: the animation is autonomous and this must work with no
+                 script at all. CSS shows exactly one of the two. -->
             <img src="image/ai-workforce-light.jpg" alt="A professional and a robot assistant building together across one desk">
           </div>
         </div>
