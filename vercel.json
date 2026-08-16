@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "apply.aiwithpelumi.com"
+        }
+      ],
+      "destination": "/apply.html"
+    }
+  ]
+}
