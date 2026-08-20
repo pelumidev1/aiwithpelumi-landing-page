@@ -2,33 +2,13 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "routes": [
     {
-      "src": "/apply.html",
-      "has": [
-        {
-          "type": "host",
-          "value": "aiwithpelumi-git-edge-subdomain-routing-pelumi2.vercel.app"
-        }
-      ],
-      "dest": "/coach.html"
-    },
-    {
       "src": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "apply.aiwithpelumi.com"
-        }
-      ],
+      "has": [{ "type": "host", "value": "apply.aiwithpelumi.com" }],
       "dest": "/apply.html"
     },
     {
       "src": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "coach.aiwithpelumi.com"
-        }
-      ],
+      "has": [{ "type": "host", "value": "coach.aiwithpelumi.com" }],
       "dest": "/coach.html"
     }
   ]
