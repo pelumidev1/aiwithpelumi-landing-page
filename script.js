@@ -200,13 +200,13 @@
   var CONSENT_TEXT =
     "Join 12,000+ professionals learning the practical AI stack. Weekly email, unsubscribe anytime.";
 
-  var WHATSAPP_GROUP = "https://chat.whatsapp.com/Cco4Zk4HITVLobqeNZ71Lq";
+  var MASTERCLASS_URL = "https://selar.com/buidwithaimasterclass";
 
-  /* The address is saved by the time this runs, so the group is an offer,
-     not a next step. Joining is the reader's call to make: handing over an
-     email and being thrown into a chat app you didn't ask for reads as a
-     hijack, and it lands hardest on exactly the ad traffic this page is
-     built for.
+  /* The address is saved by the time this runs, so the masterclass is an
+     offer, not a next step. Buying a seat is the reader's call to make:
+     handing over an email and being dropped on a checkout you didn't ask
+     for reads as a hijack, and it lands hardest on exactly the ad traffic
+     this page is built for.
 
      The form is replaced rather than disabled. A disabled field with a
      button still sitting there invites a second press, and any label left
@@ -220,12 +220,12 @@
     msg.textContent = "You're in. Check your inbox for the welcome email.";
 
     var link = document.createElement("a");
-    link.className = "wa-join";
-    link.href = WHATSAPP_GROUP;
+    link.className = "masterclass-cta";
+    link.href = MASTERCLASS_URL;
     /* New tab: leaving the page they were reading is their choice too. */
     link.target = "_blank";
     link.rel = "noopener";
-    link.textContent = "Join the WhatsApp group →";
+    link.textContent = "Grab your masterclass seat →";
 
     form.innerHTML = "";
     form.classList.add("is-done");
