@@ -1,152 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI with Pelumi &mdash; 1:1 AI Coaching</title>
+  <meta name="description" content="Apply for 1:1 AI coaching with Pelumi. Work through your own project, one session at a time.">
+  <link rel="canonical" href="https://coach.aiwithpelumi.com/">
 
-  <title>AI with Pelumi — 1:1 AI Coaching</title>
+  <!-- Every asset is absolute on the www host, deliberately. This page is
+       served on coach.aiwithpelumi.com, where the edge route in vercel.json
+       sends every path to this file — so a relative styles.css would come
+       back as HTML. Same reason the email templates point at www for their
+       logos: the host that serves the page can't serve the asset. -->
+  <link rel="icon" href="https://www.aiwithpelumi.com/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="https://www.aiwithpelumi.com/apple-touch-icon.png">
 
-  <meta
-    name="description"
-    content="Apply for 1:1 AI Coaching with Pelumi."
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Geist+Mono:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.aiwithpelumi.com/styles.css">
 
   <style>
-    * {
-      box-sizing: border-box;
+    /* Page-specific only. Ground, ink, type, borders and the grid all come
+       from styles.css, so this page can't drift from the site's tokens. */
+    .form-page {
+      padding-block: clamp(7rem, 13vw, 9.5rem) clamp(3rem, 7vw, 5rem);
     }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-      background: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      padding: 24px 32px;
-      border-bottom: 1px solid #eeeeee;
-      background: #ffffff;
-    }
-
-    .brand {
-      font-size: 20px;
-      font-weight: 700;
-      color: #111111;
-      text-decoration: none;
-    }
-
-    main {
-      flex: 1;
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px 60px;
-    }
-
-    .intro {
+    .form-inner {
+      grid-column: 1 / -1;
+      max-width: 52rem;
+      margin-inline: auto;
       text-align: center;
-      margin-bottom: 30px;
     }
 
-    .intro h1 {
-      margin: 0 0 12px;
-      font-size: 36px;
-      line-height: 1.15;
-      color: #111111;
+    /* styles.css sizes h1 for the hero and caps it at 17ch. These headings
+       are shorter and sit above a form, so they run tighter. */
+    .form-page h1 {
+      font-size: clamp(1.9rem, 1rem + 3.4vw, 2.9rem);
+      max-width: 20ch;
+      margin-bottom: 1rem;
     }
 
-    .intro p {
-      margin: 0 auto;
-      max-width: 650px;
-      color: #666666;
-      font-size: 17px;
-      line-height: 1.6;
+    .form-page .eyebrow-pill { display: inline-block; margin-bottom: 1.5rem; }
+
+    .form-lede {
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--grey);
+      max-width: 34rem;
+      margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
     }
 
-    .form-container {
-      width: 100%;
-      min-height: 800px;
+    /* The form is someone else's page in an iframe. The border and radius
+       are what make it read as part of this site rather than a panel
+       dropped on top of it. */
+    .form-frame {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--carbon);
+      padding: 0.5rem;
+      overflow: hidden;
     }
-
-    .form-container iframe {
+    .form-frame iframe {
       display: block;
       width: 100%;
-      min-height: 900px;
+      min-height: 700px;
       border: 0;
+      border-radius: 14px;
     }
 
-    footer {
-      padding: 24px;
+    .form-foot {
+      border-top: 1px solid transparent;
+      border-image: var(--steel-rule) 1;
+      padding-block: 2.5rem 3.5rem;
       text-align: center;
-      border-top: 1px solid #eeeeee;
-      color: #777777;
-      font-size: 14px;
+    }
+    .form-foot-inner { grid-column: 1 / -1; }
+    .form-back {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .form-back:hover { color: var(--grey); }
+    .form-copyright {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      color: var(--grey);
+      margin-top: 1rem;
     }
 
     @media (max-width: 600px) {
-      header {
-        padding: 20px;
-      }
-
-      main {
-        padding: 30px 12px 40px;
-      }
-
-      .intro h1 {
-        font-size: 28px;
-      }
-
-      .intro p {
-        font-size: 15px;
-      }
-
-      .form-container iframe {
-        min-height: 1000px;
-      }
+      .form-frame { border-radius: 14px; padding: 0.375rem; }
+      .form-frame iframe { min-height: 800px; border-radius: 11px; }
     }
   </style>
 </head>
-
 <body>
-  <div class="page">
 
-    <header>
-      <a class="brand" href="https://aiwithpelumi.com">
-        AI with Pelumi
-      </a>
-    </header>
+  <header class="site-header">
+    <a href="https://aiwithpelumi.com" class="wordmark"><img src="https://www.aiwithpelumi.com/image/logo.png" alt="AI with Pelumi"></a>
+  </header>
 
-    <main>
-      <section class="intro">
-        <h1>1:1 AI Coaching</h1>
-        <p>
-          Apply for personalized AI coaching with Pelumi.
-        </p>
-      </section>
+  <main class="form-page grid">
+    <div class="form-inner">
+      <p class="eyebrow-pill">AI WITH PELUMI &middot; 1:1 COACHING</p>
+      <h1>1:1 AI coaching</h1>
+      <p class="form-lede">We work on your project, not a syllabus. Tell me where you're stuck and what you want running by the end, and I'll say whether I can help.</p>
 
-      <div class="form-container">
+      <div class="form-frame">
         <iframe
+          id="JotFormIFrame-262276633737061"
           src="https://form.jotform.com/262276633737061"
-          title="AI with Pelumi 1:1 Coaching Application"
+          title="AI with Pelumi 1:1 coaching application form"
           allow="fullscreen"
-        >
-        </iframe>
+          scrolling="no"
+        ></iframe>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer>
-      © AI with Pelumi
-    </footer>
+  <footer class="form-foot grid">
+    <div class="form-foot-inner">
+      <a class="form-back" href="https://aiwithpelumi.com">&larr; BACK TO AI WITH PELUMI</a>
+      <p class="form-copyright">&copy; 2026 AI WITH PELUMI. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
 
-  </div>
+  <!-- The form's height is only known inside the frame: this one renders at
+       about 2700px, so any fixed guess either clips it or trails dead white
+       space. Jotform posts "setHeight:<px>:<formID>" as it lays out, and
+       this resizes the frame to match.
+
+       Written out rather than pulling Jotform's embed-handler bundle: that
+       is one more third-party script on a site whose privacy policy is
+       proud of how little it loads, and this is the whole of what it does.
+       Origin and form id are both checked, so no other frame can drive the
+       height. If the message never arrives the min-height still stands. -->
+  <script>
+    (function () {
+      var frame = document.getElementById("JotFormIFrame-262276633737061");
+      if (!frame) return;
+      window.addEventListener("message", function (e) {
+        if (e.origin !== "https://form.jotform.com") return;
+        if (typeof e.data !== "string") return;
+        var parts = e.data.split(":");
+        if (parts[0] !== "setHeight" || parts[2] !== "262276633737061") return;
+        var h = parseInt(parts[1], 10);
+        if (!h || h < 300 || h > 20000) return;
+        frame.style.height = h + "px";
+      });
+    })();
+  </script>
+
 </body>
 </html>
