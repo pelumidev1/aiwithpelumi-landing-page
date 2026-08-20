@@ -10,16 +10,6 @@
         }
       ],
       "destination": "/apply.html"
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "coach.aiwithpelumi.com"
-        }
-      ],
-      "destination": "/coach.html"
     }
   ]
 }
