@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI with Pelumi &mdash; Application</title>
-  <meta name="description" content="Apply to work with Pelumi. Fill in the form and I'll come back to you.">
+  <meta name="description" content="Apply to work with Pelumi. Tell me what you're building and I'll come back to you.">
   <link rel="canonical" href="https://apply.aiwithpelumi.com/">
 
   <!-- Every asset is absolute on the www host, deliberately. This page is
@@ -52,22 +52,117 @@
       margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
     }
 
-    /* The form is someone else's page in an iframe. The border and radius
-       are what make it read as part of this site rather than a panel
-       dropped on top of it. */
-    .form-frame {
+    /* ---- form ---------------------------------------------------------
+       Field chrome is built from the site's tokens: --line borders,
+       --carbon fill, mono labels, and the same black pill the newsletter
+       form uses. Nothing here invents a colour or a typeface. */
+    .app-form { text-align: left; margin-top: clamp(2rem, 4vw, 3rem); }
+
+    .field { border: 0; padding: 0; margin: 0 0 1.75rem; }
+
+    .field > label,
+    .field > legend {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 0.6rem;
+      padding: 0;
+    }
+    .field .req { color: var(--white); }
+
+    .app-form input[type="text"],
+    .app-form input[type="email"],
+    .app-form textarea {
+      width: 100%;
+      background: var(--carbon);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .app-form textarea { min-height: 7rem; resize: vertical; }
+    .app-form input:focus-visible,
+    .app-form textarea:focus-visible {
+      outline: none;
+      border-color: var(--white);
+      box-shadow: 0 0 0 3px var(--accent-tint);
+    }
+    .app-form ::placeholder { color: var(--grey); opacity: 1; }
+
+    /* Radios and checkboxes as pressable rows. A bare native control is a
+       small target and reads as a different design language. */
+    .opts { display: grid; gap: 0.5rem; }
+    .opts.cols { grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--white);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .opt:hover { border-color: var(--grey); }
+    .opt input { accent-color: var(--accent); margin: 0; flex: none; }
+    .opt:has(input:checked) { border-color: var(--white); background: var(--accent-tint); }
+    .opt:has(input:focus-visible) { box-shadow: 0 0 0 3px var(--accent-tint); }
+
+    .app-submit {
+      background: linear-gradient(180deg, #2a2a2a 0%, #000000 60%);
+      color: #ffffff;
+      border: 0;
+      border-radius: 99px;
+      padding: 0.9rem 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+      transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+    }
+    .app-submit:hover:not(:disabled) { transform: scale(1.03); }
+    .app-submit:disabled { opacity: 0.6; cursor: default; }
+
+    /* The one non-monochrome string on the page, because it is the only one
+       that has to read as a problem. Same call the signup form makes. */
+    .app-error {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--red-muted);
+      margin: 1rem 0 0;
+      min-height: 1.2em;
+    }
+
+    .app-done {
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: var(--carbon);
-      padding: 0.5rem;
-      overflow: hidden;
+      padding: clamp(2rem, 5vw, 3rem);
+      text-align: center;
     }
-    .form-frame iframe {
-      display: block;
-      width: 100%;
-      min-height: 700px;
-      border: 0;
-      border-radius: 14px;
+    .app-done h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 0.75rem; }
+    .app-done p {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: var(--grey);
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .opts.cols { grid-template-columns: 1fr; }
     }
 
     .form-foot {
@@ -110,17 +205,78 @@
     <div class="form-inner">
       <p class="eyebrow-pill">AI WITH PELUMI &middot; APPLICATION</p>
       <h1>Tell me what you're building</h1>
-      <p class="form-lede">Fill this in and I'll read it myself. The more specific you are about what you're stuck on, the more useful my reply will be.</p>
+      <p class="form-lede">I read every one of these myself. The more specific you are about what you're stuck on, the more useful my reply will be.</p>
 
-      <div class="form-frame">
-        <iframe
-          id="JotFormIFrame-262275835227058"
-          src="https://form.jotform.com/262275835227058"
-          title="AI with Pelumi application form"
-          allow="fullscreen"
-          scrolling="no"
-        ></iframe>
-      </div>
+      <form class="app-form" data-app-form data-kind="session" data-multi="availability" novalidate>
+        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="field">
+          <label for="f-name">Your name <span class="req">*</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email <span class="req">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="f-business">What does your business do? <span class="req">*</span></label>
+          <textarea id="f-business" name="business" required></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend>How comfortable are you with AI tools? <span class="req">*</span></legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="comfort" value="Never used them" required><span>Never used them</span></label>
+            <label class="opt"><input type="radio" name="comfort" value="Dabbled a little" required><span>Dabbled a little</span></label>
+            <label class="opt"><input type="radio" name="comfort" value="Use them regularly" required><span>Use them regularly</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="f-build_or_fix">What do you want to build or fix with AI? <span class="req">*</span></label>
+          <textarea id="f-build_or_fix" name="build_or_fix" required></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend>What is your main goal for this session? <span class="req">*</span></legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="goal" value="Build something new" required><span>Build something new</span></label>
+            <label class="opt"><input type="radio" name="goal" value="Fix something broken" required><span>Fix something broken</span></label>
+            <label class="opt"><input type="radio" name="goal" value="Learn the workflow" required><span>Learn the workflow</span></label>
+            <label class="opt"><input type="radio" name="goal" value="Set up a system for my team" required><span>Set up a system for my team</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="f-tools">What have you already tried?</label>
+          <input id="f-tools" name="tools" type="text">
+        </div>
+
+        <div class="field">
+          <label for="f-timezone">What's your timezone? <span class="req">*</span></label>
+          <input id="f-timezone" name="timezone" type="text" required>
+        </div>
+
+        <fieldset class="field">
+          <legend>When are you usually free? <span class="req">*</span></legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="availability" value="Weekday mornings"><span>Weekday mornings</span></label>
+            <label class="opt"><input type="checkbox" name="availability" value="Weekday afternoons"><span>Weekday afternoons</span></label>
+            <label class="opt"><input type="checkbox" name="availability" value="Weekday evenings"><span>Weekday evenings</span></label>
+            <label class="opt"><input type="checkbox" name="availability" value="Weekends"><span>Weekends</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="f-notes">Anything else I should know?</label>
+          <textarea id="f-notes" name="notes"></textarea>
+        </div>
+
+        <button class="app-submit" type="submit">Send application</button>
+        <p class="app-error" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </main>
 
@@ -131,30 +287,99 @@
     </div>
   </footer>
 
-  <!-- The form's height is only known inside the frame: this one renders at
-       about 2700px, so any fixed guess either clips it or trails dead white
-       space. Jotform posts "setHeight:<px>:<formID>" as it lays out, and
-       this resizes the frame to match.
-
-       Written out rather than pulling Jotform's embed-handler bundle: that
-       is one more third-party script on a site whose privacy policy is
-       proud of how little it loads, and this is the whole of what it does.
-       Origin and form id are both checked, so no other frame can drive the
-       height. If the message never arrives the min-height still stands. -->
+  <!-- Posts to the same API the newsletter form uses, on the neutral public
+       host. No third party renders this form and nothing is embedded, so
+       there is no frame to measure and no vendor script to trust. -->
   <script>
-    (function () {
-      var frame = document.getElementById("JotFormIFrame-262275835227058");
-      if (!frame) return;
-      window.addEventListener("message", function (e) {
-        if (e.origin !== "https://form.jotform.com") return;
-        if (typeof e.data !== "string") return;
-        var parts = e.data.split(":");
-        if (parts[0] !== "setHeight" || parts[2] !== "262275835227058") return;
-        var h = parseInt(parts[1], 10);
-        if (!h || h < 300 || h > 20000) return;
-        frame.style.height = h + "px";
+  (function () {
+    var ENDPOINT = "https://api.aiwithpelumi.com/api/applications";
+    var form = document.querySelector("[data-app-form]");
+    if (!form) return;
+
+    var errorEl = form.querySelector(".app-error");
+    var button = form.querySelector(".app-submit");
+    var SUBMIT_LABEL = button.textContent;
+
+    /* Checkbox groups: one ticked box gives a bare string and none gives no
+       key at all. The API wants a list either way, so they are named here
+       and coerced before sending. */
+    var MULTI = (form.dataset.multi || "").split(" ").filter(Boolean);
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      errorEl.textContent = "";
+
+      /* novalidate is on the form so this runs on our terms, but the
+         browser still does the checking and the messaging. */
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var payload = { kind: form.dataset.kind };
+      new FormData(form).forEach(function (value, key) {
+        if (payload[key] === undefined) payload[key] = value;
+        else if (Array.isArray(payload[key])) payload[key].push(value);
+        else payload[key] = [payload[key], value];
       });
-    })();
+      MULTI.forEach(function (key) {
+        if (payload[key] === undefined) payload[key] = [];
+        else if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
+      });
+
+      button.disabled = true;
+      button.textContent = "Sending…";
+
+      fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res
+            .json()
+            .catch(function () { return {}; })
+            .then(function (data) { return { ok: res.ok, data: data }; });
+        })
+        .then(function (result) {
+          /* The API answers a failure with the reason in the body. Showing
+             a bare "try again" throws away the one thing that helps. */
+          if (!result.ok) {
+            throw new Error(result.data.error || "Something went wrong. Try again.");
+          }
+          done();
+        })
+        .catch(function (err) {
+          button.disabled = false;
+          button.textContent = SUBMIT_LABEL;
+          errorEl.textContent =
+            err && err.message
+              ? err.message
+              : "Couldn't reach the server. Check your connection and try again.";
+        });
+    });
+
+    /* Replaced rather than disabled. A dead form with a button beside it
+       invites a second press, and any label left on that button is a claim
+       about something that already happened. */
+    function done() {
+      var card = document.createElement("div");
+      card.className = "app-done";
+      card.setAttribute("role", "status");
+
+      var heading = document.createElement("h2");
+      heading.textContent = "Got it.";
+
+      var body = document.createElement("p");
+      body.textContent =
+        "I read these myself. There's a confirmation in your inbox, and my reply will come from the same address.";
+
+      card.appendChild(heading);
+      card.appendChild(body);
+      form.replaceWith(card);
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  })();
   </script>
 
 </body>
