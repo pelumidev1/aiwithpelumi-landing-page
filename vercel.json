@@ -1,15 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "apply.aiwithpelumi.com"
-        }
-      ],
-      "destination": "/apply.html"
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "apply.aiwithpelumi.com" }],
+      "dest": "/apply.html"
+    },
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "coach.aiwithpelumi.com" }],
+      "dest": "/coach.html"
     }
   ]
 }
