@@ -5,3 +5,18 @@
 
 # Unrelated content drafts (CoinCircuit PRs, social posts) — not part of the site
 content/
+
+# This repo is public twice over: it deploys to aiwithpelumi.com and the GitHub
+# remote is public. Anything staged here is published, so a stray `git add .`
+# is a leak rather than a mess. Loose notes at the root are ignored by default
+# and the site docs are named back in below — matching by pattern on purpose,
+# since one of the files being kept out is one whose name is the problem.
+/*.md
+!CLAUDE.md
+!PRD.md
+!LAUNCH-READINESS.md
+!DESIGN-PLAN.md
+!ideal-customer.md
+
+# Canva/design working files for the email templates — source, not site assets
+/Website email template for marketing/
