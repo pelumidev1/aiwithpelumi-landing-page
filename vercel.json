@@ -10,6 +10,9 @@
       "src": "/(.*)",
       "has": [{ "type": "host", "value": "coach.aiwithpelumi.com" }],
       "dest": "/coach.html"
-    }
+    },
+    { "src": "/posts/?", "dest": "/posts/index.html" },
+    { "src": "/posts/([^/]+)/?", "dest": "/posts/$1/index.html" },
+    { "src": "/claude-101/?", "dest": "/claude-101/index.html" }
   ]
 }

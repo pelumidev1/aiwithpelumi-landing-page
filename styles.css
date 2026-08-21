@@ -1395,3 +1395,427 @@ body.popup-open { overflow: hidden; }
 
 /* Honeypot field for the signup forms — visually gone, present for bots. */
 .hp-field { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+/* ==========================================================================
+   Newsletter archive + post pages (/posts/)
+   Every issue lives on this domain now. The old footer link pointed at
+   Substack, which meant the strongest proof the site has — the writing —
+   was hosted on somebody else's page with somebody else's subscribe box on
+   it. Substack keeps the posts too; it's a social account now, next to X
+   and LinkedIn in the footer.
+   Nothing below invents a colour or a typeface: same tokens as index.html.
+   ========================================================================== */
+
+/* ---------- Shared page furniture ---------- */
+
+/* The header is fixed, so any page that opens on copy instead of the hero
+   needs its own top pad or the wordmark sits on the first line. */
+.page-head {
+  padding-block: clamp(7rem, 13vw, 9.5rem) clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+.page-head-inner { grid-column: 1 / -1; }
+@media (min-width: 1025px) { .page-head-inner { grid-column: 5 / 21; } }
+
+.page-head h1 {
+  font-size: clamp(2rem, 1rem + 3.6vw, 3.2rem);
+  max-width: 18ch;
+  margin-inline: auto;
+}
+.page-head .eyebrow-pill { display: inline-block; margin-bottom: 1.5rem; }
+.page-lede {
+  color: var(--grey);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  max-width: 36rem;
+  margin: 1.25rem auto 0;
+}
+
+/* Back link — mono caps, same language as .footer-nav. */
+.back-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  transition: color 0.25s;
+}
+.back-link:hover { color: var(--white); }
+
+/* ---------- Archive ---------- */
+
+.archive { padding-bottom: clamp(4rem, 8vw, 6rem); }
+.archive-inner { grid-column: 1 / -1; }
+@media (min-width: 1025px) { .archive-inner { grid-column: 4 / 22; } }
+
+.archive-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+/* Featured pair. Two cards on desktop, stacked on phones. The two Pelumi
+   picked sit here rather than in the run of the list, because a reader who
+   lands cold should hit the best thing first, not the newest thing. */
+.featured-grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(3.5rem, 7vw, 5rem);
+}
+@media (min-width: 801px) { .featured-grid { grid-template-columns: 1fr 1fr; } }
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--metal-face), var(--carbon);
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+.post-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+.post-card-thumb {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-bottom: 1px solid var(--line);
+  background: #f4f4f4;
+}
+.post-card-text { padding: 1.5rem 1.5rem 1.75rem; display: flex; flex-direction: column; flex: 1; }
+.post-card h3 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 0.85rem 0 0.7rem;
+}
+.post-card p {
+  color: var(--grey);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+.post-card .post-read { margin-top: auto; }
+
+/* Date + read time. One line, mono, grey — the same register as .stage. */
+.post-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.post-meta .dot { margin: 0 0.5rem; opacity: 0.5; }
+
+.post-read {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.post-card:hover .post-read { color: var(--accent); }
+
+/* The run of every issue. A row, not a card: date on the left where it can
+   be scanned, thumbnail small enough that ten of them still fit on a screen. */
+.post-list { display: grid; }
+.post-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: clamp(1.5rem, 3vw, 2rem) 0;
+  border-top: 1px solid var(--line);
+  transition: opacity 0.3s;
+}
+.post-row:last-child { border-bottom: 1px solid var(--line); }
+@media (min-width: 701px) {
+  .post-row { grid-template-columns: 8rem 1fr 12rem; gap: 2rem; align-items: start; }
+}
+.post-row:hover .post-row-title { color: var(--grey); }
+.post-row-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: #f4f4f4;
+}
+@media (min-width: 701px) { .post-row-thumb { order: 1; } }
+/* On a phone the row has no side column to put the thumbnail in, so it goes
+   on top and the row reads as a card. */
+@media (max-width: 700px) {
+  .post-row-thumb { order: -1; aspect-ratio: 16 / 9; }
+  .post-row-date { padding-top: 0; }
+}
+/* h2 inherits the chrome-plated fill from the global rule, which paints the
+   text transparent — it can't then take a hover colour. Rows want plain ink. */
+.post-row-title {
+  background-image: none;
+  color: var(--white);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-sans);
+  font-size: clamp(1.1rem, 0.9rem + 0.7vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  transition: color 0.25s;
+}
+.post-row-sub {
+  color: var(--grey);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin-top: 0.6rem;
+}
+.post-row-date { padding-top: 0.2rem; }
+
+/* ---------- Single post ---------- */
+
+/* Same top clearance as .page-head — the header is fixed. */
+.post { padding-block: clamp(7rem, 13vw, 9.5rem) clamp(3rem, 6vw, 4rem); }
+.post-head-inner { grid-column: 1 / -1; text-align: center; }
+@media (min-width: 1025px) { .post-head-inner { grid-column: 6 / 20; } }
+
+.post-head-inner h1 {
+  font-size: clamp(1.85rem, 1rem + 3.2vw, 2.9rem);
+  max-width: 22ch;
+  margin: 1.25rem auto 0;
+}
+.post-standfirst {
+  color: var(--grey);
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 34rem;
+  margin: 1.25rem auto 0;
+}
+
+.post-cover-wrap { grid-column: 1 / -1; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+@media (min-width: 1025px) { .post-cover-wrap { grid-column: 4 / 22; } }
+.post-cover-wrap img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+/* Body measure. Mono at 17px runs long, so the column is tighter than the
+   grid would give it — roughly 68 characters. */
+.post-body { grid-column: 1 / -1; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+@media (min-width: 1025px) { .post-body { grid-column: 7 / 19; } }
+
+.post-body > * + * { margin-top: 1.35rem; }
+.post-body p { color: #262626; line-height: 1.75; }
+.post-body strong { color: var(--white); font-weight: 600; }
+.post-body em { font-style: italic; }
+
+.post-body h2 {
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.85rem);
+  margin-top: clamp(2.75rem, 5vw, 3.5rem);
+  letter-spacing: -0.025em;
+}
+.post-body h3 { font-size: 1.2rem; margin-top: 2.5rem; }
+/* Substack's h5 is a small centred aside, not a heading level we use. */
+.post-body h5 {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--grey);
+  margin-top: 2.25rem;
+}
+
+.post-body a {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: color 0.25s;
+}
+.post-body a:hover { color: var(--grey); }
+
+.post-body ul, .post-body ol { padding-left: 1.4rem; }
+.post-body ul { list-style: disc; }
+.post-body ol { list-style: decimal; }
+.post-body li { color: #262626; line-height: 1.75; }
+.post-body li + li { margin-top: 0.6rem; }
+.post-body li > p + p { margin-top: 0.6rem; }
+.post-body li::marker { color: var(--grey); }
+
+.post-body blockquote {
+  border-left: 2px solid var(--white);
+  padding: 0.15rem 0 0.15rem 1.25rem;
+  color: var(--white);
+  font-size: 0.9375rem;
+}
+.post-body blockquote p + p { margin-top: 0.75rem; }
+
+/* Prompts. These are the thing readers came to copy, so they get a real
+   block with its own scroll rather than wrapping into the prose. */
+.post-body pre {
+  background: #f6f6f6;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+.post-body pre code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  white-space: pre;
+  color: #1a1a1a;
+}
+.post-body :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--accent-tint);
+  border-radius: 0.35rem;
+  padding: 0.1em 0.4em;
+}
+
+.post-body hr {
+  border: 0;
+  height: 1px;
+  background: var(--steel-rule);
+  margin-block: clamp(2.5rem, 5vw, 3.25rem);
+}
+
+.post-body figure { margin-block: clamp(2rem, 4vw, 2.75rem); }
+.post-body figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+}
+.post-body figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--grey);
+  text-align: center;
+  margin-top: 0.85rem;
+}
+
+/* End-of-post subscribe. Same pill form as the hero, boxed so it reads as
+   the end of the piece rather than one more paragraph. */
+.post-outro {
+  grid-column: 1 / -1;
+  margin-top: clamp(3.5rem, 7vw, 5rem);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: var(--metal-face), var(--carbon);
+  padding: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+}
+@media (min-width: 1025px) { .post-outro { grid-column: 6 / 20; } }
+.post-outro h2 { font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem); }
+.post-outro p { color: var(--grey); font-size: 0.875rem; margin-top: 0.85rem; }
+.post-outro .signup-form { margin-inline: auto; }
+.post-outro .signup-note { margin-inline: auto; }
+
+.post-nav {
+  grid-column: 1 / -1;
+  margin-top: clamp(3rem, 6vw, 4rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 1025px) { .post-nav { grid-column: 6 / 20; } }
+
+/* ---------- Home: latest issues strip ---------- */
+
+.issues { padding-block: clamp(3rem, 7vw, 5rem); }
+.issues-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+@media (min-width: 1025px) { .issues-grid { grid-column: 3 / 23; } }
+@media (min-width: 801px) { .issues-grid { grid-template-columns: repeat(3, 1fr); } }
+.issues-more { grid-column: 1 / -1; text-align: center; margin-top: clamp(2rem, 4vw, 2.75rem); }
+
+/* ---------- Claude 101 unlock page ---------- */
+
+.unlock-inner { grid-column: 1 / -1; max-width: 44rem; margin-inline: auto; width: 100%; }
+
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 1.1rem;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--metal-face), var(--carbon);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  text-align: left;
+}
+.step + .step { margin-top: 1rem; }
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 2rem; height: 2rem;
+  display: grid;
+  place-items: center;
+}
+.step h2 { font-size: 1.0625rem; letter-spacing: -0.02em; }
+.step p { color: var(--grey); font-size: 0.875rem; line-height: 1.65; margin-top: 0.5rem; }
+.step-body { min-width: 0; }
+.step-body .signup-form { margin-top: 1.1rem; }
+.step-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.1rem; }
+
+/* The tick is the reader's own word that they did it. No tracking pixel
+   could tell us anyway, and pretending otherwise would be theatre. */
+.step-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--grey);
+  cursor: pointer;
+}
+.step-check input { accent-color: var(--accent); width: 1rem; height: 1rem; }
+.step:has(.step-check input:checked) { border-color: var(--accent); }
+.step:has(.step-check input:checked) .step-num { border-color: var(--accent); color: var(--white); }
+
+.unlock {
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  text-align: center;
+}
+.unlock[hidden] { display: none; }
+.unlock h2 { font-size: 1.35rem; }
+.unlock p { color: var(--grey); font-size: 0.875rem; margin-top: 0.75rem; }
+.unlock .btn-touch { margin-top: 1.5rem; display: inline-block; }
+.unlock-locked {
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  text-align: center;
+}

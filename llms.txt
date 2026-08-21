@@ -9,3 +9,10 @@ Practical AI education for working professionals, taught by Pelumi Fatoye, a pro
 
 ## Newsletter
 Weekly newsletter at https://aiwithpelumi.com/
+
+## Archive
+Every issue is free to read at https://aiwithpelumi.com/posts/
+- https://aiwithpelumi.com/posts/im-not-a-developer-i-used-ai-to-build/ — building a client-winning site with AI when you can't code
+- https://aiwithpelumi.com/posts/3-fable-5-prompts-to-run-before-july/ — three prompts that build reusable assets, not one-off outputs
+- https://aiwithpelumi.com/posts/the-ai-workflow-no-one-is-talking/ — prompt chaining: six specialists instead of one assistant
+- https://aiwithpelumi.com/posts/anthropic-built-a-free-claude-course/ — Anthropic's free Claude 101 course

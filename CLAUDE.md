@@ -14,7 +14,9 @@ Signups go to an API that also serves Pelumi's **private personal project**. Tha
 
 ## Facts that override older docs
 - Signups POST to `https://api.aiwithpelumi.com/api/newsletter/subscribe` — a self-hosted API (Postgres is the source of truth, Resend handles delivery and the welcome email). **Substack is no longer the ESP**; the old prefilled `/subscribe?email=…` redirect was retired on 2026-07-20 (`6afacf0`), so don't restore it or treat Substack as the signup destination.
-- `substack.com/@pelumidev` is still correct as the POST ARCHIVE link and in the JSON-LD `sameAs` — leave those. The old aiwithpelumi.substack.com is deleted; never reference it.
+- Newsletter issues are pages on this site: `/posts/` is the archive, `/posts/<slug>/` is each issue (source in `posts/`, images in `image/posts/<slug>/`). POST ARCHIVE points at `/posts/`, never at Substack. Copy ported from Substack has the retired brand rewritten and the Substack subscribe/share links stripped — check both before adding an issue.
+- `substack.com/@pelumidev` is a social link now: a footer tile beside X and LinkedIn, and still correct in the JSON-LD `sameAs`. The publication is at pelumidev.substack.com; the old aiwithpelumi.substack.com is deleted, never reference it.
+- `/claude-101/` is the unlock page for Anthropic's free Claude 101 course (follow on LinkedIn + subscribe, then the Skilljar link). It replaced `yellow-deanna-95.tiiny.site` on 2026-08-21 — never restore that link.
 - Social count is 12,000+ (combined following, not verified subscribers).
 - Contact: pelumidev1@gmail.com (replaced hi@aiwithpelumi.com on 2026-07-09).
 - Four pillars: Content Engine / Build It, Don't Learn It / Your AI Workforce / Prompt to Production.
