@@ -13,6 +13,11 @@
     },
     { "src": "/posts/?", "dest": "/posts/index.html" },
     { "src": "/posts/([^/]+)/?", "dest": "/posts/$1/index.html" },
-    { "src": "/claude-101/?", "dest": "/claude-101/index.html" }
+    { "src": "/claude-101/?", "dest": "/claude-101/index.html" },
+    {
+      "src": "/stack/?",
+      "status": 307,
+      "headers": { "Location": "https://sponge-script-fe4.notion.site/What-I-actually-build-with-3c84384dc0e08048928dc0a7084e0f2b" }
+    }
   ]
 }
