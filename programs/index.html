@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI with Pelumi &mdash; Work with me</title>
+  <meta name="description" content="Four ways to learn AI with Pelumi: the Build-With-AI Masterclass, a 6-week AI bootcamp, 12-week mentorship, and 1:1 coaching.">
+  <link rel="canonical" href="https://aiwithpelumi.com/programs/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Work with me | AI with Pelumi">
+  <meta property="og:description" content="Masterclass, bootcamp, mentorship or 1:1 coaching. Pick the one that fits where you're stuck.">
+  <meta property="og:url" content="https://aiwithpelumi.com/programs/">
+  <meta property="og:image" content="https://www.aiwithpelumi.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Geist+Mono:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    /* Page-specific only. Tokens, type and the grid come from styles.css. */
+    .programs-page { padding-block: clamp(7rem, 13vw, 9.5rem) clamp(3rem, 7vw, 5rem); }
+    .programs-head { text-align: center; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+    .programs-head .eyebrow-pill { display: inline-block; margin-bottom: 1.5rem; }
+    .programs-head h1 {
+      font-size: clamp(1.9rem, 1rem + 3.4vw, 2.9rem);
+      max-width: 18ch;
+      margin: 0 auto 1rem;
+    }
+    .lede {
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: var(--grey);
+      max-width: 34rem;
+      margin: 0 auto;
+    }
+
+    /* ---- comparison -------------------------------------------------
+       Built column-first: each program is one column holding its own
+       cells, and subgrid lines the rows up across columns. That order is
+       what lets a column collapse into a self-contained card on a phone. */
+    .ptable-wrap { max-width: 72rem; margin-inline: auto; }
+    .ptable {
+      --rows: 7; /* header + 6 criteria */
+      display: grid;
+      grid-template-columns: minmax(9rem, 0.8fr) repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(var(--rows), auto) auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--carbon);
+    }
+    .col {
+      display: grid;
+      grid-row: 1 / span calc(var(--rows) + 1);
+      grid-template-rows: subgrid;
+      border-left: 1px solid var(--line);
+      transition: background 0.2s;
+    }
+    .col-criteria { border-left: 0; }
+    .cell {
+      padding: 1.1rem 1.25rem;
+      border-top: 1px solid var(--line);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: var(--white);
+    }
+    .cell.head {
+      border-top: 0;
+      padding-block: 1.4rem;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .cell.head small {
+      display: block;
+      margin-top: 0.3rem;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .col-criteria .cell { color: var(--grey); }
+    .col-criteria .cell:not(.head) { color: var(--white); font-weight: 600; }
+    .col-criteria .head { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--grey); }
+    .cell .k { display: none; }
+    .foot {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.1rem 1.25rem 1.4rem;
+      border-top: 1px solid var(--line);
+    }
+    .col-criteria .foot { border-top-color: var(--line); }
+
+    /* The active column: tinted, with its buttons showing. One column is
+       always active, so a mouse user never sees a table with no way out. */
+    .col.is-active { background: rgba(0, 0, 0, 0.035); }
+    .col:first-child.is-active { background: transparent; }
+    .ptable .col:last-child { border-radius: 0 18px 18px 0; }
+    .foot .btn { width: 100%; }
+    @media (hover: hover) and (min-width: 861px) {
+      .col:not(.col-criteria) .foot { opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; }
+      .col.is-active .foot,
+      .col:focus-within .foot { opacity: 1; visibility: visible; }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 99px;
+      padding: 0.8rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-out), border-color 0.2s;
+    }
+    .btn-solid {
+      background: linear-gradient(180deg, #2a2a2a 0%, #000000 60%);
+      color: #ffffff;
+      border: 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+    }
+    .btn-line { background: transparent; color: var(--white); border: 1px solid var(--line); }
+    .btn-line:hover { border-color: var(--white); }
+    .btn:hover:not(:disabled) { transform: scale(1.03); }
+    .btn:disabled { opacity: 0.6; cursor: default; }
+    .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--accent-tint); }
+
+    /* ---- checkout dialog --------------------------------------------- */
+    .checkout {
+      width: min(28rem, calc(100vw - 2rem));
+      margin: auto; /* styles.css zeroes margins, which pins a dialog top-left */
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: clamp(1.5rem, 4vw, 2rem);
+      background: var(--black);
+      color: var(--white);
+    }
+    .checkout::backdrop { background: rgba(0, 0, 0, 0.35); }
+    .checkout h2 { font-size: 1.35rem; margin: 0 0 0.35rem; }
+    .checkout-sub {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--grey);
+      margin: 0 0 1.5rem;
+    }
+    .field { border: 0; padding: 0; margin: 0 0 1.1rem; }
+    .field > label, .field > legend {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 0.5rem;
+      padding: 0;
+    }
+    .checkout input[type="text"], .checkout input[type="email"] {
+      width: 100%;
+      background: var(--carbon);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      color: var(--white);
+    }
+    .checkout input:focus-visible { outline: none; border-color: var(--white); box-shadow: 0 0 0 3px var(--accent-tint); }
+    .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .opt input { accent-color: var(--accent); margin: 0; }
+    .opt:has(input:checked) { border-color: var(--white); background: var(--accent-tint); }
+    .checkout-actions { display: flex; gap: 0.6rem; margin-top: 1.5rem; }
+    .checkout-actions .btn-solid { flex: 1; }
+    .checkout-error {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--red-muted);
+      margin: 0.9rem 0 0;
+      min-height: 1.2em;
+    }
+    .checkout-note {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      color: var(--grey);
+      margin: 0.75rem 0 0;
+      text-align: center;
+    }
+
+    .programs-foot {
+      border-top: 1px solid transparent;
+      border-image: var(--steel-rule) 1;
+      padding-block: 2.5rem 3.5rem;
+      text-align: center;
+    }
+    .programs-foot a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .programs-foot a:hover { color: var(--grey); }
+    .programs-foot p {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      color: var(--grey);
+      margin-top: 1rem;
+    }
+
+    /* Phones: each program becomes its own card, criteria labelled inline. */
+    @media (max-width: 860px) {
+      .ptable { display: flex; flex-direction: column; gap: 1rem; border: 0; background: none; }
+      .col { display: block; border: 1px solid var(--line); border-radius: 18px; background: var(--carbon); }
+      .col.is-active { background: var(--carbon); }
+      .col.col-criteria { display: none; }
+      .cell .k {
+        display: block;
+        margin-bottom: 0.2rem;
+        font-size: 0.625rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--grey);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="wordmark"><img src="/image/logo.png" alt="AI with Pelumi"></a>
+  </header>
+
+  <main class="programs-page grid">
+    <div>
+      <div class="programs-head">
+        <p class="eyebrow-pill">AI WITH PELUMI &middot; WORK WITH ME</p>
+        <h1>Stuck with AI? Pick how you want my help.</h1>
+        <p class="lede">The masterclass shows you how I build. The bootcamp teaches it to a group, live. Mentorship keeps me beside you while you build your own thing, and a 1:1 session is for one specific problem you want fixed.</p>
+      </div>
+
+      <div class="ptable-wrap">
+      <div class="ptable" role="table" aria-label="Compare programs">
+        <div class="col col-criteria" aria-hidden="true">
+          <div class="cell head">What you're choosing</div>
+          <div class="cell">Format</div>
+          <div class="cell">Length</div>
+          <div class="cell">Best if</div>
+          <div class="cell">How much of me</div>
+          <div class="cell">You leave with</div>
+          <div class="cell">How you join</div>
+          <div class="foot"></div>
+        </div>
+        <div class="col" id="masterclass">
+          <div class="cell head">Build-With-AI Masterclass<small>Recorded</small></div>
+          <div class="cell"><span class="k">Format</span>A recording you watch and build along with</div>
+          <div class="cell"><span class="k">Length</span>Yours to keep and rewatch</div>
+          <div class="cell"><span class="k">Best if</span>You want to watch the build and copy it</div>
+          <div class="cell"><span class="k">How much of me</span>Me building, on screen</div>
+          <div class="cell"><span class="k">You leave with</span>The build, copied step by step</div>
+          <div class="cell"><span class="k">How you join</span>Pay here, access by email</div>
+          <div class="foot">
+            <button class="btn btn-solid" type="button" data-buy="masterclass" data-title="The Build-With-AI Masterclass">Get started</button>
+          </div>
+        </div>
+        <div class="col" id="bootcamp">
+          <div class="cell head">AI Bootcamp<small>Live &middot; Group</small></div>
+          <div class="cell"><span class="k">Format</span>Live sessions with a group, real projects</div>
+          <div class="cell"><span class="k">Length</span>6 weeks</div>
+          <div class="cell"><span class="k">Best if</span>You're starting from zero and tutorials lose you</div>
+          <div class="cell"><span class="k">How much of me</span>Live sessions, shared with the group</div>
+          <div class="cell"><span class="k">You leave with</span>AI running in your actual job</div>
+          <div class="cell"><span class="k">How you join</span>Enrol on LearnHub</div>
+          <div class="foot">
+            <a class="btn btn-solid" href="https://learnhub.dev/enrol">Get started</a>
+          </div>
+        </div>
+        <div class="col" id="mentorship">
+          <div class="cell head">Mentorship<small>Group or 1:1</small></div>
+          <div class="cell"><span class="k">Format</span>Weekly reviews of what you built</div>
+          <div class="cell"><span class="k">Length</span>12 weeks</div>
+          <div class="cell"><span class="k">Best if</span>You're building your own thing and keep stalling</div>
+          <div class="cell"><span class="k">How much of me</span>I look at your work every week</div>
+          <div class="cell"><span class="k">You leave with</span>Your own project, built and running</div>
+          <div class="cell"><span class="k">How you join</span>Group: pay here. 1:1: apply, 3 spots</div>
+          <div class="foot">
+            <button class="btn btn-solid" type="button" data-buy="mentorship" data-title="Group Mentorship">Join the group</button>
+            <a class="btn btn-line" href="https://coach.aiwithpelumi.com/?program=mentorship">Apply for 1:1</a>
+          </div>
+        </div>
+        <div class="col" id="coaching">
+          <div class="cell head">1:1 Coaching<small>One session</small></div>
+          <div class="cell"><span class="k">Format</span>One live session, just us</div>
+          <div class="cell"><span class="k">Length</span>One session</div>
+          <div class="cell"><span class="k">Best if</span>One specific thing has you stuck</div>
+          <div class="cell"><span class="k">How much of me</span>My full attention for the session</div>
+          <div class="cell"><span class="k">You leave with</span>That one problem fixed</div>
+          <div class="cell"><span class="k">How you join</span>Pay here, then book a time</div>
+          <div class="foot">
+            <button class="btn btn-solid" type="button" data-buy="coaching" data-title="1:1 Coaching Session">Get started</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </main>
+
+  <dialog class="checkout" aria-labelledby="checkout-title">
+    <form method="dialog" class="checkout-form" novalidate>
+      <h2 id="checkout-title">Checkout</h2>
+      <p class="checkout-sub">Your access comes to this email the moment payment goes through.</p>
+      <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="field">
+        <label for="c-name">Your name</label>
+        <input id="c-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="c-email">Email</label>
+        <input id="c-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <fieldset class="field">
+        <legend>Pay in</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="currency" value="NGN" required><span>Naira (₦)</span></label>
+          <label class="opt"><input type="radio" name="currency" value="USD" required><span>US dollars ($)</span></label>
+        </div>
+      </fieldset>
+
+      <div class="checkout-actions">
+        <button class="btn btn-line" type="button" data-close>Cancel</button>
+        <button class="btn btn-solid" type="submit">Continue to payment</button>
+      </div>
+      <p class="checkout-error" role="status" aria-live="polite"></p>
+      <p class="checkout-note">Payment runs through Paystack, and you'll see the price before you pay.</p>
+    </form>
+  </dialog>
+
+  <footer class="programs-foot grid">
+    <div>
+      <a href="/">&larr; BACK TO AI WITH PELUMI</a>
+      <p>&copy; 2026 AI WITH PELUMI. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <!-- The browser names a program and a currency; the API sets the amount
+       and starts the Paystack transaction. Access is emailed from Paystack's
+       confirmed-payment webhook, never from anything this page reports. -->
+  <script>
+  (function () {
+    /* Whichever column the pointer or keyboard is in becomes active and
+       stays active after the pointer leaves, like a selected tab. A #hash
+       link (/programs/#coaching) opens with that column active. */
+    var cols = document.querySelectorAll(".col:not(.col-criteria)");
+    function activate(col) {
+      cols.forEach(function (c) { c.classList.toggle("is-active", c === col); });
+    }
+    cols.forEach(function (c) {
+      c.addEventListener("mouseenter", function () { activate(c); });
+      c.addEventListener("focusin", function () { activate(c); });
+    });
+    activate(document.getElementById(location.hash.slice(1)) || cols[0]);
+
+    var ENDPOINT = "https://api.aiwithpelumi.com/api/payments/checkout";
+    var PAYSTACK_JS = "https://js.paystack.co/v2/inline.js";
+
+    var dialog = document.querySelector(".checkout");
+    var form = dialog.querySelector("form");
+    var title = dialog.querySelector("#checkout-title");
+    var errorEl = dialog.querySelector(".checkout-error");
+    var submit = form.querySelector('button[type="submit"]');
+    var SUBMIT_LABEL = submit.textContent;
+    var program = null;
+
+    /* A reader in Nigeria almost always wants Naira. Everyone else starts
+       on dollars. Either way it's one tap to switch. */
+    var tz = "";
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    form.elements.currency.value = tz === "Africa/Lagos" ? "NGN" : "USD";
+
+    /* Loaded on first click, not on page load. Most visitors never pay, and
+       they shouldn't download a checkout to read four cards. */
+    var paystackReady = null;
+    function loadPaystack() {
+      if (paystackReady) return paystackReady;
+      paystackReady = new Promise(function (resolve, reject) {
+        var s = document.createElement("script");
+        s.src = PAYSTACK_JS;
+        s.onload = function () { resolve(window.PaystackPop); };
+        s.onerror = function () { paystackReady = null; reject(new Error("Couldn't load checkout. Check your connection and try again.")); };
+        document.head.appendChild(s);
+      });
+      return paystackReady;
+    }
+
+    document.querySelectorAll("[data-buy]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        program = btn.dataset.buy;
+        title.textContent = btn.dataset.title;
+        reset();
+        dialog.showModal();
+        loadPaystack().catch(function () {});
+      });
+    });
+
+    dialog.querySelector("[data-close]").addEventListener("click", function () { dialog.close(); });
+
+    function reset() {
+      errorEl.textContent = "";
+      submit.disabled = false;
+      submit.textContent = SUBMIT_LABEL;
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      errorEl.textContent = "";
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var payload = {
+        program: program,
+        currency: form.elements.currency.value,
+        name: form.elements.name.value.trim(),
+        email: form.elements.email.value.trim(),
+        website: form.elements.website.value
+      };
+
+      submit.disabled = true;
+      submit.textContent = "Opening checkout…";
+
+      Promise.all([
+        fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            if (!res.ok || !data.accessCode) throw new Error(data.error || "Checkout didn't start. Try again.");
+            return data;
+          });
+        }),
+        loadPaystack()
+      ])
+        .then(function (results) {
+          var data = results[0];
+          var PaystackPop = results[1];
+          /* The dialog sits in the top layer, above Paystack's iframe, so it
+             has to close before the popup opens or the popup is unclickable. */
+          dialog.close();
+          new PaystackPop().resumeTransaction(data.accessCode, {
+            onSuccess: function () { paid(payload.email); },
+            onCancel: function () {
+              reset();
+              errorEl.textContent = "Checkout closed. Nothing was charged.";
+              dialog.showModal();
+            },
+            onError: function () {
+              reset();
+              errorEl.textContent = "Checkout hit an error. Nothing was charged. Try again.";
+              dialog.showModal();
+            }
+          });
+        })
+        .catch(function (err) {
+          reset();
+          /* A network failure throws a TypeError whose message ("Failed to
+             fetch") means nothing to a buyer. */
+          errorEl.textContent = err && err.message && !(err instanceof TypeError)
+            ? err.message
+            : "Couldn't reach checkout. Check your connection and try again.";
+        });
+    });
+
+    /* Replaced rather than reset, same as the application forms: a form
+       sitting beside "you're in" invites paying twice. */
+    function paid(email) {
+      var card = document.createElement("div");
+      card.setAttribute("role", "status");
+      var h = document.createElement("h2");
+      h.textContent = "You're in.";
+      var p = document.createElement("p");
+      p.className = "checkout-sub";
+      p.textContent = "Payment went through. Your receipt and next steps are on their way to " + email + ". If it isn't there in 10 minutes, check spam, then reply to the receipt.";
+      var close = document.createElement("button");
+      close.className = "btn btn-solid";
+      close.type = "button";
+      close.textContent = "Done";
+      close.addEventListener("click", function () { location.reload(); });
+      card.appendChild(h);
+      card.appendChild(p);
+      card.appendChild(close);
+      form.replaceWith(card);
+      dialog.showModal();
+    }
+  })();
+  </script>
+
+</body>
+</html>

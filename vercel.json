@@ -26,10 +26,16 @@
         "Location": "https://app.notion.com/p/The-prompt-I-used-to-write-my-landing-page-PRD-3e55f56e3dfa8040afccf861188fa020"
       }
     },
+    { "src": "/programs/?", "dest": "/programs/index.html" },
+    {
+      "src": "/(work-with-me|programmes)/?",
+      "status": 307,
+      "headers": { "Location": "/programs/" }
+    },
     {
       "src": "/masterclass/?",
       "status": 307,
-      "headers": { "Location": "https://selar.com/buidwithaimasterclass" }
+      "headers": { "Location": "/programs/#masterclass" }
     }
   ]
 }

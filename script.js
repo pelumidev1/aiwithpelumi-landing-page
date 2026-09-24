@@ -200,7 +200,7 @@
   var CONSENT_TEXT =
     "Join 12,000+ professionals learning the practical AI stack. Weekly email, unsubscribe anytime.";
 
-  var MASTERCLASS_URL = "https://selar.com/buidwithaimasterclass";
+  var MASTERCLASS_URL = "/programs/#masterclass";
 
   /* The address is saved by the time this runs, so the masterclass is an
      offer, not a next step. Buying a seat is the reader's call to make:
