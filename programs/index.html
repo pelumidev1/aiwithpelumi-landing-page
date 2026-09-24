@@ -47,7 +47,7 @@
        what lets a column collapse into a self-contained card on a phone. */
     .ptable-wrap { max-width: 72rem; margin-inline: auto; }
     .ptable {
-      --rows: 7; /* header + 6 criteria */
+      --rows: 8; /* header + 7 criteria */
       display: grid;
       grid-template-columns: minmax(9rem, 0.8fr) repeat(4, minmax(0, 1fr));
       grid-template-rows: repeat(var(--rows), auto) auto;
@@ -264,53 +264,57 @@
       <div class="programs-head">
         <p class="eyebrow-pill">AI WITH PELUMI &middot; WORK WITH ME</p>
         <h1>Stuck with AI? Pick how you want my help.</h1>
-        <p class="lede">The masterclass shows you how I build. The bootcamp teaches it to a group, live. Mentorship keeps me beside you while you build your own thing, and a 1:1 session is for one specific problem you want fixed.</p>
+        <p class="lede">Four ways to learn the AI stack with me. The difference is how much of my time you get.</p>
       </div>
 
       <div class="ptable-wrap">
       <div class="ptable" role="table" aria-label="Compare programs">
         <div class="col col-criteria" aria-hidden="true">
-          <div class="cell head">What you're choosing</div>
+          <div class="cell head">Compare</div>
           <div class="cell">Format</div>
           <div class="cell">Length</div>
-          <div class="cell">Best if</div>
-          <div class="cell">How much of me</div>
+          <div class="cell">Starts</div>
+          <div class="cell">Time with me</div>
+          <div class="cell">Best for</div>
           <div class="cell">You leave with</div>
-          <div class="cell">How you join</div>
+          <div class="cell">How to join</div>
           <div class="foot"></div>
         </div>
         <div class="col" id="masterclass">
-          <div class="cell head">Build-With-AI Masterclass<small>Recorded</small></div>
-          <div class="cell"><span class="k">Format</span>A recording you watch and build along with</div>
-          <div class="cell"><span class="k">Length</span>Yours to keep and rewatch</div>
-          <div class="cell"><span class="k">Best if</span>You want to watch the build and copy it</div>
-          <div class="cell"><span class="k">How much of me</span>Me building, on screen</div>
-          <div class="cell"><span class="k">You leave with</span>The build, copied step by step</div>
-          <div class="cell"><span class="k">How you join</span>Pay here, access by email</div>
+          <div class="cell head">Build-With-AI Masterclass<small>Self-paced</small></div>
+          <div class="cell"><span class="k">Format</span>Recorded video</div>
+          <div class="cell"><span class="k">Length</span>Watch at your pace</div>
+          <div class="cell"><span class="k">Starts</span>Today</div>
+          <div class="cell"><span class="k">Time with me</span>Recorded, no live calls</div>
+          <div class="cell"><span class="k">Best for</span>Watching the build, then copying it</div>
+          <div class="cell"><span class="k">You leave with</span>A working build of your own</div>
+          <div class="cell"><span class="k">How to join</span>Pay here</div>
           <div class="foot">
             <button class="btn btn-solid" type="button" data-buy="masterclass" data-title="The Build-With-AI Masterclass">Get started</button>
           </div>
         </div>
         <div class="col" id="bootcamp">
-          <div class="cell head">AI Bootcamp<small>Live &middot; Group</small></div>
-          <div class="cell"><span class="k">Format</span>Live sessions with a group, real projects</div>
+          <div class="cell head">AI Bootcamp<small>Cohort</small></div>
+          <div class="cell"><span class="k">Format</span>Live group classes</div>
           <div class="cell"><span class="k">Length</span>6 weeks</div>
-          <div class="cell"><span class="k">Best if</span>You're starting from zero and tutorials lose you</div>
-          <div class="cell"><span class="k">How much of me</span>Live sessions, shared with the group</div>
-          <div class="cell"><span class="k">You leave with</span>AI running in your actual job</div>
-          <div class="cell"><span class="k">How you join</span>Enrol on LearnHub</div>
+          <div class="cell"><span class="k">Starts</span>Next cohort</div>
+          <div class="cell"><span class="k">Time with me</span>Shared with the group</div>
+          <div class="cell"><span class="k">Best for</span>Starting from zero</div>
+          <div class="cell"><span class="k">You leave with</span>AI in your daily work</div>
+          <div class="cell"><span class="k">How to join</span>Enrol on LearnHub</div>
           <div class="foot">
             <a class="btn btn-solid" href="https://learnhub.dev/enrol">Get started</a>
           </div>
         </div>
         <div class="col" id="mentorship">
           <div class="cell head">Mentorship<small>Group or 1:1</small></div>
-          <div class="cell"><span class="k">Format</span>Weekly reviews of what you built</div>
+          <div class="cell"><span class="k">Format</span>Weekly reviews of your work</div>
           <div class="cell"><span class="k">Length</span>12 weeks</div>
-          <div class="cell"><span class="k">Best if</span>You're building your own thing and keep stalling</div>
-          <div class="cell"><span class="k">How much of me</span>I look at your work every week</div>
-          <div class="cell"><span class="k">You leave with</span>Your own project, built and running</div>
-          <div class="cell"><span class="k">How you join</span>Group: pay here. 1:1: apply, 3 spots</div>
+          <div class="cell"><span class="k">Starts</span>Next group</div>
+          <div class="cell"><span class="k">Time with me</span>Every week</div>
+          <div class="cell"><span class="k">Best for</span>Building your own project</div>
+          <div class="cell"><span class="k">You leave with</span>Your project, live</div>
+          <div class="cell"><span class="k">How to join</span>Pay here, or apply for 1:1 (3 spots)</div>
           <div class="foot">
             <button class="btn btn-solid" type="button" data-buy="mentorship" data-title="Group Mentorship">Join the group</button>
             <a class="btn btn-line" href="https://coach.aiwithpelumi.com/?program=mentorship">Apply for 1:1</a>
@@ -318,12 +322,13 @@
         </div>
         <div class="col" id="coaching">
           <div class="cell head">1:1 Coaching<small>One session</small></div>
-          <div class="cell"><span class="k">Format</span>One live session, just us</div>
+          <div class="cell"><span class="k">Format</span>Live call, just us</div>
           <div class="cell"><span class="k">Length</span>One session</div>
-          <div class="cell"><span class="k">Best if</span>One specific thing has you stuck</div>
-          <div class="cell"><span class="k">How much of me</span>My full attention for the session</div>
-          <div class="cell"><span class="k">You leave with</span>That one problem fixed</div>
-          <div class="cell"><span class="k">How you join</span>Pay here, then book a time</div>
+          <div class="cell"><span class="k">Starts</span>When you book</div>
+          <div class="cell"><span class="k">Time with me</span>The whole session</div>
+          <div class="cell"><span class="k">Best for</span>One problem you're stuck on</div>
+          <div class="cell"><span class="k">You leave with</span>That problem solved</div>
+          <div class="cell"><span class="k">How to join</span>Pay here, then book</div>
           <div class="foot">
             <button class="btn btn-solid" type="button" data-buy="coaching" data-title="1:1 Coaching Session">Get started</button>
           </div>
