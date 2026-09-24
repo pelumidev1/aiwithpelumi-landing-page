@@ -20,6 +20,13 @@
       "headers": { "Location": "https://sponge-script-fe4.notion.site/What-I-actually-build-with-3c84384dc0e08048928dc0a7084e0f2b" }
     },
     {
+      "src": "/prd/?",
+      "status": 307,
+      "headers": {
+        "Location": "https://app.notion.com/p/The-prompt-I-used-to-write-my-landing-page-PRD-3e55f56e3dfa8040afccf861188fa020"
+      }
+    },
+    {
       "src": "/masterclass/?",
       "status": 307,
       "headers": { "Location": "https://selar.com/buidwithaimasterclass" }
