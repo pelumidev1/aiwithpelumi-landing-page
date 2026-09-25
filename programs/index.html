@@ -91,6 +91,16 @@
     }
     .col-criteria .cell { color: var(--grey); }
     .col-criteria .cell:not(.head) { color: var(--white); font-weight: 600; }
+    .col-criteria .cell:not(.head):not(.foot)::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--grey);
+      margin-right: 0.6rem;
+      vertical-align: middle;
+    }
     .col-criteria .head { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; color: var(--grey); }
     .cell .k { display: none; }
     .foot {
@@ -325,7 +335,7 @@
       <div class="ptable-wrap">
       <div class="ptable" role="table" aria-label="Compare programs">
         <div class="col col-criteria" aria-hidden="true">
-          <div class="cell head">Compare</div>
+          <div class="cell head">What you get</div>
           <div class="cell">Format</div>
           <div class="cell">Length</div>
           <div class="cell">Starts</div>
