@@ -407,7 +407,6 @@
     <form method="dialog" class="checkout-form" novalidate>
       <h2 id="checkout-title">Checkout</h2>
       <p class="checkout-sub">Your access comes to this email the moment payment goes through.</p>
-      <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 
       <div class="field">
         <label for="c-name">Your name</label>
@@ -530,8 +529,7 @@
         program: program,
         currency: form.elements.currency.value,
         name: form.elements.name.value.trim(),
-        email: form.elements.email.value.trim(),
-        website: form.elements.website.value
+        email: form.elements.email.value.trim()
       };
 
       submit.disabled = true;
