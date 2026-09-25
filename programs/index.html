@@ -416,7 +416,10 @@
         <label for="c-email">Email</label>
         <input id="c-email" name="email" type="email" autocomplete="email" required>
       </div>
-      <fieldset class="field">
+      <!-- Hidden until Paystack approves USD on the account; Naira only for now.
+           To bring dollars back: drop `hidden` here and restore the timezone
+           default in the script below. -->
+      <fieldset class="field" hidden>
         <legend>Pay in</legend>
         <div class="opts">
           <label class="opt"><input type="radio" name="currency" value="NGN" required><span>Naira (₦)</span></label>
@@ -469,11 +472,9 @@
     var SUBMIT_LABEL = submit.textContent;
     var program = null;
 
-    /* A reader in Nigeria almost always wants Naira. Everyone else starts
-       on dollars. Either way it's one tap to switch. */
-    var tz = "";
-    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
-    form.elements.currency.value = tz === "Africa/Lagos" ? "NGN" : "USD";
+    /* Naira only until Paystack approves USD. With dollars back on, this
+       was: Africa/Lagos timezone starts on NGN, everyone else on USD. */
+    form.elements.currency.value = "NGN";
 
     /* Loaded on first click, not on page load. Most visitors never pay, and
        they shouldn't download a checkout to read four cards. */
