@@ -3,21 +3,61 @@
   "routes": [
     {
       "src": "/(.*)",
-      "has": [{ "type": "host", "value": "apply.aiwithpelumi.com" }],
+      "continue": true,
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(self \"https://checkout.paystack.com\")",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains"
+      }
+    },
+    {
+      "src": "/.*\\.md",
+      "status": 404
+    },
+    {
+      "src": "/Website(%20| )Design(%20| )Reference(/.*)?",
+      "status": 404
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "apply.aiwithpelumi.com"
+        }
+      ],
       "dest": "/apply.html"
     },
     {
       "src": "/(.*)",
-      "has": [{ "type": "host", "value": "coach.aiwithpelumi.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "coach.aiwithpelumi.com"
+        }
+      ],
       "dest": "/coach.html"
     },
-    { "src": "/posts/?", "dest": "/posts/index.html" },
-    { "src": "/posts/([^/]+)/?", "dest": "/posts/$1/index.html" },
-    { "src": "/claude-101/?", "dest": "/claude-101/index.html" },
+    {
+      "src": "/posts/?",
+      "dest": "/posts/index.html"
+    },
+    {
+      "src": "/posts/([^/]+)/?",
+      "dest": "/posts/$1/index.html"
+    },
+    {
+      "src": "/claude-101/?",
+      "dest": "/claude-101/index.html"
+    },
     {
       "src": "/stack/?",
       "status": 307,
-      "headers": { "Location": "https://sponge-script-fe4.notion.site/What-I-actually-build-with-3c84384dc0e08048928dc0a7084e0f2b" }
+      "headers": {
+        "Location": "https://sponge-script-fe4.notion.site/What-I-actually-build-with-3c84384dc0e08048928dc0a7084e0f2b"
+      }
     },
     {
       "src": "/prd/?",
@@ -26,16 +66,23 @@
         "Location": "https://app.notion.com/p/The-prompt-I-used-to-write-my-landing-page-PRD-3e55f56e3dfa8040afccf861188fa020"
       }
     },
-    { "src": "/programs/?", "dest": "/programs/index.html" },
+    {
+      "src": "/programs/?",
+      "dest": "/programs/index.html"
+    },
     {
       "src": "/(work-with-me|programmes)/?",
       "status": 307,
-      "headers": { "Location": "/programs/" }
+      "headers": {
+        "Location": "/programs/"
+      }
     },
     {
       "src": "/masterclass/?",
       "status": 307,
-      "headers": { "Location": "/programs/#masterclass" }
+      "headers": {
+        "Location": "/programs/#masterclass"
+      }
     }
   ]
 }

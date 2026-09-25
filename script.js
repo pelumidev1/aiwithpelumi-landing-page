@@ -153,6 +153,24 @@
 
   /* ---------- 2. Scroll reveals + spine ---------- */
 
+  /* Phones: the blocks of every page rise in as they're scrolled to, not
+     just the ones marked data-reveal by hand, so posts and the archive get
+     the same gradual build as the home page. Only blocks that start below
+     the fold are tagged, so nothing already on screen blinks out. */
+  if (!reducedMotion && "IntersectionObserver" in window &&
+      window.matchMedia("(max-width: 860px)").matches) {
+    var AUTO_REVEAL =
+      "main section > *, .post-body > *, .post-cover-wrap, .post-list > *, " +
+      ".step, .legal-inner > *, .footer-inner > *";
+    document.querySelectorAll(AUTO_REVEAL).forEach(function (el) {
+      if (el.hasAttribute("data-reveal") || el.closest("[data-reveal]") ||
+          el.querySelector("[data-reveal]")) return;
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        el.setAttribute("data-reveal", "");
+      }
+    });
+  }
+
   var observed = document.querySelectorAll("[data-reveal], .spine");
 
   if (reducedMotion || !("IntersectionObserver" in window)) {
@@ -160,14 +178,24 @@
   } else {
     var observer = new IntersectionObserver(
       function (entries) {
+        /* Blocks that arrive in the same frame rise one after another
+           instead of all at once. */
+        var i = 0;
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
+            var el = entry.target;
+            el.style.transitionDelay = Math.min(i++ * 70, 280) + "ms";
+            el.classList.add("in-view");
+            // Cleared once it has landed, so hover transitions stay instant.
+            setTimeout(function () { el.style.transitionDelay = ""; }, 1100);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.25, rootMargin: "0px 0px -5% 0px" }
+      /* Any overlap past the bottom 10% counts. A ratio threshold would
+         never fire on a block taller than the screen divided by it, and
+         long post sections are exactly that. */
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
     observed.forEach(function (el) { observer.observe(el); });
   }

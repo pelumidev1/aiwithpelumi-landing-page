@@ -292,10 +292,13 @@
       .col { display: block; border: 1px solid var(--line); border-radius: 18px; background: var(--carbon); }
       .col.is-active { background: var(--carbon); }
       .col.col-criteria { display: none; }
+      /* Cards rise in as they're scrolled to, same as the rest of the site. */
+      .col.rise { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+      .col.rise.in-view { opacity: 1; transform: none; }
       .cell .k {
         display: block;
         margin-bottom: 0.2rem;
-        font-size: 0.625rem;
+        font-size: 0.6875rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--grey);
@@ -460,6 +463,26 @@
       c.addEventListener("focusin", function () { activate(c); });
     });
     activate(document.getElementById(location.hash.slice(1)) || cols[0]);
+
+    /* Phones: program cards below the fold rise in on scroll. */
+    if ("IntersectionObserver" in window &&
+        window.matchMedia("(max-width: 860px)").matches &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var riser = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            riser.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
+      cols.forEach(function (c) {
+        if (c.getBoundingClientRect().top > window.innerHeight) {
+          c.classList.add("rise");
+          riser.observe(c);
+        }
+      });
+    }
 
     var ENDPOINT = "https://api.aiwithpelumi.com/api/payments/checkout";
     var PAYSTACK_JS = "https://js.paystack.co/v2/inline.js";
