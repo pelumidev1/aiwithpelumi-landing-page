@@ -24,8 +24,8 @@
 
   <style>
     /* Page-specific only. Tokens, type and the grid come from styles.css. */
-    .programs-page { padding-block: clamp(5.5rem, 9vw, 6.5rem) 2rem; }
-    .programs-head { text-align: center; margin-bottom: 1.75rem; }
+    .programs-page { padding-block: clamp(4.75rem, 8vw, 5.5rem) 2rem; }
+    .programs-head { text-align: center; margin-bottom: 1.25rem; }
     .programs-head .eyebrow-pill { display: inline-block; margin-bottom: 1rem; }
     .programs-head h1 {
       font-size: clamp(1.9rem, 1rem + 2.4vw, 2.5rem);
@@ -49,7 +49,8 @@
     .ptable {
       --rows: 8; /* header + 7 criteria */
       display: grid;
-      grid-template-columns: minmax(9rem, 0.8fr) repeat(4, minmax(0, 1fr));
+      /* Mentorship runs wider: it carries two buttons and the 1:1 offer. */
+      grid-template-columns: minmax(9rem, 0.8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr);
       grid-template-rows: repeat(var(--rows), auto) auto;
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -64,7 +65,7 @@
     }
     .col-criteria { border-left: 0; }
     .cell {
-      padding: 0.7rem 1.1rem;
+      padding: 0.55rem 1.1rem;
       border-top: 1px solid var(--line);
       font-family: var(--font-mono);
       font-size: 0.78rem;
@@ -73,7 +74,7 @@
     }
     .cell.head {
       border-top: 0;
-      padding-block: 1rem;
+      padding-block: 0.85rem;
       font-family: var(--font-sans);
       font-size: 1rem;
       font-weight: 600;
@@ -107,7 +108,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      padding: 0.8rem 1.1rem 1rem;
+      padding: 0.7rem 1.1rem 0.85rem;
       border-top: 1px solid var(--line);
     }
     .col-criteria .foot { border-top-color: var(--line); }
@@ -118,6 +119,33 @@
     .col:first-child.is-active { background: transparent; }
     .ptable .col:last-child { border-radius: 0 18px 18px 0; }
     .foot .btn { width: 100%; }
+
+    /* The 1:1 perks, between the group and 1:1 buttons in Mentorship. */
+    .foot-pair { display: flex; gap: 0.4rem; }
+    .foot-pair .btn { flex: 1; padding-inline: 0.5rem; white-space: nowrap; }
+    .offer {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 0.55rem 0.75rem 0.6rem;
+    }
+    .offer-tag {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin: 0 0 0.3rem;
+    }
+    .offer ul { list-style: none; margin: 0; padding: 0; }
+    .offer li {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: var(--white);
+      padding-left: 0.9rem;
+      position: relative;
+    }
+    .offer li::before { content: "+"; position: absolute; left: 0; color: var(--grey); }
     @media (hover: hover) and (min-width: 861px) {
       .col:not(.col-criteria) .foot { opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; }
       .col.is-active .foot,
@@ -382,10 +410,20 @@
           <div class="cell"><span class="k">Time with me</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg><span>Every week</span></span></div>
           <div class="cell"><span class="k">Best for</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span>Building your own project</span></span></div>
           <div class="cell"><span class="k">You leave with</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Your project, live</span></span></div>
-          <div class="cell"><span class="k">How to join</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>Pay here. 1:1 has 3 spots</span></span></div>
+          <div class="cell"><span class="k">How to join</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>Group: apply. 1:1: pay here, 3 spots</span></span></div>
           <div class="foot">
-            <button class="btn btn-solid" type="button" data-buy="mentorship" data-title="Group Mentorship">Join the group</button>
-            <button class="btn btn-line" type="button" data-buy="mentorship_1on1" data-title="1:1 Mentorship">Get 1:1</button>
+            <div class="offer">
+              <p class="offer-tag">1:1 offer</p>
+              <ul>
+                <li>A 1:1 call every two weeks</li>
+                <li>Private chat between calls</li>
+                <li>Join my ongoing projects</li>
+              </ul>
+            </div>
+            <div class="foot-pair">
+              <a class="btn btn-line" href="https://coach.aiwithpelumi.com/?program=mentorship">Join the group</a>
+              <button class="btn btn-solid" type="button" data-buy="mentorship_1on1" data-title="1:1 Mentorship">Get 1:1</button>
+            </div>
           </div>
         </div>
         <div class="col" id="coaching">
