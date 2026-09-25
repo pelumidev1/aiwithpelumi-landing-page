@@ -497,9 +497,21 @@
         title.textContent = btn.dataset.title;
         reset();
         dialog.showModal();
-        loadPaystack().catch(function () {});
+        warmPopup().catch(function () {});
       });
     });
+
+    /* Paystack's popup builds its own iframe when constructed, and asking
+       it to resume a transaction before that iframe is ready fails with
+       onError. So the instance is made when the checkout box opens, which
+       gives it the seconds the buyer spends typing to get ready. */
+    var popup = null;
+    function warmPopup() {
+      return loadPaystack().then(function (PaystackPop) {
+        if (!popup) popup = new PaystackPop();
+        return popup;
+      });
+    }
 
     dialog.querySelector("[data-close]").addEventListener("click", function () { dialog.close(); });
 
@@ -536,25 +548,26 @@
             return data;
           });
         }),
-        loadPaystack()
+        warmPopup()
       ])
         .then(function (results) {
           var data = results[0];
-          var PaystackPop = results[1];
+          var pop = results[1];
           /* The dialog sits in the top layer, above Paystack's iframe, so it
              has to close before the popup opens or the popup is unclickable. */
           dialog.close();
-          new PaystackPop().resumeTransaction(data.accessCode, {
+          pop.resumeTransaction(data.accessCode, {
             onSuccess: function () { paid(payload.email); },
             onCancel: function () {
               reset();
               errorEl.textContent = "Checkout closed. Nothing was charged.";
               dialog.showModal();
             },
+            /* If the popup still fails, the same transaction opens on
+               Paystack's own checkout page. Payment and the access email
+               work the same way; only the window is different. */
             onError: function () {
-              reset();
-              errorEl.textContent = "Checkout hit an error. Nothing was charged. Try again.";
-              dialog.showModal();
+              window.location.href = "https://checkout.paystack.com/" + encodeURIComponent(data.accessCode);
             }
           });
         })
