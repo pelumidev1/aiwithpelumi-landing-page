@@ -303,7 +303,10 @@
       if (!email) return;
 
       var btn = form.querySelector('button[type="submit"]');
-      var hp = form.querySelector('input[name="website"]');
+      /* The honeypot input is named zx_hp, not "website": Chrome autofill
+         matched "website" and filled it for real people, who the API then
+         treated as bots. It still goes to the API under the key it checks. */
+      var hp = form.querySelector('input[name="zx_hp"]');
       if (btn) { btn.disabled = true; btn.textContent = "One sec…"; }
       setSignupError(form, "");
 

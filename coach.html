@@ -208,7 +208,7 @@
       <p class="form-lede">We work on your project, not a syllabus. Tell me where you're stuck and what you want running by the end, and I'll say whether I can help.</p>
 
       <form class="app-form" data-app-form data-kind="coaching" data-multi="help_with availability" novalidate>
-        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="hp-field" type="text" name="zx_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="field">
           <label for="f-name">Your name <span class="req">*</span></label>
@@ -341,6 +341,11 @@
         else if (Array.isArray(payload[key])) payload[key].push(value);
         else payload[key] = [payload[key], value];
       });
+      /* Honeypot input is zx_hp so autofill leaves it alone; the API
+         checks it as "website". */
+      payload.website = payload.zx_hp || "";
+      delete payload.zx_hp;
+
       MULTI.forEach(function (key) {
         if (payload[key] === undefined) payload[key] = [];
         else if (!Array.isArray(payload[key])) payload[key] = [payload[key]];
