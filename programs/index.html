@@ -550,8 +550,16 @@
        Flip this when it is; visitors outside Nigeria are then charged USD. */
     var USD_ENABLED = false;
 
-    /* Where the visitor is, from the device time zone. No lookup, no
-       permission prompt, and good enough to pick a currency. */
+    /* Which currency to show. The real answer is the visitor's IP country,
+       from /api/geo (Vercel's geo header). That takes a request, so the
+       page first paints a guess from the device time zone, then corrects it.
+       A VPN moves the IP, not the time zone, so the IP has to win. */
+    var EURO = /^(AT|BE|CY|DE|EE|ES|FI|FR|GR|HR|IE|IT|LT|LU|LV|MT|NL|PT|SI|SK|MC|SM|VA|AD|ME|XK)$/;
+    function currencyForCountry(c) {
+      return c === "NG" ? "NGN" : c === "GB" ? "GBP" : EURO.test(c) ? "EUR" :
+        c === "GH" ? "GHS" : c === "KE" ? "KES" : c === "ZA" ? "ZAR" :
+        c === "CA" ? "CAD" : c === "AU" ? "AUD" : "USD";
+    }
     var tz = "";
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
     var EURO_ZONES = /^Europe\/(Amsterdam|Athens|Berlin|Bratislava|Brussels|Dublin|Helsinki|Lisbon|Ljubljana|Luxembourg|Madrid|Malta|Monaco|Paris|Riga|Rome|Tallinn|Vienna|Vilnius|Zagreb|Nicosia|Andorra|San_Marino|Vatican|Busingen)$/;
@@ -559,15 +567,17 @@
       tz === "Africa/Lagos" ? "NGN" :
       /^Europe\/(London|Belfast|Guernsey|Isle_of_Man|Jersey)$/.test(tz) ? "GBP" :
       EURO_ZONES.test(tz) ? "EUR" :
-      /^Africa\/Accra$/.test(tz) ? "GHS" :
-      /^Africa\/Nairobi$/.test(tz) ? "KES" :
-      /^Africa\/Johannesburg$/.test(tz) ? "ZAR" :
+      tz === "Africa/Accra" ? "GHS" :
+      tz === "Africa/Nairobi" ? "KES" :
+      tz === "Africa/Johannesburg" ? "ZAR" :
       /^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal)$/.test(tz) ? "CAD" :
       /^Australia\//.test(tz) ? "AUD" :
       "USD";
 
     // What checkout will actually charge this visitor.
-    var chargeCurrency = local === "NGN" || !USD_ENABLED ? "NGN" : "USD";
+    var chargeCurrency;
+    function setCharge() { chargeCurrency = local === "NGN" || !USD_ENABLED ? "NGN" : "USD"; }
+    setCharge();
 
     function money(amount, currency) {
       try {
@@ -607,31 +617,47 @@
         note.textContent = "Prices shown in " + local + " are approximate. You're charged in " +
           (chargeCurrency === "NGN" ? "Naira" : "US dollars") + " and your bank converts it.";
         note.hidden = false;
+      } else {
+        note.hidden = true;
       }
     }
-    paint();
 
     /* Rates come from open.er-api.com (free, no key, allows browser calls)
        and are kept for 12 hours so repeat visits don't refetch. Any failure
        leaves the charge-currency prices on screen, which are always right. */
-    if (local !== chargeCurrency) {
-      var KEY = "fx:" + chargeCurrency;
-      var cached = null;
+    function loadRate() {
+      rate = null;
+      paint();
+      if (local === chargeCurrency) return;
+      var want = local, KEY = "fx:" + chargeCurrency, cached = null;
       try { cached = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
-      if (cached && Date.now() - cached.at < 12 * 3600 * 1000 && cached.rates[local]) {
-        rate = cached.rates[local]; paint();
-      } else {
-        fetch("https://open.er-api.com/v6/latest/" + chargeCurrency)
-          .then(function (r) { return r.json(); })
-          .then(function (d) {
-            if (!d || !d.rates || !d.rates[local]) return;
-            rate = d.rates[local];
-            try { localStorage.setItem(KEY, JSON.stringify({ at: Date.now(), rates: d.rates })); } catch (e) {}
-            paint();
-          })
-          .catch(function () {});
+      if (cached && Date.now() - cached.at < 12 * 3600 * 1000 && cached.rates[want]) {
+        rate = cached.rates[want]; paint(); return;
       }
+      fetch("https://open.er-api.com/v6/latest/" + chargeCurrency)
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d || !d.rates || !d.rates[want] || want !== local) return;
+          rate = d.rates[want];
+          try { localStorage.setItem(KEY, JSON.stringify({ at: Date.now(), rates: d.rates })); } catch (e) {}
+          paint();
+        })
+        .catch(function () {});
     }
+    loadRate();
+
+    fetch("https://api.aiwithpelumi.com/api/geo")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.country) return;
+        var fromIp = currencyForCountry(d.country);
+        if (fromIp === local) return;
+        local = fromIp;
+        setCharge();
+        form.elements.currency.value = chargeCurrency;
+        loadRate();
+      })
+      .catch(function () {});
 
     var ENDPOINT = "https://api.aiwithpelumi.com/api/payments/checkout";
     var PAYSTACK_JS = "https://js.paystack.co/v2/inline.js";
