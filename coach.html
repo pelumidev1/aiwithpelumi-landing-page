@@ -272,7 +272,6 @@
           <div class="opts">
             <label class="opt"><input type="radio" name="format" value="One-time session" required><span>One-time session</span></label>
             <label class="opt"><input type="radio" name="format" value="Ongoing coaching" required><span>Ongoing coaching</span></label>
-            <label class="opt"><input type="radio" name="format" value="Group mentorship (12 weeks)" required><span>Group mentorship (12 weeks)</span></label>
             <label class="opt"><input type="radio" name="format" value="Not sure yet" required><span>Not sure yet</span></label>
           </div>
         </fieldset>
@@ -316,21 +315,6 @@
        key at all. The API wants a list either way, so they are named here
        and coerced before sending. */
     var MULTI = (form.dataset.multi || "").split(" ").filter(Boolean);
-
-    /* "Join the group" on /programs links here with ?program=mentorship.
-       The applicant lands on a page titled for the group, with that option
-       already picked. 1:1 mentorship is paid on /programs, not applied for. */
-    if (/[?&]program=mentorship\b/.test(location.search)) {
-      var pick = form.querySelector('input[name="format"][value^="Group mentorship"]');
-      if (pick) pick.checked = true;
-      var pill = document.querySelector(".form-inner .eyebrow-pill");
-      var h1 = document.querySelector(".form-inner h1");
-      var lede = document.querySelector(".form-lede");
-      if (pill) pill.textContent = "AI WITH PELUMI \u00b7 GROUP MENTORSHIP";
-      if (h1) h1.textContent = "Apply for group mentorship";
-      if (lede) lede.textContent = "Twelve weeks in a small group, with me reviewing what you build every week. Tell me what you're working on and I'll tell you if the next group fits.";
-      document.title = "AI with Pelumi \u2014 Group mentorship";
-    }
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();

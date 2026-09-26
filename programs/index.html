@@ -47,10 +47,10 @@
        what lets a column collapse into a self-contained card on a phone. */
     .ptable-wrap { max-width: 72rem; margin-inline: auto; }
     .ptable {
-      --rows: 8; /* header + 7 criteria */
+      --rows: 7; /* header + 6 criteria */
       display: grid;
-      /* Mentorship runs wider: it carries two buttons and the 1:1 offer. */
-      grid-template-columns: minmax(9rem, 0.8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr);
+      /* Mentorship runs a little wider for its what's-included box. */
+      grid-template-columns: minmax(9rem, 0.8fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
       grid-template-rows: repeat(var(--rows), auto) auto;
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -90,6 +90,21 @@
       text-transform: uppercase;
       color: var(--grey);
     }
+    /* Price in each header, like an app's plan picker. The number is filled
+       in by script in the visitor's currency; see PRICES below. */
+    .price { margin: 0.55rem 0 0; }
+    .price .amt { font-family: var(--font-sans); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em; min-height: 1.2em; }
+    .price .amt { display: block; white-space: nowrap; }
+    .price .per { display: block; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--grey); }
+    .fx-note {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--grey);
+      text-align: center;
+      margin: 0.7rem 0 0;
+    }
+    .checkout-price { font-family: var(--font-sans); font-size: 1.1rem; font-weight: 600; margin: 0 0 0.25rem; }
+    .checkout-price small { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 400; color: var(--grey); margin-left: 0.35rem; }
     .col-criteria .cell { color: var(--grey); }
     .col-criteria .cell:not(.head) { color: var(--white); font-weight: 600; }
     .col-criteria .cell:not(.head):not(.foot)::before {
@@ -121,8 +136,6 @@
     .foot .btn { width: 100%; }
 
     /* The 1:1 perks, between the group and 1:1 buttons in Mentorship. */
-    .foot-pair { display: flex; gap: 0.4rem; }
-    .foot-pair .btn { flex: 1; padding-inline: 0.5rem; white-space: nowrap; }
     .offer {
       border: 1px dashed var(--line);
       border-radius: 12px;
@@ -316,6 +329,7 @@
 
     /* Phones: each program becomes its own card, criteria labelled inline. */
     @media (max-width: 860px) {
+      .programs-page { padding-top: 6.5rem; } /* clear the fixed logo */
       .ptable { display: flex; flex-direction: column; gap: 1rem; border: 0; background: none; }
       .col { display: block; border: 1px solid var(--line); border-radius: 18px; background: var(--carbon); }
       .col.is-active { background: var(--carbon); }
@@ -373,73 +387,66 @@
           <div class="cell">Time with me</div>
           <div class="cell">Best for</div>
           <div class="cell">You leave with</div>
-          <div class="cell">How to join</div>
           <div class="foot"></div>
         </div>
         <div class="col" id="masterclass">
-          <div class="cell head">Build-With-AI Masterclass<small>Self-paced</small></div>
+          <div class="cell head">Masterclass<small>Build-With-AI</small><p class="price"><span class="amt" data-price="masterclass"></span><span class="per">one-time</span></p></div>
           <div class="cell"><span class="k">Format</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg><span>Recorded video</span></span></div>
           <div class="cell"><span class="k">Length</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span>Watch at your pace</span></span></div>
           <div class="cell"><span class="k">Starts</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><span>Today</span></span></div>
           <div class="cell"><span class="k">Time with me</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-rec"/></svg><span>Recorded, no live calls</span></span></div>
           <div class="cell"><span class="k">Best for</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span>Watching the build, then copying it</span></span></div>
           <div class="cell"><span class="k">You leave with</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>A working build of your own</span></span></div>
-          <div class="cell"><span class="k">How to join</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>Pay here</span></span></div>
           <div class="foot">
             <button class="btn btn-solid" type="button" data-buy="masterclass" data-title="The Build-With-AI Masterclass">Get started</button>
           </div>
         </div>
         <div class="col" id="bootcamp">
-          <div class="cell head">AI Bootcamp<small>Cohort</small></div>
+          <div class="cell head">AI Bootcamp<small>Cohort</small><p class="price"><span class="amt" data-price="bootcamp"></span><span class="per">6 weeks</span></p></div>
           <div class="cell"><span class="k">Format</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span>Live group classes</span></span></div>
           <div class="cell"><span class="k">Length</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span>6 weeks</span></span></div>
           <div class="cell"><span class="k">Starts</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span>Next cohort</span></span></div>
           <div class="cell"><span class="k">Time with me</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span>Shared with the group</span></span></div>
           <div class="cell"><span class="k">Best for</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span>Starting from zero</span></span></div>
           <div class="cell"><span class="k">You leave with</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>AI in your daily work</span></span></div>
-          <div class="cell"><span class="k">How to join</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-out"/></svg><span>Enrol on LearnHub</span></span></div>
           <div class="foot">
             <a class="btn btn-solid" href="https://learnhub.dev/enrol">Get started</a>
           </div>
         </div>
         <div class="col" id="mentorship">
-          <div class="cell head">Mentorship<small>Group or 1:1</small></div>
-          <div class="cell"><span class="k">Format</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><span>Weekly reviews of your work</span></span></div>
+          <div class="cell head">1:1 Mentorship<small>Just you and me</small><p class="price"><span class="amt" data-price="mentorship"></span><span class="per">12 weeks</span></p></div>
+          <div class="cell"><span class="k">Format</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Weekly 1:1 calls and reviews</span></span></div>
           <div class="cell"><span class="k">Length</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span>12 weeks</span></span></div>
-          <div class="cell"><span class="k">Starts</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span>Next group</span></span></div>
-          <div class="cell"><span class="k">Time with me</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg><span>Every week</span></span></div>
+          <div class="cell"><span class="k">Starts</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><span>When you join</span></span></div>
+          <div class="cell"><span class="k">Time with me</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg><span>Every week, 1:1</span></span></div>
           <div class="cell"><span class="k">Best for</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span>Building your own project</span></span></div>
           <div class="cell"><span class="k">You leave with</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Your project, live</span></span></div>
-          <div class="cell"><span class="k">How to join</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>Pick below</span></span></div>
           <div class="foot">
             <div class="offer">
-              <p class="offer-tag">1:1 offer</p>
+              <p class="offer-tag">What's included</p>
               <ul>
                 <li>A 1:1 call every week (flexible)</li>
                 <li>Private chat between calls</li>
                 <li>Join my ongoing projects</li>
               </ul>
             </div>
-            <div class="foot-pair">
-              <a class="btn btn-line" href="https://coach.aiwithpelumi.com/?program=mentorship">Join the group</a>
-              <button class="btn btn-solid" type="button" data-buy="mentorship_1on1" data-title="1:1 Mentorship">Get 1:1</button>
-            </div>
+            <button class="btn btn-solid" type="button" data-buy="mentorship_1on1" data-title="1:1 Mentorship">Get started</button>
           </div>
         </div>
         <div class="col" id="coaching">
-          <div class="cell head">1:1 Coaching<small>One session</small></div>
+          <div class="cell head">1:1 Coaching<small>One session</small><p class="price"><span class="amt" data-price="coaching"></span><span class="per">per session</span></p></div>
           <div class="cell"><span class="k">Format</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Live call, just us</span></span></div>
           <div class="cell"><span class="k">Length</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><span>One session</span></span></div>
           <div class="cell"><span class="k">Starts</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span>When you book</span></span></div>
           <div class="cell"><span class="k">Time with me</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg><span>The whole session</span></span></div>
           <div class="cell"><span class="k">Best for</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><span>One problem you're stuck on</span></span></div>
           <div class="cell"><span class="k">You leave with</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>That problem solved</span></span></div>
-          <div class="cell"><span class="k">How to join</span><span class="v"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>Pay here, then book</span></span></div>
           <div class="foot">
             <button class="btn btn-solid" type="button" data-buy="coaching" data-title="1:1 Coaching Session">Get started</button>
           </div>
         </div>
       </div>
+      <p class="fx-note" hidden></p>
       </div>
     </div>
   </main>
@@ -447,6 +454,7 @@
   <dialog class="checkout" aria-labelledby="checkout-title">
     <form method="dialog" class="checkout-form" novalidate>
       <h2 id="checkout-title">Checkout</h2>
+      <p class="checkout-price" aria-live="polite"></p>
       <p class="checkout-sub">Your access comes to this email the moment payment goes through.</p>
 
       <div class="field">
@@ -473,7 +481,7 @@
         <button class="btn btn-solid" type="submit">Continue to payment</button>
       </div>
       <p class="checkout-error" role="status" aria-live="polite"></p>
-      <p class="checkout-note">Payment runs through Paystack, and you'll see the price before you pay.</p>
+      <p class="checkout-note">Secure payment through Paystack.</p>
     </form>
   </dialog>
 
@@ -522,6 +530,104 @@
       });
     }
 
+    /* ---- prices ----------------------------------------------------------
+       Display copy of the catalog in lib/payments/programs.ts (API repo).
+       The API sets the amount actually charged; keep these two in step.
+       Bootcamp is sold on LearnHub, so its number must match LearnHub's. */
+    var PRICES = {
+      masterclass:     { NGN: 70000,  USD: 50 },
+      bootcamp:        { NGN: 120000, USD: 90 },
+      mentorship_1on1: { NGN: 600000, USD: 450 },
+      mentorship:      { NGN: 600000, USD: 450 }, // column id → 1:1 price
+      coaching:        { NGN: 150000, USD: 120 }
+    };
+    /* Paystack can charge NGN, and USD once it's approved on the account.
+       Flip this when it is; visitors outside Nigeria are then charged USD. */
+    var USD_ENABLED = false;
+
+    /* Where the visitor is, from the device time zone. No lookup, no
+       permission prompt, and good enough to pick a currency. */
+    var tz = "";
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    var EURO_ZONES = /^Europe\/(Amsterdam|Athens|Berlin|Bratislava|Brussels|Dublin|Helsinki|Lisbon|Ljubljana|Luxembourg|Madrid|Malta|Monaco|Paris|Riga|Rome|Tallinn|Vienna|Vilnius|Zagreb|Nicosia|Andorra|San_Marino|Vatican|Busingen)$/;
+    var local =
+      tz === "Africa/Lagos" ? "NGN" :
+      /^Europe\/(London|Belfast|Guernsey|Isle_of_Man|Jersey)$/.test(tz) ? "GBP" :
+      EURO_ZONES.test(tz) ? "EUR" :
+      /^Africa\/Accra$/.test(tz) ? "GHS" :
+      /^Africa\/Nairobi$/.test(tz) ? "KES" :
+      /^Africa\/Johannesburg$/.test(tz) ? "ZAR" :
+      /^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal)$/.test(tz) ? "CAD" :
+      /^Australia\//.test(tz) ? "AUD" :
+      "USD";
+
+    // What checkout will actually charge this visitor.
+    var chargeCurrency = local === "NGN" || !USD_ENABLED ? "NGN" : "USD";
+
+    function money(amount, currency) {
+      try {
+        return new Intl.NumberFormat(undefined, {
+          style: "currency", currency: currency,
+          // ₦, €, £ rather than NGN, EUR, GBP. Dollars other than USD keep
+          // their prefix (CA$, A$) so they can't be mistaken for US prices.
+          currencyDisplay: currency === "CAD" || currency === "AUD" ? "symbol" : "narrowSymbol",
+          maximumFractionDigits: 0, minimumFractionDigits: 0
+        }).format(amount);
+      } catch (e) { return currency + " " + Math.round(amount).toLocaleString(); }
+    }
+
+    // Round converted prices so they read like set prices, not FX output.
+    function tidy(n) {
+      if (n < 100) return Math.round(n);
+      if (n < 1000) return Math.round(n / 5) * 5;
+      if (n < 10000) return Math.round(n / 10) * 10;
+      return Math.round(n / 100) * 100;
+    }
+
+    var rate = null; // units of `local` per 1 unit of chargeCurrency
+
+    function localAmount(id) {
+      var base = PRICES[id][chargeCurrency];
+      if (local === chargeCurrency) return money(base, local);
+      if (rate) return "≈ " + money(tidy(base * rate), local);
+      return money(base, chargeCurrency); // rates unavailable: show what's charged
+    }
+
+    function paint() {
+      document.querySelectorAll("[data-price]").forEach(function (el) {
+        el.textContent = localAmount(el.getAttribute("data-price"));
+      });
+      var note = document.querySelector(".fx-note");
+      if (local !== chargeCurrency && rate) {
+        note.textContent = "Prices shown in " + local + " are approximate. You're charged in " +
+          (chargeCurrency === "NGN" ? "Naira" : "US dollars") + " and your bank converts it.";
+        note.hidden = false;
+      }
+    }
+    paint();
+
+    /* Rates come from open.er-api.com (free, no key, allows browser calls)
+       and are kept for 12 hours so repeat visits don't refetch. Any failure
+       leaves the charge-currency prices on screen, which are always right. */
+    if (local !== chargeCurrency) {
+      var KEY = "fx:" + chargeCurrency;
+      var cached = null;
+      try { cached = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
+      if (cached && Date.now() - cached.at < 12 * 3600 * 1000 && cached.rates[local]) {
+        rate = cached.rates[local]; paint();
+      } else {
+        fetch("https://open.er-api.com/v6/latest/" + chargeCurrency)
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (!d || !d.rates || !d.rates[local]) return;
+            rate = d.rates[local];
+            try { localStorage.setItem(KEY, JSON.stringify({ at: Date.now(), rates: d.rates })); } catch (e) {}
+            paint();
+          })
+          .catch(function () {});
+      }
+    }
+
     var ENDPOINT = "https://api.aiwithpelumi.com/api/payments/checkout";
     var PAYSTACK_JS = "https://js.paystack.co/v2/inline.js";
 
@@ -533,9 +639,8 @@
     var SUBMIT_LABEL = submit.textContent;
     var program = null;
 
-    /* Naira only until Paystack approves USD. With dollars back on, this
-       was: Africa/Lagos timezone starts on NGN, everyone else on USD. */
-    form.elements.currency.value = "NGN";
+    // Set by the pricing block above: NGN, or USD abroad once enabled.
+    form.elements.currency.value = chargeCurrency;
 
     /* Loaded on first click, not on page load. Most visitors never pay, and
        they shouldn't download a checkout to read four cards. */
@@ -556,6 +661,11 @@
       btn.addEventListener("click", function () {
         program = btn.dataset.buy;
         title.textContent = btn.dataset.title;
+        /* The exact amount charged, plus the local estimate when they differ,
+           so nobody meets a number in Paystack they didn't expect. */
+        var exact = money(PRICES[program][chargeCurrency], chargeCurrency);
+        var est = local !== chargeCurrency && rate ? " <small>" + localAmount(program) + "</small>" : "";
+        document.querySelector(".checkout-price").innerHTML = exact + est;
         reset();
         dialog.showModal();
         warmPopup().catch(function () {});
