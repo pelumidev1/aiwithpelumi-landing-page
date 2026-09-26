@@ -235,10 +235,6 @@
     }
 
     .build h3 { margin: 0; font-size: 1rem; }
-    /* Same height as the browser shots beside it: their 16:10 screen plus the chrome bar. */
-    .proof .build { container-type: inline-size; }
-    .phone-wrap { display: grid; place-items: center; height: calc(62.5cqw + 43px); padding: 0; background: #fafafa; position: relative; }
-    .device { height: calc((62.5cqw + 43px) * 0.9); width: auto; }
     .mock-folio { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; height: 100%; }
     .mock-folio div { border-radius: 8px; background: #ececec; }
     .mock-folio div:first-child { grid-column: 1 / -1; background: #111; }
@@ -527,10 +523,11 @@
             <h3>AI with Pelumi</h3>
           </div>
           <div class="build">
-            <div class="shot phone-wrap">
-              <img class="device" src="/image/mentorship/learnhub.jpg" alt="LearnHub dashboard on mobile" loading="lazy" width="560" height="677">
+            <div class="shot">
+              <div class="chrome"><i></i><i></i><i></i><span>learnhub.dev</span></div>
+              <div class="screen shot-img"><img src="/image/mentorship/learnhub.jpg" alt="LearnHub dashboard" loading="lazy" width="1000" height="625"></div>
             </div>
-            <span class="status">Mobile</span>
+            <span class="status">Live</span>
             <h3>LearnHub</h3>
           </div>
           <div class="build">
