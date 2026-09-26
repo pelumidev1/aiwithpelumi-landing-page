@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI with Pelumi &mdash; 1:1 Mentorship</title>
-  <meta name="description" content="Twelve weeks, one to one. You build real marketing systems with AI: landing pages, newsletters, video, automations and client work, with me beside you every week.">
+  <meta name="description" content="Twelve weeks, one to one. Landing pages, newsletters, AI video, automations and live client work, built with me every week.">
   <link rel="canonical" href="https://www.aiwithpelumi.com/mentorship/">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AI with Pelumi">
   <meta property="og:title" content="1:1 AI Mentorship | AI with Pelumi">
-  <meta property="og:description" content="Twelve weeks, one to one. Real builds, real client work, a plan with a start and an end.">
+  <meta property="og:description" content="Twelve weeks, one to one. Real builds, real client work.">
   <meta property="og:url" content="https://www.aiwithpelumi.com/mentorship/">
   <meta property="og:image" content="https://www.aiwithpelumi.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -24,244 +24,239 @@
   <link rel="stylesheet" href="/styles.css">
 
   <style>
-    /* Page-specific only. Tokens, type and the grid come from styles.css.
-       This page sells the program, not a price: pricing is a conversation. */
+    /* Page-specific only. Tokens and type come from styles.css.
+       No price on this page: the program first, the price is a conversation. */
     .m-page { padding-block: clamp(6.5rem, 12vw, 8.5rem) 2rem; }
-    .m-wrap { grid-column: 1 / -1; max-width: 60rem; margin-inline: auto; width: 100%; }
-    .m-hero { text-align: center; margin-bottom: clamp(3rem, 7vw, 5rem); }
+    .m-wrap { grid-column: 1 / -1; max-width: 64rem; margin-inline: auto; width: 100%; }
+
+    .ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+    /* ---- hero ----------------------------------------------------------- */
+    .m-hero { text-align: center; }
     .m-hero .eyebrow-pill { display: inline-block; margin-bottom: 1.25rem; }
-    .m-hero h1 { font-size: clamp(2rem, 1rem + 3.6vw, 3.1rem); max-width: 18ch; margin: 0 auto 1.1rem; }
-    .lede {
-      font-family: var(--font-mono);
-      font-size: 0.9375rem;
-      line-height: 1.75;
-      color: var(--grey);
-      max-width: 36rem;
-      margin: 0 auto;
-    }
-    .facts {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1.75rem;
-      padding: 0;
-      list-style: none;
-    }
-    .facts li {
-      border: 1px solid var(--line);
-      border-radius: 99px;
-      padding: 0.45rem 0.9rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--white);
-    }
-
-    .m-section { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
-    .m-section > .kicker {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin: 0 0 0.6rem;
-    }
-    .m-section > h2 {
-      font-size: clamp(1.5rem, 1rem + 1.8vw, 2.1rem);
-      letter-spacing: -0.02em;
-      margin: 0 0 0.9rem;
-      max-width: 26ch;
-    }
-    .m-section > .intro {
-      font-family: var(--font-mono);
-      font-size: 0.875rem;
-      line-height: 1.75;
-      color: var(--grey);
-      max-width: 40rem;
-      margin: 0 0 1.75rem;
-    }
-
-    .box {
-      border: 1px solid var(--line);
-      border-radius: 18px;
+    .m-hero h1 { font-size: clamp(2.3rem, 1rem + 4.6vw, 4rem); letter-spacing: -0.035em; margin: 0 auto 1rem; max-width: 14ch; }
+    .m-hero .sub { font-family: var(--font-mono); font-size: 0.9375rem; color: var(--grey); margin: 0; }
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+    .chips li {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      border: 1px solid var(--line); border-radius: 99px;
+      padding: 0.45rem 0.85rem;
+      font-family: var(--font-mono); font-size: 0.75rem;
       background: var(--carbon);
-      padding: clamp(1.25rem, 3vw, 1.75rem);
     }
-    .box h3 { font-size: 1.05rem; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
-    .box p, .box li {
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      line-height: 1.65;
-      color: var(--white);
-    }
-    .box p { margin: 0; }
-    .box .muted { color: var(--grey); }
+    .chips .ic { width: 14px; height: 14px; }
 
-    .cols-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-    .cols-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
-
-    /* ---- the 12 weeks -------------------------------------------------- */
-    .phase { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; }
-    .phase + .phase { margin-top: 1rem; }
-    .phase-when {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey);
-    }
-    .phase-when strong {
-      display: block;
-      font-family: var(--font-sans);
-      font-size: 1.6rem;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      text-transform: none;
-      margin-top: 0.2rem;
-    }
-    .phase h3 { font-size: 1.15rem; margin: 0 0 0.4rem; }
-    .phase .what { color: var(--grey); margin-bottom: 0.9rem; }
-    .builds { list-style: none; margin: 0; padding: 0; }
-    .builds li { position: relative; padding-left: 1.1rem; }
-    .builds li + li { margin-top: 0.35rem; }
-    .builds li::before { content: "+"; position: absolute; left: 0; color: var(--grey); }
-    .builds-label {
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin: 0 0 0.45rem !important;
-    }
-
-    /* ---- flow diagrams -------------------------------------------------
-       Plain HTML so it reads on any screen: a row of steps with arrows on
-       wide screens, a column with down arrows on phones. */
-    .flow-title { font-size: 1rem; margin: 0 0 0.25rem; }
-    .flow-sub { color: var(--grey); margin: 0 0 1rem !important; }
-    .flow {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: stretch;
-      gap: 1.6rem;
-    }
-    .flow li {
-      flex: 1;
+    /* ---- workflow canvas (n8n-style) ------------------------------------ */
+    .canvas {
       position: relative;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 0.7rem 0.75rem;
+      border-radius: 20px;
+      padding: clamp(1.25rem, 3vw, 2rem);
+      background-color: var(--carbon);
+      background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, transparent 1px);
+      background-size: 16px 16px;
+      overflow: hidden;
+    }
+    .canvas-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      margin-bottom: 1.4rem;
+      font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey);
+    }
+    .canvas-bar strong { color: var(--white); font-weight: 600; letter-spacing: 0.02em; text-transform: none; font-size: 0.875rem; font-family: var(--font-sans); }
+    .live { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #1a9f5b; box-shadow: 0 0 0 0 rgba(26, 159, 91, 0.5); animation: ping 1.8s infinite; }
+
+    .wf { display: flex; align-items: center; }
+    .node { flex: none; width: 6.4rem; text-align: center; }
+    .node .tile {
+      width: 3.4rem; height: 3.4rem; margin: 0 auto 0.55rem;
+      display: grid; place-items: center;
+      border: 1px solid var(--line); border-radius: 14px;
       background: var(--black);
-      font-size: 0.75rem !important;
-      line-height: 1.45 !important;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 6px 18px rgba(0, 0, 0, 0.06);
+      position: relative;
     }
-    .flow li b {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey);
-      font-weight: 500;
-      margin-bottom: 0.25rem;
+    .node .tile .ic { width: 22px; height: 22px; }
+    .node.trigger .tile { border-radius: 26px 14px 14px 26px; }
+    .node.ai .tile { background: #000; color: #fff; border-color: #000; }
+    .node.ai .tile::after {
+      content: ""; position: absolute; inset: -5px; border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.25); animation: halo 2.4s var(--ease-out) infinite;
     }
-    .flow li.ai { border-color: var(--white); box-shadow: 0 0 0 3px var(--accent-tint); }
-    .flow li + li::before {
-      content: "\2192";
-      position: absolute;
-      left: -1.3rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--grey);
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
+    .node b { display: block; font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600; line-height: 1.25; }
+    .node small { display: block; font-family: var(--font-mono); font-size: 0.625rem; color: var(--grey); margin-top: 0.15rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .wire {
+      flex: 1; min-width: 1.25rem; height: 2px; margin-bottom: 2.6rem;
+      background: repeating-linear-gradient(90deg, rgba(0,0,0,0.55) 0 6px, transparent 6px 12px);
+      background-size: 12px 2px;
+      animation: flow-x 0.7s linear infinite;
     }
-    .flow-key {
-      margin-top: 0.8rem !important;
-      font-size: 0.6875rem !important;
-      color: var(--grey) !important;
-    }
-    .flow-key span {
-      display: inline-block;
-      width: 0.7rem; height: 0.7rem;
-      border: 1px solid var(--white);
-      border-radius: 3px;
-      box-shadow: 0 0 0 2px var(--accent-tint);
-      vertical-align: -1px;
-      margin-right: 0.35rem;
-    }
-    .flows { display: grid; gap: 1rem; }
+    .canvas-foot { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--grey); }
+    .canvas-foot span { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .dot-ai { width: 9px; height: 9px; background: #000; border-radius: 3px; }
+    .dot-step { width: 9px; height: 9px; border: 1px solid var(--grey); border-radius: 3px; }
 
-    /* ---- proof ---------------------------------------------------------- */
-    .tag {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid var(--line);
-      border-radius: 99px;
-      padding: 0.2rem 0.55rem;
-      color: var(--grey);
-      margin-bottom: 0.7rem;
+    @keyframes flow-x { to { background-position: 12px 0; } }
+    @keyframes flow-y { to { background-position: 0 12px; } }
+    @keyframes halo { 0% { opacity: 0.9; transform: scale(0.92); } 100% { opacity: 0; transform: scale(1.18); } }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(26,159,91,0.5); } 100% { box-shadow: 0 0 0 8px rgba(26,159,91,0); } }
+
+    /* ---- sections ------------------------------------------------------- */
+    .m-section { margin-top: clamp(4rem, 9vw, 6rem); }
+    .kicker { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); margin: 0 0 0.6rem; }
+    .m-section > h2 { font-size: clamp(1.6rem, 1rem + 2vw, 2.4rem); letter-spacing: -0.025em; margin: 0 0 1.75rem; max-width: 22ch; }
+
+    .grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .card {
+      border: 1px solid var(--line); border-radius: 18px; background: var(--carbon);
+      padding: 1.25rem;
     }
+    .card .badge {
+      width: 2.5rem; height: 2.5rem; border-radius: 12px; display: grid; place-items: center;
+      background: #000; color: #fff; margin-bottom: 0.9rem;
+    }
+    .card h3 { font-size: 1rem; margin: 0 0 0.3rem; }
+    .card p { font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.6; color: var(--grey); margin: 0; }
 
-    .faq { display: grid; gap: 0.75rem; }
-    .faq .box h3 { font-size: 0.95rem; }
+    .who { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+    .who li { border: 1px solid var(--line); border-radius: 12px; padding: 0.65rem 0.9rem; font-family: var(--font-mono); font-size: 0.8125rem; background: var(--carbon); }
 
-    .m-cta { text-align: center; }
-    .m-cta .box { padding: clamp(1.75rem, 5vw, 2.75rem); }
-    .m-cta h2 { font-size: clamp(1.5rem, 1rem + 1.8vw, 2.1rem); margin: 0 0 0.75rem; }
-    .m-cta p { max-width: 30rem; margin: 0 auto 1.5rem !important; color: var(--grey); }
+    /* ---- timeline ------------------------------------------------------- */
+    .track { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+    .track::before {
+      content: ""; position: absolute; left: 1.4rem; right: 1.4rem; top: 1.35rem; height: 2px;
+      background: repeating-linear-gradient(90deg, rgba(0,0,0,0.35) 0 6px, transparent 6px 12px);
+      background-size: 12px 2px; animation: flow-x 1.2s linear infinite;
+    }
+    .stop { position: relative; }
+    .stop .pin {
+      position: relative; z-index: 1;
+      width: 2.8rem; height: 2.8rem; border-radius: 50%;
+      display: grid; place-items: center;
+      background: #000; color: #fff;
+      font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600;
+      margin-bottom: 1rem; box-shadow: 0 0 0 6px var(--black);
+    }
+    .stop .card { height: 100%; }
+    .stop .weeks { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin: 0 0 0.35rem; }
+    .stop h3 { font-size: 1.05rem; margin: 0 0 0.8rem; }
+    .ticks { list-style: none; margin: 0; padding: 0; }
+    .ticks li { display: flex; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.5; }
+    .ticks li + li { margin-top: 0.45rem; }
+    .ticks .ic { width: 14px; height: 14px; margin-top: 2px; }
+
+    /* ---- build mockups (placeholders for real screenshots) -------------- */
+    .shot {
+      border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      background: var(--black); margin-bottom: 1rem;
+    }
+    .chrome { display: flex; align-items: center; gap: 0.35rem; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--line); background: #fafafa; }
+    .chrome i { width: 8px; height: 8px; border-radius: 50%; background: #d9d9d9; }
+    .chrome span { margin-left: 0.5rem; flex: 1; font-family: var(--font-mono); font-size: 0.625rem; color: var(--grey); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 0.2rem 0.5rem; }
+    .screen { position: relative; height: 11rem; padding: 0.9rem; }
+    .bar { height: 7px; border-radius: 4px; background: #ececec; margin-bottom: 0.45rem; }
+    .bar.dark { background: #111; }
+    .ph-label {
+      position: absolute; right: 0.6rem; bottom: 0.6rem;
+      font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--grey); background: rgba(255,255,255,0.9); border: 1px dashed var(--line); border-radius: 6px; padding: 0.2rem 0.45rem;
+    }
+    /* site mock */
+    .mock-site { text-align: center; padding-top: 0.6rem; }
+    .mock-site .bar { margin-inline: auto; }
+    .mock-site .pill { width: 5rem; height: 1.3rem; border-radius: 99px; background: #111; margin: 0.8rem auto 0; }
+    /* youtube mock */
+    .mock-yt { display: grid; grid-template-columns: 1.6fr 1fr; gap: 0.6rem; height: 100%; }
+    .mock-yt .player { border-radius: 8px; background: #111; display: grid; place-items: center; }
+    .mock-yt .player::after { content: ""; border-left: 14px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 4px; }
+    .mock-yt .thumbs { display: grid; gap: 0.4rem; }
+    .mock-yt .thumbs div { border-radius: 6px; background: #e6e6e6; }
+    /* dashboard mock */
+    .mock-dash { display: flex; align-items: flex-end; gap: 0.45rem; height: 7rem; margin-top: 0.8rem; }
+    .mock-dash div { flex: 1; background: #111; border-radius: 4px 4px 0 0; animation: grow 1.6s var(--ease-out) both; transform-origin: bottom; }
+    @keyframes grow { from { transform: scaleY(0.15); } }
+    /* course mock */
+    .mock-course { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 0.4rem; }
+    .mock-course div { height: 5.2rem; border: 1px solid var(--line); border-radius: 8px; padding: 0.4rem; }
+    .mock-course div::before { content: ""; display: block; height: 2.4rem; border-radius: 5px; background: #ececec; margin-bottom: 0.4rem; }
+    .status { display: inline-block; font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 99px; padding: 0.2rem 0.55rem; color: var(--grey); margin-bottom: 0.5rem; }
+
+    /* ---- faq + cta ------------------------------------------------------ */
+    .qa { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .qa .card h3 { font-size: 0.9375rem; }
+
+    .m-cta {
+      text-align: center; border-radius: 22px; background: #000; color: #fff;
+      padding: clamp(2.25rem, 6vw, 3.5rem) 1.25rem;
+      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 16px 16px;
+    }
+    .m-cta h2 { color: #fff; font-size: clamp(1.8rem, 1rem + 2.6vw, 2.8rem); letter-spacing: -0.03em; margin: 0 0 0.6rem; }
+    .m-cta p { font-family: var(--font-mono); font-size: 0.8125rem; color: rgba(255,255,255,0.65); margin: 0 0 1.6rem; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 99px;
-      padding: 0.8rem 1.6rem;
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      text-decoration: none;
-      background: linear-gradient(180deg, #2a2a2a 0%, #000000 60%);
-      color: #ffffff;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.7);
-      transition: transform 0.2s var(--ease-out);
+      display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 99px; padding: 0.85rem 1.6rem;
+      font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 600; text-decoration: none;
+      background: #fff; color: #000; transition: transform 0.2s var(--ease-out);
     }
     .btn:hover { transform: scale(1.03); }
-    .btn-line { background: transparent; color: var(--white); border: 1px solid var(--line); box-shadow: none; margin-left: 0.4rem; }
+    .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); margin-left: 0.5rem; }
 
-    .m-foot {
-      border-top: 1px solid transparent;
-      border-image: var(--steel-rule) 1;
-      padding-block: 2.5rem 3.5rem;
-      margin-top: clamp(3.5rem, 8vw, 5rem);
-      text-align: center;
-    }
-    .m-foot a {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--white);
-      text-decoration: none;
-    }
+    .m-foot { border-top: 1px solid transparent; border-image: var(--steel-rule) 1; padding-block: 2.5rem 3.5rem; margin-top: clamp(3.5rem, 8vw, 5rem); text-align: center; }
+    .m-foot a { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
     .m-foot p { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; color: var(--grey); margin-top: 1rem; }
 
+    /* ---- small screens -------------------------------------------------- */
     @media (max-width: 860px) {
-      .cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .flow { flex-direction: column; gap: 1.4rem; }
-      .flow li + li::before { content: "\2193"; left: 50%; top: -1.25rem; transform: translateX(-50%); }
+      .grid4, .track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .track::before { display: none; }
+      .qa { grid-template-columns: 1fr; }
+      /* Workflows turn vertical: nodes in a column, wires run downward. */
+      .wf { flex-direction: column; }
+      .node { width: auto; display: flex; align-items: center; gap: 0.8rem; text-align: left; align-self: stretch; }
+      .node .tile { margin: 0; }
+      .wire {
+        flex: none; width: 2px; height: 1.6rem; min-width: 0; margin: 0.3rem 0 0.3rem 1.65rem; align-self: flex-start;
+        background: repeating-linear-gradient(180deg, rgba(0,0,0,0.55) 0 6px, transparent 6px 12px);
+        background-size: 2px 12px; animation-name: flow-y;
+      }
     }
-    @media (max-width: 600px) {
-      .cols-2, .cols-4 { grid-template-columns: 1fr; }
-      .phase { grid-template-columns: 1fr; gap: 0.6rem; }
-      .btn-line { margin: 0.6rem 0 0; }
+    @media (max-width: 640px) {
+      .grid4, .track, .grid2 { grid-template-columns: 1fr; }
+      .btn-ghost { margin: 0.7rem 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wire, .track::before, .node.ai .tile::after, .live::before, .mock-dash div { animation: none; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Line icons, drawn once and reused. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 4.9L19 9.7l-5.2 1.8L12 16.5l-1.8-5L5 9.7l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  </svg>
 
   <header class="site-header">
     <a href="/" class="wordmark"><img src="/image/logo.png" alt="AI with Pelumi"></a>
@@ -272,189 +267,242 @@
 
       <section class="m-hero">
         <p class="eyebrow-pill">AI WITH PELUMI &middot; 1:1 MENTORSHIP</p>
-        <h1>Twelve weeks. You build. I'm beside you.</h1>
-        <p class="lede">You don't need another course. You need someone who does this every day to look at your work, show you the workflow, and tell you what to do next. That's this.</p>
-        <ul class="facts">
-          <li>12 weeks, fixed start and end</li>
-          <li>A 1:1 call every week</li>
-          <li>Chat with me between calls</li>
-          <li>Real projects for your work</li>
+        <h1>Build it with me. Twelve weeks.</h1>
+        <p class="sub">One to one. Real systems. Real client work.</p>
+        <ul class="chips">
+          <li><svg class="ic"><use href="#i-cal"/></svg>12 weeks, fixed</li>
+          <li><svg class="ic"><use href="#i-phone"/></svg>Weekly 1:1 call</li>
+          <li><svg class="ic"><use href="#i-chat"/></svg>Chat between calls</li>
+          <li><svg class="ic"><use href="#i-brief"/></svg>Live client projects</li>
         </ul>
       </section>
 
-      <section class="m-section">
-        <p class="kicker">Why this and not a course</p>
-        <h2>A course teaches you tools. I show you how the work gets done.</h2>
-        <p class="intro">You can learn any AI tool from a 12-hour video. What a video can't do is look at your landing page on a Tuesday and tell you why nobody signs up, or sit with you while you wire the automation that saves you ten hours a week. I've spent years in marketing and I build with AI every day, for myself and for clients. You get that, pointed at your work.</p>
-        <div class="cols-2">
-          <div class="box">
-            <h3>Who it's for</h3>
-            <p>Marketers, founders and operators who use AI like a search box and know there's more. Busy people. You have a job or a business taking your time, and you want someone on the inside telling you what matters.</p>
-          </div>
-          <div class="box">
-            <h3>What you need</h3>
-            <p>A laptop, about five hours a week, and something you actually want to build. No code. If you can write a clear message, you can do everything on this page.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="m-section">
-        <p class="kicker">How it works</p>
-        <h2>Every week, the same rhythm.</h2>
-        <div class="cols-4">
-          <div class="box"><h3>1:1 call</h3><p class="muted">Once a week, just us. We review what you built and plan the next build. Times move to fit your week.</p></div>
-          <div class="box"><h3>Build</h3><p class="muted">You build between calls, with a clear brief from me. Things you'll actually use in your work.</p></div>
-          <div class="box"><h3>Chat</h3><p class="muted">Stuck on Wednesday? Message me. You don't wait a week for an answer.</p></div>
-          <div class="box"><h3>Review</h3><p class="muted">Send me what you built and I review it: what works, what breaks, what to fix first.</p></div>
-        </div>
-      </section>
-
-      <section class="m-section">
-        <p class="kicker">The 12 weeks</p>
-        <h2>A plan with a beginning and an end.</h2>
-        <p class="intro">Four blocks of three weeks. Each one ends with something built and working. The plan is the spine; if your work pulls us somewhere better, we go there.</p>
-
-        <div class="box phase">
-          <p class="phase-when">Weeks<strong>1&ndash;3</strong></p>
-          <div>
-            <h3>Your AI stack and your first system</h3>
-            <p class="what">We audit how you work today, set up the tools you'll use for the whole program, and build the thing every business needs first: a way to capture attention and keep it.</p>
-            <p class="builds-label">You'll build</p>
-            <ul class="builds">
-              <li>Your prompt library: reusable briefs for the work you do every week</li>
-              <li>A landing page, built with AI, no developer</li>
-              <li>A newsletter with a signup form, a welcome email and a lead magnet (a PDF, a checklist, an itinerary)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="box phase">
-          <p class="phase-when">Weeks<strong>4&ndash;6</strong></p>
-          <div>
-            <h3>Content, visuals and video</h3>
-            <p class="what">One idea becomes a week of content. You learn to make the visuals and videos yourself, fast, and to stop starting from a blank page.</p>
-            <p class="builds-label">You'll build</p>
-            <ul class="builds">
-              <li>A content engine: one idea into posts, emails and short videos</li>
-              <li>AI visuals and short-form video, including UGC-style ads</li>
-              <li>A look at my YouTube automation pipeline, and a small version for your own niche</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="box phase">
-          <p class="phase-when">Weeks<strong>7&ndash;9</strong></p>
-          <div>
-            <h3>Automations and AI assistants</h3>
-            <p class="what">The work you repeat every week, handed to AI. This is where you get time back.</p>
-            <p class="builds-label">You'll build</p>
-            <ul class="builds">
-              <li>Lead capture to email to follow-up, running on its own</li>
-              <li>An AI assistant for research and outreach</li>
-              <li>One automation built around your own biggest time sink</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="box phase">
-          <p class="phase-when">Weeks<strong>10&ndash;12</strong></p>
-          <div>
-            <h3>Real client work and your offer</h3>
-            <p class="what">You join me on live projects: AI integration for businesses. You see how the work is scoped, built and delivered, then shape your skills into something you can sell or use at work.</p>
-            <p class="builds-label">You'll build</p>
-            <ul class="builds">
-              <li>Your part of a real client project, alongside me</li>
-              <li>A capstone: one system you run end to end, start to finish</li>
-              <li>Your plan for what comes after week 12</li>
-            </ul>
+      <section class="m-section" style="margin-top: clamp(2.5rem, 6vw, 3.5rem);">
+        <div class="canvas">
+          <div class="canvas-bar"><strong>Your first automation, week 2</strong><span class="live">Running</span></div>
+          <div class="wf">
+            <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-layout"/></svg></div><b>Landing page</b><small>Trigger</small></div>
+            <div class="wire"></div>
+            <div class="node"><div class="tile"><svg class="ic"><use href="#i-db"/></svg></div><b>Save lead</b><small>Database</small></div>
+            <div class="wire"></div>
+            <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Write welcome</b><small>AI</small></div>
+            <div class="wire"></div>
+            <div class="node"><div class="tile"><svg class="ic"><use href="#i-mail"/></svg></div><b>Send email</b><small>Email</small></div>
+            <div class="wire"></div>
+            <div class="node"><div class="tile"><svg class="ic"><use href="#i-note"/></svg></div><b>Deliver PDF</b><small>Lead magnet</small></div>
           </div>
         </div>
       </section>
 
       <section class="m-section">
-        <p class="kicker">What you'll be building</p>
-        <h2>Here's what the work looks like.</h2>
-        <p class="intro">Here's the shape of three automations I run in my own business every day. By the end of the program you'll have built your own versions.</p>
-        <div class="flows">
-          <div class="box">
-            <p class="flow-title"><strong>Signup to sale</strong></p>
-            <p class="flow-sub">How this site turns a visitor into a subscriber and a customer.</p>
-            <ol class="flow">
-              <li><b>1 &middot; Page</b>Visitor lands on a page built with AI</li>
-              <li><b>2 &middot; Signup</b>Email saved to my own database</li>
-              <li class="ai"><b>3 &middot; Welcome</b>Welcome email sends itself in seconds</li>
-              <li><b>4 &middot; Checkout</b>They pick a program and pay on the page</li>
-              <li class="ai"><b>5 &middot; Delivery</b>Receipt to them, sale alert to me, no hands</li>
-            </ol>
+        <p class="kicker">Every week</p>
+        <h2>What you get.</h2>
+        <div class="grid4">
+          <div class="card"><div class="badge"><svg class="ic"><use href="#i-phone"/></svg></div><h3>1:1 call</h3><p>Weekly. Moves to fit you.</p></div>
+          <div class="card"><div class="badge"><svg class="ic"><use href="#i-chat"/></svg></div><h3>Chat access</h3><p>Stuck midweek? Message me.</p></div>
+          <div class="card"><div class="badge"><svg class="ic"><use href="#i-eye"/></svg></div><h3>Build reviews</h3><p>I check what you built.</p></div>
+          <div class="card"><div class="badge"><svg class="ic"><use href="#i-brief"/></svg></div><h3>My projects</h3><p>Join my live client work.</p></div>
+        </div>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">The plan</p>
+        <h2>Four blocks. Something built in each.</h2>
+        <div class="track">
+          <div class="stop">
+            <div class="pin">1&ndash;3</div>
+            <div class="card">
+              <p class="weeks">Weeks 1&ndash;3</p>
+              <h3>Your stack and first system</h3>
+              <ul class="ticks">
+                <li><svg class="ic"><use href="#i-check"/></svg>Your AI tool stack, set up</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Prompt library for your work</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Landing page</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Newsletter + lead magnet</li>
+              </ul>
+            </div>
           </div>
-          <div class="box">
-            <p class="flow-title"><strong>Idea to published content</strong></p>
-            <p class="flow-sub">One idea, many posts, and I only step in to approve.</p>
-            <ol class="flow">
-              <li><b>1 &middot; Idea</b>A note, a voice memo or a link</li>
-              <li class="ai"><b>2 &middot; Draft</b>AI writes posts and captions in my voice</li>
-              <li class="ai"><b>3 &middot; Visuals</b>Images and short videos made to match</li>
-              <li><b>4 &middot; Approve</b>I check it once, on my phone</li>
-              <li class="ai"><b>5 &middot; Publish</b>Scheduled and posted on its own</li>
-            </ol>
+          <div class="stop">
+            <div class="pin">4&ndash;6</div>
+            <div class="card">
+              <p class="weeks">Weeks 4&ndash;6</p>
+              <h3>Content, visuals, video</h3>
+              <ul class="ticks">
+                <li><svg class="ic"><use href="#i-check"/></svg>One idea into a week of content</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>AI visuals and short videos</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>UGC-style ads</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>YouTube automation pipeline</li>
+              </ul>
+            </div>
           </div>
-          <div class="box">
-            <p class="flow-title"><strong>Inbox on autopilot</strong></p>
-            <p class="flow-sub">The morning email slog, handled before I sit down.</p>
-            <ol class="flow">
-              <li><b>1 &middot; Sync</b>New email pulled in every morning</li>
-              <li class="ai"><b>2 &middot; Sort</b>AI sorts leads, clients and noise</li>
-              <li class="ai"><b>3 &middot; Draft</b>Replies drafted for the ones that matter</li>
-              <li><b>4 &middot; Send</b>I read, edit if needed, send</li>
-            </ol>
-            <p class="flow-key"><span></span>Steps AI does on its own</p>
+          <div class="stop">
+            <div class="pin">7&ndash;9</div>
+            <div class="card">
+              <p class="weeks">Weeks 7&ndash;9</p>
+              <h3>Automations and AI assistants</h3>
+              <ul class="ticks">
+                <li><svg class="ic"><use href="#i-check"/></svg>Lead to email to follow-up</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Research and outreach assistant</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Inbox sorting</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Your biggest time sink, automated</li>
+              </ul>
+            </div>
           </div>
+          <div class="stop">
+            <div class="pin">10&ndash;12</div>
+            <div class="card">
+              <p class="weeks">Weeks 10&ndash;12</p>
+              <h3>Client work and your offer</h3>
+              <ul class="ticks">
+                <li><svg class="ic"><use href="#i-check"/></svg>A live AI project with me</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Your capstone system</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Your offer, packaged</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Your plan after week 12</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">Automations</p>
+        <h2>What you'll build.</h2>
+        <div style="display:grid; gap:1rem;">
+
+          <div class="canvas">
+            <div class="canvas-bar"><strong>Idea to published content</strong><span>Weeks 4&ndash;6</span></div>
+            <div class="wf">
+              <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-pen"/></svg></div><b>New idea</b><small>Trigger</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Write posts</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-image"/></svg></div><b>Make visuals</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-video"/></svg></div><b>Cut video</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-check"/></svg></div><b>You approve</b><small>Phone</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-send"/></svg></div><b>Publish</b><small>Scheduled</small></div>
+            </div>
+          </div>
+
+          <div class="canvas">
+            <div class="canvas-bar"><strong>Inbox on autopilot</strong><span>Weeks 7&ndash;9</span></div>
+            <div class="wf">
+              <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-clock"/></svg></div><b>Every morning</b><small>Schedule</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-inbox"/></svg></div><b>Pull new email</b><small>Inbox</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-filter"/></svg></div><b>Sort</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Draft replies</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-send"/></svg></div><b>You send</b><small>One tap</small></div>
+            </div>
+          </div>
+
+          <div class="canvas">
+            <div class="canvas-bar"><strong>Signup to sale</strong><span>Running on this site</span></div>
+            <div class="wf">
+              <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-layout"/></svg></div><b>Visitor</b><small>Page</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-db"/></svg></div><b>Subscribe</b><small>Database</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-mail"/></svg></div><b>Welcome</b><small>Email</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-cart"/></svg></div><b>Checkout</b><small>Payment</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-bell"/></svg></div><b>Receipt + alert</b><small>Automatic</small></div>
+            </div>
+            <div class="canvas-foot"><span><i class="dot-ai"></i>AI step</span><span><i class="dot-step"></i>Automatic step</span></div>
+          </div>
+
         </div>
       </section>
 
       <section class="m-section">
         <p class="kicker">Proof</p>
-        <h2>Everything I teach, I've built.</h2>
-        <div class="cols-2">
-          <div class="box">
-            <span class="tag">Live</span>
-            <h3>This website and everything behind it</h3>
-            <p>The pages, the newsletter, the signup system, the welcome emails and the checkout you'd use to join. Built with AI, no dev team. You're looking at it.</p>
+        <h2>Built by me.</h2>
+        <div class="grid2">
+          <div>
+            <div class="shot">
+              <div class="chrome"><i></i><i></i><i></i><span>aiwithpelumi.com</span></div>
+              <div class="screen mock-site">
+                <div class="bar" style="width:30%"></div>
+                <div class="bar dark" style="width:62%; height:12px"></div>
+                <div class="bar dark" style="width:48%; height:12px"></div>
+                <div class="bar" style="width:55%; margin-top:0.7rem"></div>
+                <div class="pill"></div>
+                <span class="ph-label">Screenshot</span>
+              </div>
+            </div>
+            <span class="status">Live</span>
+            <h3 style="margin:0 0 0.3rem">This site</h3>
+            <p class="kicker" style="margin:0">Pages, newsletter, emails, checkout</p>
           </div>
-          <div class="box">
-            <span class="tag">In progress</span>
-            <h3>YouTube automation</h3>
-            <p>A pipeline I'm building with a video editor: AI finds what's working, remakes it, and feeds a channel that posts on its own.</p>
+          <div>
+            <div class="shot">
+              <div class="chrome"><i></i><i></i><i></i><span>youtube.com</span></div>
+              <div class="screen"><div class="mock-yt"><div class="player"></div><div class="thumbs"><div></div><div></div><div></div></div></div><span class="ph-label">Screenshot</span></div>
+            </div>
+            <span class="status">In progress</span>
+            <h3 style="margin:0 0 0.3rem">YouTube automation</h3>
+            <p class="kicker" style="margin:0">AI + editor, posting on its own</p>
           </div>
-          <div class="box">
-            <span class="tag">Client work</span>
-            <h3>AI integration for businesses</h3>
-            <p>I bring AI into B2B and SaaS companies: automating the repetitive work in their marketing and operations. In weeks 10&ndash;12 you work on projects like these with me.</p>
+          <div>
+            <div class="shot">
+              <div class="chrome"><i></i><i></i><i></i><span>client dashboard</span></div>
+              <div class="screen">
+                <div class="bar dark" style="width:40%"></div>
+                <div class="mock-dash"><div style="height:35%"></div><div style="height:55%"></div><div style="height:45%"></div><div style="height:70%"></div><div style="height:62%"></div><div style="height:88%"></div><div style="height:100%"></div></div>
+                <span class="ph-label">Screenshot</span>
+              </div>
+            </div>
+            <span class="status">Client work</span>
+            <h3 style="margin:0 0 0.3rem">AI integration</h3>
+            <p class="kicker" style="margin:0">B2B and SaaS companies</p>
           </div>
-          <div class="box">
-            <span class="tag">Launching soon</span>
-            <h3>LearnHub</h3>
-            <p>My edtech startup, where the 6-week AI Bootcamp runs. Built the same way I'll teach you to build.</p>
+          <div>
+            <div class="shot">
+              <div class="chrome"><i></i><i></i><i></i><span>learnhub.dev</span></div>
+              <div class="screen"><div class="bar dark" style="width:35%"></div><div class="mock-course"><div></div><div></div><div></div></div><span class="ph-label">Screenshot</span></div>
+            </div>
+            <span class="status">Launching soon</span>
+            <h3 style="margin:0 0 0.3rem">LearnHub</h3>
+            <p class="kicker" style="margin:0">My edtech startup</p>
           </div>
         </div>
       </section>
 
       <section class="m-section">
+        <p class="kicker">Built for</p>
+        <h2>Who it's for.</h2>
+        <ul class="who">
+          <li>Marketers</li>
+          <li>Founders</li>
+          <li>Content creators</li>
+          <li>Freelancers</li>
+          <li>Operators with no time</li>
+          <li>Anyone done with tutorials</li>
+        </ul>
+      </section>
+
+      <section class="m-section">
         <p class="kicker">Questions</p>
-        <h2>What people ask before joining.</h2>
-        <div class="faq">
-          <div class="box"><h3>Can we go beyond the plan?</h3><p class="muted">Yes. The plan makes sure you finish with real things built. If your work needs something that isn't on it, we cover it.</p></div>
-          <div class="box"><h3>What if I miss a week?</h3><p class="muted">Calls move. Tell me and we reschedule. The twelve weeks are yours.</p></div>
-          <div class="box"><h3>Is this the same as the bootcamp?</h3><p class="muted">No. The bootcamp is a group class with a fixed syllabus. This is one to one, built around your work, and includes my live projects.</p></div>
-          <div class="box"><h3>What happens after week 12?</h3><p class="muted">You leave with the systems you built, running. We'll also plan what you do next, together, in the last block.</p></div>
+        <h2>Before you ask.</h2>
+        <div class="qa">
+          <div class="card"><h3>Need to code?</h3><p>No.</p></div>
+          <div class="card"><h3>Miss a week?</h3><p>We move the call.</p></div>
+          <div class="card"><h3>Go beyond the plan?</h3><p>Yes. Your work leads.</p></div>
+          <div class="card"><h3>Same as the bootcamp?</h3><p>No. Bootcamp is a group class. This is just you.</p></div>
         </div>
       </section>
 
-      <section class="m-section m-cta">
-        <div class="box">
+      <section class="m-section">
+        <div class="m-cta">
           <h2>Want in?</h2>
-          <p>Places are limited because it's one to one. Tell me what you're working on and we'll talk.</p>
-          <a class="btn" href="mailto:pelumidev1@gmail.com?subject=1%3A1%20Mentorship">Talk to me</a><a class="btn btn-line" href="/programs/">See all programs</a>
+          <p>Limited places. It's one to one.</p>
+          <a class="btn" href="mailto:pelumidev1@gmail.com?subject=1%3A1%20Mentorship">Talk to me <svg class="ic" style="width:15px;height:15px"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="/programs/">All programs</a>
         </div>
       </section>
 
