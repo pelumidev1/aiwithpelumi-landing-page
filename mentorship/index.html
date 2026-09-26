@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI with Pelumi &mdash; 1:1 Mentorship</title>
-  <meta name="description" content="Twelve weeks, one to one. Landing pages, newsletters, AI video, automations and live client work, built with me every week.">
+  <meta name="description" content="Twelve weeks, one to one. Landing pages, newsletters, AI video, AI agents, RAG, automations and live client work, built with me every week.">
   <link rel="canonical" href="https://www.aiwithpelumi.com/mentorship/">
 
   <meta property="og:type" content="website">
@@ -156,8 +156,7 @@
     .chrome span { margin-left: 0.5rem; flex: 1; font-family: var(--font-mono); font-size: 0.625rem; color: var(--grey); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 0.2rem 0.5rem; }
     .screen { position: relative; height: 11rem; padding: 0.9rem; }
     .shot-img { height: auto; padding: 0; aspect-ratio: 16 / 10; background: #fff; }
-    .shot-img img, .p-screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .p-screen:has(img) { padding: 0; }
+    .shot-img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
     .bar { height: 7px; border-radius: 4px; background: #ececec; margin-bottom: 0.45rem; }
     .bar.dark { background: #111; }
     .ph-label {
@@ -239,12 +238,7 @@
     /* Same height as the browser shots beside it: their 16:10 screen plus the chrome bar. */
     .proof .build { container-type: inline-size; }
     .phone-wrap { display: grid; place-items: center; height: calc(62.5cqw + 43px); padding: 0; background: #fafafa; position: relative; }
-    .phone { height: calc((62.5cqw + 43px) * 0.88); aspect-ratio: 6.4 / 11.8; width: auto; border-radius: 1.3rem; background: #111; padding: 0.45rem; position: relative; box-shadow: 0 14px 30px rgba(0,0,0,0.18); }
-    .notch { position: absolute; top: 0.55rem; left: 50%; transform: translateX(-50%); width: 2.6rem; height: 0.55rem; border-radius: 99px; background: #000; z-index: 1; }
-    .p-screen { height: 100%; border-radius: 0.95rem; background: #fff; padding: 1.2rem 0.5rem 0.5rem; overflow: hidden; }
-    .p-stat { display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; margin: 0.5rem 0; }
-    .p-stat b { height: 1.5rem; border-radius: 8px; background: #efefef; }
-    .p-chart { height: 3rem !important; margin: 0.3rem 0 0.6rem !important; gap: 0.25rem !important; }
+    .device { height: calc((62.5cqw + 43px) * 0.9); width: auto; }
     .mock-folio { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; height: 100%; }
     .mock-folio div { border-radius: 8px; background: #ececec; }
     .mock-folio div:first-child { grid-column: 1 / -1; background: #111; }
@@ -392,10 +386,12 @@
             <div class="pin">7&ndash;9</div>
             <div class="card">
               <p class="weeks">Weeks 7&ndash;9</p>
-              <h3>Automations and AI assistants</h3>
+              <h3>AI agents, RAG and automations</h3>
               <ul class="ticks">
+                <li><svg class="ic"><use href="#i-check"/></svg>Build AI agents that take action, not just chat</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>RAG: an AI that answers from your own documents</li>
+                <li><svg class="ic"><use href="#i-check"/></svg>Research and outreach agent</li>
                 <li><svg class="ic"><use href="#i-check"/></svg>Lead to email to follow-up</li>
-                <li><svg class="ic"><use href="#i-check"/></svg>Research and outreach assistant</li>
                 <li><svg class="ic"><use href="#i-check"/></svg>Inbox sorting</li>
                 <li><svg class="ic"><use href="#i-check"/></svg>Your biggest time sink, automated</li>
               </ul>
@@ -435,7 +431,7 @@
             <div class="wire"></div>
             <div class="node"><div class="tile"><svg class="ic"><use href="#i-note"/></svg></div><b>Deliver PDF</b><small>Lead magnet</small></div>
           </div>
-
+          </div>
 
           <div class="canvas">
             <div class="canvas-bar"><strong>Idea to published content</strong><span>Weeks 4&ndash;6</span></div>
@@ -451,6 +447,36 @@
               <div class="node"><div class="tile"><svg class="ic"><use href="#i-check"/></svg></div><b>You approve</b><small>Phone</small></div>
               <div class="wire"></div>
               <div class="node"><div class="tile"><svg class="ic"><use href="#i-send"/></svg></div><b>Publish</b><small>Scheduled</small></div>
+            </div>
+          </div>
+
+          <div class="canvas">
+            <div class="canvas-bar"><strong>Ask your documents (RAG)</strong><span>Weeks 7&ndash;9</span></div>
+            <div class="wf">
+              <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-note"/></svg></div><b>Your files</b><small>PDFs, Notion, Drive</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-filter"/></svg></div><b>Split + embed</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-db"/></svg></div><b>Vector store</b><small>Database</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-chat"/></svg></div><b>You ask</b><small>Chat</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Answer + sources</b><small>AI</small></div>
+            </div>
+          </div>
+
+          <div class="canvas">
+            <div class="canvas-bar"><strong>Research agent</strong><span>Weeks 7&ndash;9</span></div>
+            <div class="wf">
+              <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-brief"/></svg></div><b>Your goal</b><small>One line</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Agent plans</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-eye"/></svg></div><b>Searches + reads</b><small>Web tools</small></div>
+              <div class="wire"></div>
+              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-pen"/></svg></div><b>Writes outreach</b><small>AI</small></div>
+              <div class="wire"></div>
+              <div class="node"><div class="tile"><svg class="ic"><use href="#i-check"/></svg></div><b>You approve</b><small>One tap</small></div>
             </div>
           </div>
 
@@ -502,10 +528,7 @@
           </div>
           <div class="build">
             <div class="shot phone-wrap">
-              <div class="phone">
-                <div class="notch"></div>
-                <div class="p-screen"><img src="/image/mentorship/learnhub.jpg" alt="LearnHub on mobile" loading="lazy" width="440" height="749"></div>
-              </div>
+              <img class="device" src="/image/mentorship/learnhub.jpg" alt="LearnHub dashboard on mobile" loading="lazy" width="560" height="677">
             </div>
             <span class="status">Mobile</span>
             <h3>LearnHub</h3>
