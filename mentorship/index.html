@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI with Pelumi &mdash; 1:1 Mentorship</title>
+  <meta name="description" content="Twelve weeks, one to one. You build real marketing systems with AI: landing pages, newsletters, video, automations and client work, with me beside you every week.">
+  <link rel="canonical" href="https://www.aiwithpelumi.com/mentorship/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI with Pelumi">
+  <meta property="og:title" content="1:1 AI Mentorship | AI with Pelumi">
+  <meta property="og:description" content="Twelve weeks, one to one. Real builds, real client work, a plan with a start and an end.">
+  <meta property="og:url" content="https://www.aiwithpelumi.com/mentorship/">
+  <meta property="og:image" content="https://www.aiwithpelumi.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    /* Page-specific only. Tokens, type and the grid come from styles.css.
+       This page sells the program, not a price: pricing is a conversation. */
+    .m-page { padding-block: clamp(6.5rem, 12vw, 8.5rem) 2rem; }
+    .m-wrap { grid-column: 1 / -1; max-width: 60rem; margin-inline: auto; width: 100%; }
+    .m-hero { text-align: center; margin-bottom: clamp(3rem, 7vw, 5rem); }
+    .m-hero .eyebrow-pill { display: inline-block; margin-bottom: 1.25rem; }
+    .m-hero h1 { font-size: clamp(2rem, 1rem + 3.6vw, 3.1rem); max-width: 18ch; margin: 0 auto 1.1rem; }
+    .lede {
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--grey);
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+    .facts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+      padding: 0;
+      list-style: none;
+    }
+    .facts li {
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 0.45rem 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--white);
+    }
+
+    .m-section { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
+    .m-section > .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin: 0 0 0.6rem;
+    }
+    .m-section > h2 {
+      font-size: clamp(1.5rem, 1rem + 1.8vw, 2.1rem);
+      letter-spacing: -0.02em;
+      margin: 0 0 0.9rem;
+      max-width: 26ch;
+    }
+    .m-section > .intro {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--grey);
+      max-width: 40rem;
+      margin: 0 0 1.75rem;
+    }
+
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--carbon);
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .box h3 { font-size: 1.05rem; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
+    .box p, .box li {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.65;
+      color: var(--white);
+    }
+    .box p { margin: 0; }
+    .box .muted { color: var(--grey); }
+
+    .cols-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .cols-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+
+    /* ---- the 12 weeks -------------------------------------------------- */
+    .phase { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem; }
+    .phase + .phase { margin-top: 1rem; }
+    .phase-when {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .phase-when strong {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-transform: none;
+      margin-top: 0.2rem;
+    }
+    .phase h3 { font-size: 1.15rem; margin: 0 0 0.4rem; }
+    .phase .what { color: var(--grey); margin-bottom: 0.9rem; }
+    .builds { list-style: none; margin: 0; padding: 0; }
+    .builds li { position: relative; padding-left: 1.1rem; }
+    .builds li + li { margin-top: 0.35rem; }
+    .builds li::before { content: "+"; position: absolute; left: 0; color: var(--grey); }
+    .builds-label {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin: 0 0 0.45rem !important;
+    }
+
+    /* ---- flow diagrams -------------------------------------------------
+       Plain HTML so it reads on any screen: a row of steps with arrows on
+       wide screens, a column with down arrows on phones. */
+    .flow-title { font-size: 1rem; margin: 0 0 0.25rem; }
+    .flow-sub { color: var(--grey); margin: 0 0 1rem !important; }
+    .flow {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: stretch;
+      gap: 1.6rem;
+    }
+    .flow li {
+      flex: 1;
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.7rem 0.75rem;
+      background: var(--black);
+      font-size: 0.75rem !important;
+      line-height: 1.45 !important;
+    }
+    .flow li b {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    .flow li.ai { border-color: var(--white); box-shadow: 0 0 0 3px var(--accent-tint); }
+    .flow li + li::before {
+      content: "\2192";
+      position: absolute;
+      left: -1.3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--grey);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    .flow-key {
+      margin-top: 0.8rem !important;
+      font-size: 0.6875rem !important;
+      color: var(--grey) !important;
+    }
+    .flow-key span {
+      display: inline-block;
+      width: 0.7rem; height: 0.7rem;
+      border: 1px solid var(--white);
+      border-radius: 3px;
+      box-shadow: 0 0 0 2px var(--accent-tint);
+      vertical-align: -1px;
+      margin-right: 0.35rem;
+    }
+    .flows { display: grid; gap: 1rem; }
+
+    /* ---- proof ---------------------------------------------------------- */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 0.2rem 0.55rem;
+      color: var(--grey);
+      margin-bottom: 0.7rem;
+    }
+
+    .faq { display: grid; gap: 0.75rem; }
+    .faq .box h3 { font-size: 0.95rem; }
+
+    .m-cta { text-align: center; }
+    .m-cta .box { padding: clamp(1.75rem, 5vw, 2.75rem); }
+    .m-cta h2 { font-size: clamp(1.5rem, 1rem + 1.8vw, 2.1rem); margin: 0 0 0.75rem; }
+    .m-cta p { max-width: 30rem; margin: 0 auto 1.5rem !important; color: var(--grey); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 99px;
+      padding: 0.8rem 1.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: linear-gradient(180deg, #2a2a2a 0%, #000000 60%);
+      color: #ffffff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+      transition: transform 0.2s var(--ease-out);
+    }
+    .btn:hover { transform: scale(1.03); }
+    .btn-line { background: transparent; color: var(--white); border: 1px solid var(--line); box-shadow: none; margin-left: 0.4rem; }
+
+    .m-foot {
+      border-top: 1px solid transparent;
+      border-image: var(--steel-rule) 1;
+      padding-block: 2.5rem 3.5rem;
+      margin-top: clamp(3.5rem, 8vw, 5rem);
+      text-align: center;
+    }
+    .m-foot a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .m-foot p { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; color: var(--grey); margin-top: 1rem; }
+
+    @media (max-width: 860px) {
+      .cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .flow { flex-direction: column; gap: 1.4rem; }
+      .flow li + li::before { content: "\2193"; left: 50%; top: -1.25rem; transform: translateX(-50%); }
+    }
+    @media (max-width: 600px) {
+      .cols-2, .cols-4 { grid-template-columns: 1fr; }
+      .phase { grid-template-columns: 1fr; gap: 0.6rem; }
+      .btn-line { margin: 0.6rem 0 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="wordmark"><img src="/image/logo.png" alt="AI with Pelumi"></a>
+  </header>
+
+  <main class="m-page grid">
+    <div class="m-wrap">
+
+      <section class="m-hero">
+        <p class="eyebrow-pill">AI WITH PELUMI &middot; 1:1 MENTORSHIP</p>
+        <h1>Twelve weeks. You build. I'm beside you.</h1>
+        <p class="lede">You don't need another course. You need someone who does this every day to look at your work, show you the workflow, and tell you what to do next. That's this.</p>
+        <ul class="facts">
+          <li>12 weeks, fixed start and end</li>
+          <li>A 1:1 call every week</li>
+          <li>Chat with me between calls</li>
+          <li>Real projects for your work</li>
+        </ul>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">Why this and not a course</p>
+        <h2>A course teaches you tools. I show you how the work gets done.</h2>
+        <p class="intro">You can learn any AI tool from a 12-hour video. What a video can't do is look at your landing page on a Tuesday and tell you why nobody signs up, or sit with you while you wire the automation that saves you ten hours a week. I've spent years in marketing and I build with AI every day, for myself and for clients. You get that, pointed at your work.</p>
+        <div class="cols-2">
+          <div class="box">
+            <h3>Who it's for</h3>
+            <p>Marketers, founders and operators who use AI like a search box and know there's more. Busy people. You have a job or a business taking your time, and you want someone on the inside telling you what matters.</p>
+          </div>
+          <div class="box">
+            <h3>What you need</h3>
+            <p>A laptop, about five hours a week, and something you actually want to build. No code. If you can write a clear message, you can do everything on this page.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">How it works</p>
+        <h2>Every week, the same rhythm.</h2>
+        <div class="cols-4">
+          <div class="box"><h3>1:1 call</h3><p class="muted">Once a week, just us. We review what you built and plan the next build. Times move to fit your week.</p></div>
+          <div class="box"><h3>Build</h3><p class="muted">You build between calls, with a clear brief from me. Things you'll actually use in your work.</p></div>
+          <div class="box"><h3>Chat</h3><p class="muted">Stuck on Wednesday? Message me. You don't wait a week for an answer.</p></div>
+          <div class="box"><h3>Review</h3><p class="muted">Send me what you built and I review it: what works, what breaks, what to fix first.</p></div>
+        </div>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">The 12 weeks</p>
+        <h2>A plan with a beginning and an end.</h2>
+        <p class="intro">Four blocks of three weeks. Each one ends with something built and working. The plan is the spine; if your work pulls us somewhere better, we go there.</p>
+
+        <div class="box phase">
+          <p class="phase-when">Weeks<strong>1&ndash;3</strong></p>
+          <div>
+            <h3>Your AI stack and your first system</h3>
+            <p class="what">We audit how you work today, set up the tools you'll use for the whole program, and build the thing every business needs first: a way to capture attention and keep it.</p>
+            <p class="builds-label">You'll build</p>
+            <ul class="builds">
+              <li>Your prompt library: reusable briefs for the work you do every week</li>
+              <li>A landing page, built with AI, no developer</li>
+              <li>A newsletter with a signup form, a welcome email and a lead magnet (a PDF, a checklist, an itinerary)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box phase">
+          <p class="phase-when">Weeks<strong>4&ndash;6</strong></p>
+          <div>
+            <h3>Content, visuals and video</h3>
+            <p class="what">One idea becomes a week of content. You learn to make the visuals and videos yourself, fast, and to stop starting from a blank page.</p>
+            <p class="builds-label">You'll build</p>
+            <ul class="builds">
+              <li>A content engine: one idea into posts, emails and short videos</li>
+              <li>AI visuals and short-form video, including UGC-style ads</li>
+              <li>A look at my YouTube automation pipeline, and a small version for your own niche</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box phase">
+          <p class="phase-when">Weeks<strong>7&ndash;9</strong></p>
+          <div>
+            <h3>Automations and AI assistants</h3>
+            <p class="what">The work you repeat every week, handed to AI. This is where you get time back.</p>
+            <p class="builds-label">You'll build</p>
+            <ul class="builds">
+              <li>Lead capture to email to follow-up, running on its own</li>
+              <li>An AI assistant for research and outreach</li>
+              <li>One automation built around your own biggest time sink</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box phase">
+          <p class="phase-when">Weeks<strong>10&ndash;12</strong></p>
+          <div>
+            <h3>Real client work and your offer</h3>
+            <p class="what">You join me on live projects: AI integration for businesses. You see how the work is scoped, built and delivered, then shape your skills into something you can sell or use at work.</p>
+            <p class="builds-label">You'll build</p>
+            <ul class="builds">
+              <li>Your part of a real client project, alongside me</li>
+              <li>A capstone: one system you run end to end, start to finish</li>
+              <li>Your plan for what comes after week 12</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">What you'll be building</p>
+        <h2>Here's what the work looks like.</h2>
+        <p class="intro">Here's the shape of three automations I run in my own business every day. By the end of the program you'll have built your own versions.</p>
+        <div class="flows">
+          <div class="box">
+            <p class="flow-title"><strong>Signup to sale</strong></p>
+            <p class="flow-sub">How this site turns a visitor into a subscriber and a customer.</p>
+            <ol class="flow">
+              <li><b>1 &middot; Page</b>Visitor lands on a page built with AI</li>
+              <li><b>2 &middot; Signup</b>Email saved to my own database</li>
+              <li class="ai"><b>3 &middot; Welcome</b>Welcome email sends itself in seconds</li>
+              <li><b>4 &middot; Checkout</b>They pick a program and pay on the page</li>
+              <li class="ai"><b>5 &middot; Delivery</b>Receipt to them, sale alert to me, no hands</li>
+            </ol>
+          </div>
+          <div class="box">
+            <p class="flow-title"><strong>Idea to published content</strong></p>
+            <p class="flow-sub">One idea, many posts, and I only step in to approve.</p>
+            <ol class="flow">
+              <li><b>1 &middot; Idea</b>A note, a voice memo or a link</li>
+              <li class="ai"><b>2 &middot; Draft</b>AI writes posts and captions in my voice</li>
+              <li class="ai"><b>3 &middot; Visuals</b>Images and short videos made to match</li>
+              <li><b>4 &middot; Approve</b>I check it once, on my phone</li>
+              <li class="ai"><b>5 &middot; Publish</b>Scheduled and posted on its own</li>
+            </ol>
+          </div>
+          <div class="box">
+            <p class="flow-title"><strong>Inbox on autopilot</strong></p>
+            <p class="flow-sub">The morning email slog, handled before I sit down.</p>
+            <ol class="flow">
+              <li><b>1 &middot; Sync</b>New email pulled in every morning</li>
+              <li class="ai"><b>2 &middot; Sort</b>AI sorts leads, clients and noise</li>
+              <li class="ai"><b>3 &middot; Draft</b>Replies drafted for the ones that matter</li>
+              <li><b>4 &middot; Send</b>I read, edit if needed, send</li>
+            </ol>
+            <p class="flow-key"><span></span>Steps AI does on its own</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">Proof</p>
+        <h2>Everything I teach, I've built.</h2>
+        <div class="cols-2">
+          <div class="box">
+            <span class="tag">Live</span>
+            <h3>This website and everything behind it</h3>
+            <p>The pages, the newsletter, the signup system, the welcome emails and the checkout you'd use to join. Built with AI, no dev team. You're looking at it.</p>
+          </div>
+          <div class="box">
+            <span class="tag">In progress</span>
+            <h3>YouTube automation</h3>
+            <p>A pipeline I'm building with a video editor: AI finds what's working, remakes it, and feeds a channel that posts on its own.</p>
+          </div>
+          <div class="box">
+            <span class="tag">Client work</span>
+            <h3>AI integration for businesses</h3>
+            <p>I bring AI into B2B and SaaS companies: automating the repetitive work in their marketing and operations. In weeks 10&ndash;12 you work on projects like these with me.</p>
+          </div>
+          <div class="box">
+            <span class="tag">Launching soon</span>
+            <h3>LearnHub</h3>
+            <p>My edtech startup, where the 6-week AI Bootcamp runs. Built the same way I'll teach you to build.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-section">
+        <p class="kicker">Questions</p>
+        <h2>What people ask before joining.</h2>
+        <div class="faq">
+          <div class="box"><h3>Can we go beyond the plan?</h3><p class="muted">Yes. The plan makes sure you finish with real things built. If your work needs something that isn't on it, we cover it.</p></div>
+          <div class="box"><h3>What if I miss a week?</h3><p class="muted">Calls move. Tell me and we reschedule. The twelve weeks are yours.</p></div>
+          <div class="box"><h3>Is this the same as the bootcamp?</h3><p class="muted">No. The bootcamp is a group class with a fixed syllabus. This is one to one, built around your work, and includes my live projects.</p></div>
+          <div class="box"><h3>What happens after week 12?</h3><p class="muted">You leave with the systems you built, running. We'll also plan what you do next, together, in the last block.</p></div>
+        </div>
+      </section>
+
+      <section class="m-section m-cta">
+        <div class="box">
+          <h2>Want in?</h2>
+          <p>Places are limited because it's one to one. Tell me what you're working on and we'll talk.</p>
+          <a class="btn" href="mailto:pelumidev1@gmail.com?subject=1%3A1%20Mentorship">Talk to me</a><a class="btn btn-line" href="/programs/">See all programs</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="m-foot grid">
+    <div style="grid-column: 1 / -1;">
+      <a href="/">&larr; BACK TO AI WITH PELUMI</a>
+      <p>&copy; 2026 AI WITH PELUMI. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

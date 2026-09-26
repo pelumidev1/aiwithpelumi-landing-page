@@ -71,6 +71,10 @@
       "dest": "/programs/index.html"
     },
     {
+      "src": "/mentorship/?",
+      "dest": "/mentorship/index.html"
+    },
+    {
       "src": "/(work-with-me|programmes)/?",
       "status": 307,
       "headers": {
