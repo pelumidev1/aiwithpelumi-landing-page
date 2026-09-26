@@ -346,6 +346,11 @@
         color: var(--grey);
       }
     }
+    /* Tablets: two cards a row instead of one stretched card. */
+    @media (min-width: 600px) and (max-width: 860px) {
+      .ptable { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
+      .col { grid-row: auto; }
+    }
   </style>
 </head>
 <body>
