@@ -155,6 +155,9 @@
     .chrome i { width: 8px; height: 8px; border-radius: 50%; background: #d9d9d9; }
     .chrome span { margin-left: 0.5rem; flex: 1; font-family: var(--font-mono); font-size: 0.625rem; color: var(--grey); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 0.2rem 0.5rem; }
     .screen { position: relative; height: 11rem; padding: 0.9rem; }
+    .shot-img { height: auto; padding: 0; aspect-ratio: 16 / 10; background: #fff; }
+    .shot-img img, .p-screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .p-screen:has(img) { padding: 0; }
     .bar { height: 7px; border-radius: 4px; background: #ececec; margin-bottom: 0.45rem; }
     .bar.dark { background: #111; }
     .ph-label {
@@ -233,8 +236,10 @@
     }
 
     .build h3 { margin: 0; font-size: 1rem; }
-    .phone-wrap { display: grid; place-items: center; height: 13.8rem; padding: 0; background: #fafafa; position: relative; }
-    .phone { width: 6.4rem; height: 11.8rem; border-radius: 1.3rem; background: #111; padding: 0.45rem; position: relative; box-shadow: 0 14px 30px rgba(0,0,0,0.18); }
+    /* Same height as the browser shots beside it: their 16:10 screen plus the chrome bar. */
+    .proof .build { container-type: inline-size; }
+    .phone-wrap { display: grid; place-items: center; height: calc(62.5cqw + 43px); padding: 0; background: #fafafa; position: relative; }
+    .phone { height: calc((62.5cqw + 43px) * 0.88); aspect-ratio: 6.4 / 11.8; width: auto; border-radius: 1.3rem; background: #111; padding: 0.45rem; position: relative; box-shadow: 0 14px 30px rgba(0,0,0,0.18); }
     .notch { position: absolute; top: 0.55rem; left: 50%; transform: translateX(-50%); width: 2.6rem; height: 0.55rem; border-radius: 99px; background: #000; z-index: 1; }
     .p-screen { height: 100%; border-radius: 0.95rem; background: #fff; padding: 1.2rem 0.5rem 0.5rem; overflow: hidden; }
     .p-stat { display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; margin: 0.5rem 0; }
@@ -246,28 +251,6 @@
     .mock-shop .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; margin-top: 0.5rem; }
     .mock-shop .tiles div { height: 3.8rem; border-radius: 8px; border: 1px solid var(--line); background: linear-gradient(#ececec 55%, #fff 55%); }
     .os-card { margin-top: 0.5rem; }
-
-    /* ---- scroll demo: the keyboard comes apart as it passes through view.
-       --p (0 to 1) is set from scroll position by the script at the end. */
-    .scrolly { margin-top: 1.6rem; border-top: 1px dashed var(--line); padding-top: 1.4rem; text-align: center; }
-    .scrolly-hint { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); margin: 0 0 1.5rem; }
-    .kb { --p: 0; position: relative; width: min(24rem, 100%); height: 11rem; margin: 0 auto; }
-    .kb-base, .kb-plate, .kb-keys { position: absolute; left: 0; right: 0; margin: auto; border-radius: 12px; }
-    .kb-base { bottom: 0; height: 3.2rem; background: linear-gradient(180deg, #2b2b2b, #0b0b0b); transform: translateY(calc(var(--p) * 1.2rem)); }
-    .kb-plate { bottom: 1rem; height: 3rem; width: 94%; background: #9a9a9a; transform: translateY(calc(var(--p) * -1.6rem)); opacity: calc(0.5 + var(--p) * 0.5); }
-    .kb-keys {
-      bottom: 1.6rem; width: 90%;
-      display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px;
-      transform: translateY(calc(var(--p) * -4.2rem));
-    }
-    .kb-keys i {
-      height: 1.25rem; border-radius: 4px; background: #fff; border: 1px solid #cfcfcf;
-      box-shadow: 0 2px 0 #bdbdbd;
-      transform: translateY(calc(var(--p) * var(--lift, 0) * -1rem)) rotate(calc(var(--p) * var(--tilt, 0) * 1deg));
-    }
-    .kb-keys i:nth-child(3n) { --lift: 1.2; --tilt: -8; }
-    .kb-keys i:nth-child(3n+1) { --lift: 0.5; --tilt: 6; }
-    .kb-keys i:nth-child(3n+2) { --lift: 0.9; --tilt: -3; }
 
     /* ---- faq + cta ------------------------------------------------------ */
     .qa { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -400,7 +383,6 @@
               <h3>Video beyond the prompt</h3>
               <ul class="ticks">
                 <li><svg class="ic"><use href="#i-check"/></svg>Remotion: videos written as code, by Claude</li>
-                <li><svg class="ic"><use href="#i-check"/></svg>Apple-style scroll animations: Google Flow + Claude Code</li>
                 <li><svg class="ic"><use href="#i-check"/></svg>UGC-style ads</li>
                 <li><svg class="ic"><use href="#i-check"/></svg>One idea into a week of content</li>
               </ul>
@@ -473,29 +455,6 @@
           </div>
 
           <div class="canvas">
-            <div class="canvas-bar"><strong>Apple-style scroll animation</strong><span>Weeks 4&ndash;6</span></div>
-            <div class="wf">
-              <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-image"/></svg></div><b>Start frame</b><small>Google Flow</small></div>
-              <div class="wire"></div>
-              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-pen"/></svg></div><b>End frame</b><small>Lasso edit</small></div>
-              <div class="wire"></div>
-              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-video"/></svg></div><b>Animate</b><small>Frames to video</small></div>
-              <div class="wire"></div>
-              <div class="node"><div class="tile"><svg class="ic"><use href="#i-layout"/></svg></div><b>Extract frames</b><small>Ezgif, 30fps</small></div>
-              <div class="wire"></div>
-              <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Scroll effect</b><small>Claude Code</small></div>
-            </div>
-            <div class="scrolly" aria-hidden="true">
-              <p class="scrolly-hint">Scroll. This is the effect.</p>
-              <div class="kb">
-                <div class="kb-keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="kb-plate"></div>
-                <div class="kb-base"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="canvas">
             <div class="canvas-bar"><strong>Inbox on autopilot</strong><span>Weeks 7&ndash;9</span></div>
             <div class="wf">
               <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-clock"/></svg></div><b>Every morning</b><small>Schedule</small></div>
@@ -536,7 +495,7 @@
           <div class="build">
             <div class="shot">
               <div class="chrome"><i></i><i></i><i></i><span>aiwithpelumi.com</span></div>
-              <div class="screen"><div class="mock-site"><div class="bar" style="width:30%"></div><div class="bar dark" style="width:62%;height:12px"></div><div class="bar dark" style="width:48%;height:12px"></div><div class="bar" style="width:55%;margin-top:0.7rem"></div><div class="pill"></div></div><span class="ph-label">Screenshot</span></div>
+              <div class="screen shot-img"><img src="/image/mentorship/aiwp.jpg" alt="AI with Pelumi homepage" loading="lazy" width="1000" height="625"></div>
             </div>
             <span class="status">Live</span>
             <h3>AI with Pelumi</h3>
@@ -545,30 +504,24 @@
             <div class="shot phone-wrap">
               <div class="phone">
                 <div class="notch"></div>
-                <div class="p-screen">
-                  <div class="bar dark" style="width:45%"></div>
-                  <div class="p-stat"><b></b><b></b></div>
-                  <div class="mock-dash p-chart"><div style="height:35%"></div><div style="height:60%"></div><div style="height:45%"></div><div style="height:80%"></div><div style="height:65%"></div><div style="height:100%"></div></div>
-                  <div class="bar" style="width:80%"></div><div class="bar" style="width:60%"></div>
-                </div>
+                <div class="p-screen"><img src="/image/mentorship/dashboard.jpg" alt="SmileAgrimarket funding dashboard on mobile" loading="lazy" width="440" height="810"></div>
               </div>
-              <span class="ph-label">Screenshot</span>
             </div>
             <span class="status">Mobile</span>
-            <h3>Dashboard</h3>
+            <h3>Investor dashboard</h3>
           </div>
           <div class="build">
             <div class="shot">
-              <div class="chrome"><i></i><i></i><i></i><span>portfolio</span></div>
-              <div class="screen"><div class="mock-folio"><div></div><div></div><div></div><div></div></div><span class="ph-label">Screenshot</span></div>
+              <div class="chrome"><i></i><i></i><i></i><span>portfolio.aiwithpelumi.com</span></div>
+              <div class="screen shot-img"><img src="/image/mentorship/folio.jpg" alt="Pelumi Fatoye portfolio homepage" loading="lazy" width="1000" height="625"></div>
             </div>
             <span class="status">Live</span>
             <h3>Portfolio website</h3>
           </div>
           <div class="build">
             <div class="shot">
-              <div class="chrome"><i></i><i></i><i></i><span>smileagrimarket</span></div>
-              <div class="screen"><div class="mock-shop"><div class="bar dark" style="width:40%"></div><div class="tiles"><div></div><div></div><div></div><div></div><div></div><div></div></div></div><span class="ph-label">Screenshot</span></div>
+              <div class="chrome"><i></i><i></i><i></i><span>smileagrimarket.com</span></div>
+              <div class="screen shot-img"><img src="/image/mentorship/smile.jpg" alt="SmileAgrimarket homepage" loading="lazy" width="1000" height="625"></div>
             </div>
             <span class="status">B2B</span>
             <h3>Smileagrimarket</h3>
@@ -656,26 +609,6 @@
   </footer>
 
 
-  <script>
-    /* Drives the scroll demo: 0 when the keyboard enters the bottom of the
-       screen, 1 by the time it reaches the top third. Reduced motion keeps
-       it assembled. */
-    (function () {
-      var kb = document.querySelector(".kb");
-      if (!kb || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      var ticking = false;
-      function update() {
-        ticking = false;
-        var r = kb.getBoundingClientRect(), vh = window.innerHeight;
-        var p = (vh - r.top) / (vh * 0.7);
-        kb.style.setProperty("--p", Math.max(0, Math.min(1, p)).toFixed(3));
-      }
-      window.addEventListener("scroll", function () {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
-      }, { passive: true });
-      update();
-    })();
-  </script>
   <script src="/script.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
