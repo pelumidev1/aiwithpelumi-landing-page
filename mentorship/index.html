@@ -182,6 +182,56 @@
     .mock-course div::before { content: ""; display: block; height: 2.4rem; border-radius: 5px; background: #ececec; margin-bottom: 0.4rem; }
     .status { display: inline-block; font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 99px; padding: 0.2rem 0.55rem; color: var(--grey); margin-bottom: 0.5rem; }
 
+    /* ---- AI operating system mockup (drawn; no real data) --------------- */
+    .proof { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .os-card { grid-column: 1 / -1; }
+    .os { border-radius: 16px; overflow: hidden; background: #0b0b0b; color: #f2f2f2; border: 1px solid #000; box-shadow: 0 24px 60px rgba(0,0,0,0.18); margin-bottom: 1rem; }
+    .os-top { display: flex; align-items: center; gap: 0.35rem; padding: 0.6rem 0.8rem; border-bottom: 1px solid #1f1f1f; font-family: var(--font-mono); font-size: 0.625rem; color: #8a8a8a; }
+    .os-top i { width: 8px; height: 8px; border-radius: 50%; background: #333; }
+    .os-top span { margin-left: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .os-top em { margin-left: auto; font-style: normal; display: inline-flex; align-items: center; gap: 0.35rem; }
+    .os-top em::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #1a9f5b; animation: ping 1.8s infinite; }
+    .os-body { display: grid; grid-template-columns: 11rem 1fr; min-height: 17rem; }
+    .os-side { border-right: 1px solid #1f1f1f; padding: 0.9rem 0.6rem; }
+    .os-me { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600; margin: 0 0 0.9rem 0.3rem; }
+    .os-me span { width: 1.4rem; height: 1.4rem; border-radius: 50%; background: linear-gradient(135deg, #fff, #777); }
+    .os-side ul { list-style: none; margin: 0; padding: 0; }
+    .os-side li { display: flex; align-items: center; gap: 0.55rem; padding: 0.42rem 0.5rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.72rem; color: #9a9a9a; }
+    .os-side li .ic { width: 14px; height: 14px; }
+    .os-side li b { margin-left: auto; font-weight: 500; font-size: 0.625rem; background: #fff; color: #000; border-radius: 99px; padding: 0.05rem 0.4rem; }
+    .os-side li.on { background: #1c1c1c; color: #fff; }
+    .os-main { padding: 0.9rem; display: grid; gap: 0.75rem; align-content: start; }
+    .os-ask { display: flex; align-items: center; gap: 0.55rem; border: 1px solid #2a2a2a; border-radius: 10px; padding: 0.55rem 0.7rem; font-family: var(--font-mono); font-size: 0.72rem; color: #cfcfcf; overflow: hidden; }
+    .os-ask .ic { width: 14px; height: 14px; color: #fff; }
+    .typing { white-space: nowrap; overflow: hidden; border-right: 1px solid #fff; animation: type 4s steps(52) 0.6s both, caret 0.9s step-end infinite; max-width: 100%; }
+    @keyframes type { from { width: 0; } to { width: 52ch; } }
+    @keyframes caret { 50% { border-color: transparent; } }
+    .os-agents { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+    .os-agents > div { border: 1px solid #222; border-radius: 10px; padding: 0.6rem; background: #111; }
+    .os-agents b { display: flex; align-items: center; gap: 0.4rem; font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; }
+    .os-agents b i { width: 6px; height: 6px; border-radius: 50%; background: #1a9f5b; }
+    .os-agents b i.busy { background: #fff; animation: blink 1s ease-in-out infinite; }
+    @keyframes blink { 50% { opacity: 0.25; } }
+    .os-agents small { display: block; font-family: var(--font-mono); font-size: 0.625rem; color: #8a8a8a; margin: 0.25rem 0 0.5rem; }
+    .prog { display: block; height: 3px; border-radius: 3px; background: #262626; overflow: hidden; }
+    .prog span { display: block; height: 100%; width: var(--w); background: #fff; animation: fill 2.4s var(--ease-out) both; }
+    @keyframes fill { from { width: 0; } }
+    .os-feed { list-style: none; margin: 0; padding: 0; border-top: 1px solid #1f1f1f; }
+    .os-feed li { display: flex; align-items: center; gap: 0.55rem; padding: 0.5rem 0.1rem; border-bottom: 1px solid #1a1a1a; font-family: var(--font-mono); font-size: 0.7rem; color: #cfcfcf; animation: slide 0.6s var(--ease-out) both; }
+    .os-feed li:nth-child(2) { animation-delay: 0.4s; } .os-feed li:nth-child(3) { animation-delay: 0.8s; } .os-feed li:nth-child(4) { animation-delay: 1.2s; }
+    @keyframes slide { from { opacity: 0; transform: translateY(6px); } }
+    .os-feed .ic { width: 14px; height: 14px; color: #fff; }
+    .os-feed time { margin-left: auto; color: #6a6a6a; font-size: 0.625rem; }
+    @media (max-width: 640px) {
+      .os-body { grid-template-columns: 1fr; }
+      .os-side { display: none; }
+      .os-agents { grid-template-columns: 1fr; }
+      .typing { white-space: normal; border-right: 0; animation: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .typing, .prog span, .os-feed li, .os-agents b i.busy, .os-top em::before { animation: none; }
+    }
+
     /* ---- faq + cta ------------------------------------------------------ */
     .qa { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
     .qa .card h3 { font-size: 0.9375rem; }
@@ -210,6 +260,7 @@
       .grid4, .track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .track::before { display: none; }
       .qa { grid-template-columns: 1fr; }
+      .proof { grid-template-columns: 1fr; }
       /* Workflows turn vertical: nodes in a column, wires run downward. */
       .wf { flex-direction: column; }
       .node { width: auto; display: flex; align-items: center; gap: 0.8rem; text-align: left; align-self: stretch; }
@@ -276,22 +327,6 @@
         </ul>
       </section>
 
-      <section class="m-section" style="margin-top: clamp(2.5rem, 6vw, 3.5rem);">
-        <div class="canvas">
-          <div class="canvas-bar"><strong>Your first automation, week 2</strong></div>
-          <div class="wf">
-            <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-layout"/></svg></div><b>Landing page</b><small>Trigger</small></div>
-            <div class="wire"></div>
-            <div class="node"><div class="tile"><svg class="ic"><use href="#i-db"/></svg></div><b>Save lead</b><small>Database</small></div>
-            <div class="wire"></div>
-            <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Write welcome</b><small>AI</small></div>
-            <div class="wire"></div>
-            <div class="node"><div class="tile"><svg class="ic"><use href="#i-mail"/></svg></div><b>Send email</b><small>Email</small></div>
-            <div class="wire"></div>
-            <div class="node"><div class="tile"><svg class="ic"><use href="#i-note"/></svg></div><b>Deliver PDF</b><small>Lead magnet</small></div>
-          </div>
-        </div>
-      </section>
 
       <section class="m-section">
         <p class="kicker">Every week</p>
@@ -369,6 +404,21 @@
         <div style="display:grid; gap:1rem;">
 
           <div class="canvas">
+          <div class="canvas-bar"><strong>Lead capture</strong><span>Weeks 1&ndash;3</span></div>
+          <div class="wf">
+            <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-layout"/></svg></div><b>Landing page</b><small>Trigger</small></div>
+            <div class="wire"></div>
+            <div class="node"><div class="tile"><svg class="ic"><use href="#i-db"/></svg></div><b>Save lead</b><small>Database</small></div>
+            <div class="wire"></div>
+            <div class="node ai"><div class="tile"><svg class="ic"><use href="#i-spark"/></svg></div><b>Write welcome</b><small>AI</small></div>
+            <div class="wire"></div>
+            <div class="node"><div class="tile"><svg class="ic"><use href="#i-mail"/></svg></div><b>Send email</b><small>Email</small></div>
+            <div class="wire"></div>
+            <div class="node"><div class="tile"><svg class="ic"><use href="#i-note"/></svg></div><b>Deliver PDF</b><small>Lead magnet</small></div>
+          </div>
+
+
+          <div class="canvas">
             <div class="canvas-bar"><strong>Idea to published content</strong><span>Weeks 4&ndash;6</span></div>
             <div class="wf">
               <div class="node trigger"><div class="tile"><svg class="ic"><use href="#i-pen"/></svg></div><b>New idea</b><small>Trigger</small></div>
@@ -422,7 +472,44 @@
       <section class="m-section">
         <p class="kicker">Proof</p>
         <h2>Built by me.</h2>
-        <div class="grid2">
+        <div class="proof">
+          <div class="os-card">
+            <div class="os">
+              <div class="os-top"><i></i><i></i><i></i><span>AI operating system</span><em>All agents online</em></div>
+              <div class="os-body">
+                <aside class="os-side">
+                  <p class="os-me"><span></span>Pelumi</p>
+                  <ul>
+                    <li class="on"><svg class="ic"><use href="#i-layout"/></svg>Today</li>
+                    <li><svg class="ic"><use href="#i-inbox"/></svg>Inbox<b>12</b></li>
+                    <li><svg class="ic"><use href="#i-pen"/></svg>Content</li>
+                    <li><svg class="ic"><use href="#i-check"/></svg>Approvals<b>3</b></li>
+                    <li><svg class="ic"><use href="#i-mail"/></svg>Newsletter</li>
+                    <li><svg class="ic"><use href="#i-cart"/></svg>Sales</li>
+                  </ul>
+                </aside>
+                <div class="os-main">
+                  <div class="os-ask"><svg class="ic"><use href="#i-spark"/></svg><span class="typing">Draft this week's LinkedIn posts from my newsletter</span></div>
+                  <div class="os-agents">
+                    <div><b><i class="busy"></i>Inbox agent</b><small>Sorting 12 new emails</small><span class="prog"><span style="--w:72%"></span></span></div>
+                    <div><b><i class="busy"></i>Content agent</b><small>Writing 5 posts</small><span class="prog"><span style="--w:45%"></span></span></div>
+                    <div><b><i></i>Research agent</b><small>Brief ready</small><span class="prog"><span style="--w:100%"></span></span></div>
+                  </div>
+                  <ul class="os-feed">
+                    <li><svg class="ic"><use href="#i-mail"/></svg>3 replies drafted, waiting for you<time>07:02</time></li>
+                    <li><svg class="ic"><use href="#i-send"/></svg>4 posts scheduled for the week<time>07:15</time></li>
+                    <li><svg class="ic"><use href="#i-db"/></svg>New newsletter subscriber<time>08:41</time></li>
+                    <li><svg class="ic"><use href="#i-bell"/></svg>New sale: Masterclass<time>09:10</time></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="os-caption">
+              <span class="status">Runs my business daily</span>
+              <h3 style="margin:0 0 0.3rem">My AI operating system</h3>
+              <p class="kicker" style="margin:0">Inbox, content, approvals, newsletter and sales, in one place. You'll see how it's wired.</p>
+            </div>
+          </div>
           <div>
             <div class="shot">
               <div class="chrome"><i></i><i></i><i></i><span>aiwithpelumi.com</span></div>
@@ -438,15 +525,6 @@
             <span class="status">Live</span>
             <h3 style="margin:0 0 0.3rem">This site</h3>
             <p class="kicker" style="margin:0">Pages, newsletter, emails, checkout</p>
-          </div>
-          <div>
-            <div class="shot">
-              <div class="chrome"><i></i><i></i><i></i><span>youtube.com</span></div>
-              <div class="screen"><div class="mock-yt"><div class="player"></div><div class="thumbs"><div></div><div></div><div></div></div></div><span class="ph-label">Screenshot</span></div>
-            </div>
-            <span class="status">In progress</span>
-            <h3 style="margin:0 0 0.3rem">YouTube automation</h3>
-            <p class="kicker" style="margin:0">AI + editor, posting on its own</p>
           </div>
           <div>
             <div class="shot">
